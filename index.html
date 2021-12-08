@@ -1,0 +1,74 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+    <head>
+        <title>
+            WMMT6 Car Editor
+        </title>
+
+        <!-- Bootstrap Stylesheet -->
+        <link rel='stylesheet' href='redist/bootstrap.min.css'>
+    </head>
+    <body>
+        <div id='d_header' class='text-center'>
+            <h1>
+                Wangan Midnight Maximum Tune 6 Car Editor
+            </h1>
+            <h2>
+                For use with TeknoParrot or JConfig
+            </h2>
+            <h3>
+                Tool by 
+                <a href='https://www.twitter.com/SirScrubbington'>
+                    SirScrubbington
+                </a>
+            </h3>
+        </div>
+        <div id='d_input' class='text-center'>
+            <label for='i_file'> 
+                Car File Upload 
+            </label>
+            <input name="file" type="file" accept=".car" id="i_file"/>
+            <button type='button' class='btn btn-primary' onClick='handleUpload()'>
+                Upload File 
+            </button>
+        </div>
+        <div id='d_table'>
+            <table class='table table-dark' id='t_table'>
+                <thead class='thead thead-dark'>
+                </thead>
+                <tbody class='tbody tbody-dark'>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <!--
+                DATA FILES
+            -->
+
+            <!-- File buffer reader source file -->
+            <script type='text/javascript' src='data/hextable.js'>
+            </script>
+
+            <!-- Maximum Tune Specific source file -->
+            <script type='text/javascript' src='data/locations.js'>
+            </script>
+
+            <!--
+                SOURCE FILES
+            -->
+
+            <!-- File buffer reader source file -->
+            <script type='text/javascript' src='src/buf.js'>
+            </script>
+
+            <!-- Maximum Tune Specific source file -->
+            <script type='text/javascript' src='src/wmmt.js'>
+            </script>
+
+            <!-- Main program source file -->
+            <script type='text/javascript' src='index.js'>
+            </script>
+        </div>
+    </body>
+</html>
