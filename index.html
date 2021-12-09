@@ -9,7 +9,10 @@
         <!-- Bootstrap Stylesheet -->
         <link rel='stylesheet' href='redist/bootstrap.min.css'>
     </head>
-    <body>
+    <body class='text-light bg-dark'>
+        <div id='d_cover'>
+            <img src='img/cover.png' style='max-width:100%; max-height:100%; object-fit: fill;'>
+        </div>
         <div id='d_header' class='text-center'>
             <h1>
                 Wangan Midnight Maximum Tune 6 Car Editor
@@ -25,19 +28,152 @@
             </h3>
         </div>
         <div id='d_input' class='text-center'>
-            <label for='i_file'> 
-                Car File Upload 
-            </label>
-            <input name="file" type="file" accept=".car" id="i_file"/>
-            <button type='button' class='btn btn-primary' onClick='handleUpload()'>
-                Upload File 
-            </button>
+        </div>
+        <div id='d_upload'>
+            <table class='table table-dark' id='t_upload'>
+                <thead class='thead thead-dark'>
+                    <tr>
+                        <th colspan>
+                            Upload File
+                        </th>
+                        <td colspan=2>
+                            <i>
+                                For Teknoparrot, .car files are found in '**GAME PATH**\TeknoParrot_Cars'.
+                            </i>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input name="file" type="file" accept=".car" id="i_file"/>
+                        </td>
+                        <td>
+                            <a href='#' onClick='handleUpload()'>
+                                Upload File
+                            </a>
+                        </td>
+                        <td>
+                            <a href='#' onClick='download()'>
+                                Download File
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div id='d_table'>
+            <h4 class='text-center'>
+                Part Selector
+            </h4>
             <table class='table table-dark' id='t_table'>
                 <thead class='thead thead-dark'>
+                    <tr>
+                        <th>
+                            Aero Part
+                        </th>
+                        <th>
+                            Selection
+                        </th>
+                    </tr>
                 </thead>
                 <tbody class='tbody tbody-dark'>
+                    <tr>
+                        <th>
+                            Car Model
+                        </th>
+                        <td>
+                            <select name='s_cars' id='s_cars' disabled>
+                                <option id='o_carname'>
+                                    No File Uploaded
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Aero Kit
+                        </th>
+                        <td>
+                            <select name='s_aero' id='s_aero' disabled>
+                                <!--
+                                    Aero Parts populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Wing
+                        </th>
+                        <td>
+                            <select name='s_wing' id='s_wing' disabled>
+                                <!--
+                                    Wings populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Hood
+                        </th>
+                        <td>
+                            <select name='s_hood' id='s_hood' disabled>
+                                <!--
+                                    Hoods populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Mirror
+                        </th>
+                        <td>
+                            <select name='s_mirror' id='s_mirror' disabled>
+                                <!--
+                                    Mirrors populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Trunk
+                        </th>
+                        <td>
+                            <select name='s_trunk' id='s_trunk' disabled>
+                                <!--
+                                    Trunks populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Neon
+                        </th>
+                        <td>
+                            <select name='s_neon' id='s_neon' disabled>
+                                <!--
+                                    Neon populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Rims
+                        </th>
+                        <td>
+                            <select name='s_rims' id='s_rims' disabled>
+                                <!--
+                                    Rims populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -58,12 +194,12 @@
                 SOURCE FILES
             -->
 
-            <!-- File buffer reader source file -->
-            <script type='text/javascript' src='src/buf.js'>
+            <!-- Maximum Tune Specific source file -->
+            <script type='text/javascript' src='src/class/map.js'>
             </script>
 
-            <!-- Maximum Tune Specific source file -->
-            <script type='text/javascript' src='src/wmmt.js'>
+            <!-- File buffer reader source file -->
+            <script type='text/javascript' src='src/class/car.js'>
             </script>
 
             <!-- Main program source file -->

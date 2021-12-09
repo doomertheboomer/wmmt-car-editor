@@ -57,10 +57,20 @@ class Map
         return output.join('\n');
     }
 
+    getDimensions()
+    {
+        // Return a 2-element dict containing 
+        // the width and height of the map.
+        return {
+            y: this.map.length, // Number of rows
+            x: this.map[0].length // Number of cols
+        };
+    }
+
     // verifyPoint(x: int, y: int): void
     // Given an x and a y coordinate, verify
     // the point is within the range of the map.
-    verifyPoint(x, y)
+    verifyPoint(y, x)
     {
         // Verify the coordinates are greater or equal
         // to zero, or less than the length of the arrays
@@ -71,7 +81,7 @@ class Map
     // getElementAt(x: int, y: int): void
     // Gets the current element at the position
     // in the map
-    getElementAt(x, y)
+    getElementAt(y, x)
     {
         // If the point is valid
         if(this.verifyPoint(x,y))
@@ -88,7 +98,7 @@ class Map
 
     // setElementAt(x: int, y: int, n: int): int
     // Sets the element at the position in the map
-    setElementAt(x, y, n)
+    setElementAt(y, x, n)
     {
         // If the point is valid
         if(this.verifyPoint(x,y))

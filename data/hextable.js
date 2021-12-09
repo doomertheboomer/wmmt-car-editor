@@ -1,5 +1,5 @@
 const HEXTABLE = {
-    'cars': { // Car IDs
+    cars: { // Car IDs
         "86": "ACURA New NSX (ACURA)",
         "87": "ACURA NSX (ACURA)",
         "6D": "Audi R8 5.2 FSI quattro [R8]",
@@ -136,7 +136,7 @@ const HEXTABLE = {
         "3A": "TOYOTA SUPRA 2.5GT TWIN TURBO R [JZA70]",
         "39": "TOYOTA SUPRA RZ [JZA80]",
     }, 
-    'aero': { // Body Kits
+    aero: { // Body Kits
         "00": 'Stock',
         "01": 'Aero Set I (New)', 
         "02": 'Aero Set J (New)', 
@@ -150,7 +150,7 @@ const HEXTABLE = {
         "0A": 'Aero Set G',
         "0B": 'Aero Set H'
     }, 
-    'wing': { // Rear Wings
+    wing: { // Rear Wings
         "00": 'Stock Wing',
         "01": 'GT Wing Straight',
         "02": 'Exclusive Wing A',
@@ -162,7 +162,7 @@ const HEXTABLE = {
         "08": 'GT Wing Swan',
         "09": 'No Wing'
     },
-    'hood': { // Bonnet / Hood
+    hood: { // Bonnet / Hood
         "00": 'Stock',
         "01": 'FRP Bonnet A',
         "02": 'FRP Bonnet B',
@@ -173,16 +173,16 @@ const HEXTABLE = {
         "07": 'Carbon Bonnet (with duct 3)',
         "08": 'FRP Bonnet D'
     }, 
-    'mirror': { // Mirror
+    mirror: { // Mirror
         "00": 'Stock',
         "01": 'Aero Mirror',
         "02": 'Carbon Aero Mirror'
     },
-    'trunk': { // Trunks / Boots
+    trunk: { // Trunks / Boots
         "00": 'Stock',
         "01": 'Carbon Trunk'
     }, 
-    'neon': { // Neon / Underglow
+    neon: { // Neon / Underglow
         "00": 'No Neon',
         "01": 'Green',
         "02": 'Blue',
@@ -195,7 +195,7 @@ const HEXTABLE = {
         "09": 'Yellow Tribal',
         "10": 'Purple Tribal'
     }, 
-    'frame': { // Plate Frame
+    frame: { // Plate Frame
         "00": {
             "00": "Stock"
         }, 
@@ -232,7 +232,7 @@ const HEXTABLE = {
             "04": "Yellow"
         } 
     }, 
-    'district': { // District Name
+    district: { // District Name
         "00": "Blank",
         "01": "Hokkaido",
         "03": "Iwate",
@@ -243,7 +243,7 @@ const HEXTABLE = {
         "0E": "Kanagawa",
         "2F": "Okinawa"
     },
-    'rims': { // Wheels / Rims
+    rims: { // Wheels / Rims
         "00": "Stock",
         "0A": "Yokohama Model T5 (T5)",
         "0B": "Watanabe Eight Spoke (EIGHT)",
