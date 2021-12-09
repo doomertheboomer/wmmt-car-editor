@@ -11,7 +11,11 @@ function handleUpload()
     reader.onload = function(e) {
 
         // Get the map from the buffer
-        let map = getBufferMap(e.target.result);
+        let map = new Map(e.target.result);
+
+        console.log(map.getBufferMapString());
+
+        /*
 
         // Verify the map is valid
         if (verifyBufferMap(map))
@@ -23,6 +27,7 @@ function handleUpload()
         {
             throw "Failed to verify map! Ensure file is correct!";
         }
+        */
 	};
 
     // Code to run if reader fails

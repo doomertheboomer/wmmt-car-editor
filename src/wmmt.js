@@ -4,68 +4,84 @@ class Car
     // Requires a map to get info from
     constructor(map)
     {
-        // Car ID
-        this.id = getSelected(map, 'cars');
-        
-        this.rims = {
-            type: getSelected(map, 'rims'), // Rims Type
-            colour: getSelected(map, 'rims-colour') // Rims Colour
-        };
-        
-        // Aero / Body Kit
-        this.aero = getSelected(map, 'aero');
-
-        this.hood = getSelected(map, 'hood');
-        this.wing = getSelected(map, 'wing');
-        this.mirror = getSelected(map, 'mirror');
-        this.neon = getSelected(map, 'neon');
-        this.trunk = getSelected(map, 'trunk');
-        
-        this.plate = {
-            frame: getSelected(map, 'plate-frame'), // Plate Frame
-            colour: getSelected(map, 'plate-frame-colour'), // Plate Colour
-            number: [
-                getSelected(map, 'plate-number1'), // First Number
-                getSelected(map, 'plate-number2') // Second Number
-            ]
-        }
-        
-        this.power = getSelected(map, 'power');
-        this.handling = getSelected(map, 'handling');
-        this.rank = getSelected(map, 'rank');
-
-        this.sticker = {
-            type: getSelected(map, 'sticker-type'),
-            id: getSelected(map, 'sticker-id')
-        }
-
-        console.log(this.toStringHex());
-        console.log(this.toString());
+        // Set the map for this car to the given map
+        this.map = map;
     }
 
-    toString()
+    // setMap(map: Map): void
+    // Given a map, sets the car's 
+    // map to the given map object.
+    setMap(map)
     {
-        return "Car ID: " + getValueAt('cars', this.id) + "\n" + 
-            "Rims Type: " + getValueAt('rims', this.rims.type) + ", Rims Color: " + getValueAt('rims-colour', this.rims.colour) + "\n" + 
-            "Aero: " + getValueAt('aero', this.aero) + ", Hood: " + getValueAt('hood', this.hood) + ", Wing: " + getValueAt('wing', this.wing) + "\n" + 
-            "Mirror: " + getValueAt('mirror', this.mirror) + ", Neon: " + getValueAt('neon', this.neon) + ", Trunk: " + getValueAt('trunk', this.trunk) + "\n" + 
-            "Plate Frame: " + getValueAt('plate-frame',this.plate.frame) + ", Plate Colour: " + getValueAt('plate-colour',this.plate.colour) + "\n" + 
-            "Plate Number (1): " + getValueAt('plate-number-0', this.plate.number[0]) + ", (2): " + getValueAt('plate-number-1', this.plate.number[1]) + "\n" + 
-            "Power: " + getValueAt('power', this.power) + ", Handling: " + getValueAt('handling', this.handling) + ", Rank: " + getValueAt('rank', this.rank) + "\n" + 
-            "Sticker Type: " + getValueAt('sticker-type', this.sticker.type) + ", Sticker ID: " + getValueAt('sticker-id',this.sticker.id);
+        this.map = map;
     }
 
-    toStringHex()
+    // getMap(void): Map
+    // Returns the map stored
+    // within the car object.
+    getMap()
     {
-        return "Car ID: " + this.id + "\n" + 
-            "Rims Type: " + this.rims.type + ", Rims Color: " + this.rims.colour + "\n" + 
-            "Aero: " + this.aero + ", Hood: " + this.hood + ", Wing: " + this.wing + "\n" + 
-            "Mirror: " + this.mirror + ", Neon: " + this.neon + ", Trunk: " + this.trunk + "\n" + 
-            "Plate Frame: " + this.plate.frame + ", Plate Colour: " + this.plate.colour + "\n" + 
-            "Plate Number (1): " + this.plate.number[0] + ", (2): " + this.plate.number[1] + "\n" + 
-            "Power: " + this.power + ", Handling: " + this.handling + ", Rank: " + this.rank + "\n" + 
-            "Sticker Type: " + this.sticker.type + ", Sticker ID: " + this.sticker.id;
+        return this.map;
     }
+
+    getCar()
+    {
+
+    }
+
+    setCar()
+    {
+
+    }
+
+    getRims()
+    {
+
+    }
+
+    setRims()
+    {
+
+    }
+
+    getRimsColour()
+    {
+        
+    }
+
+    setRimsColour()
+    {
+
+    }
+
+    setAero()
+    {
+
+    }
+
+    getAero()
+    {
+
+    }
+
+    /*
+    'rims-colour': [4, 4],
+    'aero': [4, 8],
+    'hood': [4, 12],
+    'wing': [5, 8],
+    'mirror': [5, 12],
+    'neon': [6, 0],
+    'trunk': [6, 4],
+    'plate-frame': [6, 8],
+    'plate-frame-colour': [6, 12],
+    'plate-number1': [7, 0],
+    'plate-number2': [7, 1],
+    'power': [7, 4],
+    'handling': [8, 0],
+    'rank': [8, 4],
+    'sticker-type': [9, 4],
+    'sticker-id': [9, 8],
+    */
 }
 
 // Verify that the map provided
