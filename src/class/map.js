@@ -37,6 +37,51 @@ class Map
         this.map = result;
     }
 
+    // getFlattened(void): List
+    // Returns the map with all elements in a single array.
+    getFlattened()
+    {
+        // Empty list
+        let li = [];
+
+        // Loop over the map
+        for (let i=0; i<this.map.length; i++)
+        {
+            // Loop over the current row in the map
+            for(let j=0; j<this.map[i].length; j++)
+            {
+                // Push the element to the list
+                li.push(this.map[i][j]);
+            }
+        }
+
+        // Return the list
+        return li;
+    }
+
+    // getUINT8Array(void): UINT8Array
+    // Returns the map converted to a
+    // UINT8Array. 
+    getUINT8Array()
+    {
+        // Get a flattened array
+        let flat = this.getFlattened();
+
+        // Empty UINT8Array 
+        // (same size as flattened array)
+        let uint8 = new Uint8Array(flat.length);
+
+        // Loop over the length of the uint8 array
+        for(let i=0; i<uint8.length; i++)
+        {
+            // Convert the string to a 16-bit integer
+            uint8[i] = parseInt(flat[i], 16);
+        }
+
+        // Return the list
+        return uint8;
+    }
+
     // Convert the buffer map to a hex string
     // For testing / demonstration purposes
     getBufferMapString()

@@ -1,5 +1,6 @@
 // By default, no car is selected
 document.car = null;
+document.filename = null;
 
 // Handle the upload
 function handleUpload()
@@ -21,6 +22,7 @@ function handleUpload()
 
             // If car is created successfully, assign to the document
             document.car = car;
+            document.filename = e.target.name;
 
             // Enable the drop-downs and 
             // load the current properties
@@ -32,15 +34,6 @@ function handleUpload()
             document.getElementById('o_trunk_' + car.getTrunk()).selected = true;
             document.getElementById('o_neon_' + car.getNeon()).selected = true;
             document.getElementById('o_rims_' + car.getRims()).selected = true;
-
-            console.log(car.getCar());
-            console.log(car.getAero());
-            console.log(car.getWing());
-            console.log(car.getHood());
-            console.log(car.getMirror());
-            console.log(car.getTrunk());
-            console.log(car.getNeon());
-            console.log(car.getRims());
 
             // Enable the drop-downs
             document.getElementById('s_cars').disabled = false;
@@ -56,6 +49,7 @@ function handleUpload()
         {
             // Document car is null
             document.car = null;
+            document.filename = null;
 
             // Disable the drop-downs
             document.getElementById('s_cars').disabled = true;
@@ -74,6 +68,36 @@ function handleUpload()
 
     // Read the binary content from the file
     reader.readAsArrayBuffer(file);
+}
+function handleDownload()
+{
+    // downloadBlob(data: Uint8array, filename: String, mimetype: String)
+    function downloadBlob(data, filename, mimetype) 
+    {
+        // downloadURL(data: Uint8array, filename: String): Void
+        function downloadURL(data, filename) 
+        {
+            const a = document.createElement('a')
+            a.href = data
+            a.download = fileName
+            document.body.appendChild(a)
+            a.style.display = 'none'
+            a.click()
+            a.remove()
+        }
+
+        const blob = new Blob([data], {
+            type: mimeType
+        })
+        
+        const url = window.URL.createObjectURL(blob)
+        
+        downloadURL(url, fileName)
+        
+        setTimeout(() => window.URL.revokeObjectURL(url), 1000)
+    }
+
+
 }
 
 // Code after this runs on file load
