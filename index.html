@@ -54,7 +54,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href='#' onClick='download()'>
+                            <a href='#' onClick='handleDownload()'>
                                 Download File
                             </a>
                         </td>
@@ -83,7 +83,7 @@
                             Car Model
                         </th>
                         <td>
-                            <select name='s_cars' id='s_cars' disabled>
+                            <select name='s_cars' id='s_cars' onChange='document.car.setCar(value)' disabled>
                                 <option id='o_carname'>
                                     No File Uploaded
                                 </option>

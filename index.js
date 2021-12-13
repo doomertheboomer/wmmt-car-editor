@@ -2,7 +2,8 @@
 document.car = null;
 document.filename = null;
 
-// Handle the upload
+// handleUpload(Void): Void
+// Handle the file upload to the site
 function handleUpload()
 {
     // Get the file from the upload 
@@ -69,6 +70,9 @@ function handleUpload()
     // Read the binary content from the file
     reader.readAsArrayBuffer(file);
 }
+
+// handleDownload(Void): Void
+// Handle the save file download from the site
 function handleDownload()
 {
     // downloadBlob(data: Uint8array, filename: String, mimetype: String)
@@ -79,25 +83,39 @@ function handleDownload()
         {
             const a = document.createElement('a')
             a.href = data
-            a.download = fileName
+            a.download = filename
             document.body.appendChild(a)
             a.style.display = 'none'
             a.click()
             a.remove()
         }
 
+        // Create a 
         const blob = new Blob([data], {
-            type: mimeType
+            type: mimetype
         })
         
         const url = window.URL.createObjectURL(blob)
         
-        downloadURL(url, fileName)
+        downloadURL(url, filename)
         
         setTimeout(() => window.URL.revokeObjectURL(url), 1000)
     }
 
-
+    // If a car has been uploaded
+    if (this.document.car !== null)
+    {
+        // Get the UINT8 array, convert to blob data and download the file
+        downloadBlob(
+            this.document.car.getMap().getUINT8Array(), // Binary Values
+            document.filename, // Filename of the uploaded file
+            'application/octet-stream' // MIMETYPE for Binary Files
+        );
+    }
+    else // No car uploaded
+    {
+        // Do nothing
+    }
 }
 
 // Code after this runs on file load
@@ -291,6 +309,8 @@ for (code in HEXTABLE.rims)
 
     // Assign the value to the code
     option.value = code;
+
+    console.log(code, rims)
 
     // Assign the id to the option
     option.id = 'o_rims_' + code;

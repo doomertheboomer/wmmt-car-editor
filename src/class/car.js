@@ -65,7 +65,7 @@ class Car
 
     // setRims(hexcode: String): Void
     // Assign the hex code for the selected rims
-    setRims()
+    setRims(hexcode)
     {
         // Assign the currently selected rims
         this.map.setElementAt(4, 0, hexcode);
