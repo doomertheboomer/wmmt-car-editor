@@ -1,5 +1,7 @@
 // By default, no car is selected
 document.car = null;
+
+// No recorded file name
 document.filename = null;
 
 // handleUpload(Void): Void
@@ -8,6 +10,9 @@ function handleUpload()
 {
     // Get the file from the upload 
     let file = document.getElementById('i_file').files[0];
+
+    // Set the filename variable to the name of the uploaded file
+    document.filename = file.name;
 
     // File reader object for opening user input
     const reader = new FileReader();
@@ -23,7 +28,6 @@ function handleUpload()
 
             // If car is created successfully, assign to the document
             document.car = car;
-            document.filename = e.target.name;
 
             // Enable the drop-downs and 
             // load the current properties
@@ -90,15 +94,19 @@ function handleDownload()
             a.remove()
         }
 
-        // Create a 
+        // Create a new blob using the data
         const blob = new Blob([data], {
+            // Use given mimetype for data write
             type: mimetype
-        })
+        });
         
+        // Create an object url for the blob data
         const url = window.URL.createObjectURL(blob)
         
+        // Download the file
         downloadURL(url, filename)
         
+        // Set a download timeout before the url is revoked
         setTimeout(() => window.URL.revokeObjectURL(url), 1000)
     }
 
@@ -309,8 +317,6 @@ for (code in HEXTABLE.rims)
 
     // Assign the value to the code
     option.value = code;
-
-    console.log(code, rims)
 
     // Assign the id to the option
     option.id = 'o_rims_' + code;

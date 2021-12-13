@@ -1,5 +1,7 @@
 class Map
 {
+    // constructor(buffer: Buffer): Void
+    // Constructor for a new Map object
     constructor(buffer)
     {
         // Convert buffer to Uint8Array
@@ -8,11 +10,11 @@ class Map
         // Create result array
         let result = [];
 
-        // i/j default at 0
+        // i/j default at 0, -1
         let i = 0; let j = -1;
 
         // Loop over all of the buffer items
-        for(i=0; i<array.length; i++)
+        for(; i < array.length; i++)
         {
             // Convert the integer to a hexidecimal string
             let item = array[i].toString(16).toUpperCase().padStart(2, '0');
