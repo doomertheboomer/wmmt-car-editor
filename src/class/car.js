@@ -216,8 +216,14 @@ class Car
     // Assign the hex code for the selected plate frame
     setPlateFrame(hexcode)
     {
+        // Split the hexcode on the dash
+        let hexcodes = hexcode.split('-');
+
         // Assign the currently selected plate frame
-        this.map.setElementAt(6, 8, hexcode);
+        this.map.setElementAt(6, 8, hexcodes[0]);
+
+        // Assign the currently selected frame colour
+        this.map.setElementAt(6, 12, hexcodes[1]);
     }
 
     // getPlateFrame(): String
@@ -225,24 +231,7 @@ class Car
     getPlateFrame()
     {
         // Assign the currently selected plate frame
-        return this.map.getElementAt(6, 8);
-    }
-
-    // setPlateFrameColour(hexcode: String): Void
-    // Assign the hex code for the selected plate frame colour
-    setPlateFrameColour(hexcode)
-    {
-        // Assign the currently selected plate frame colour
-        this.map.setElementAt(6, 12, hexcode);
-
-    }
-
-    // getPlateFrameColour(): String
-    // Return the hex code for the selected plate frame colour
-    getPlateFrameColour()
-    {
-        // Assign the currently selected plate frame colour
-        return this.map.getElementAt(6, 12);
+        return this.map.getElementAt(6, 8) + '-' + this.map.getElementAt(6, 12);
     }
 
     // setPlateFrameNumber1(hexcode: String): Void
