@@ -55,6 +55,32 @@ class Car
         this.map.setElementAt(3, 4, hexcode);
     }
 
+    // getColour(void): String
+    // Get the hex code for the selected car colour
+    getColour()
+    {
+        // Return the currently selected colour
+        
+        // WIP: Find the index / hex codes for car colour
+        
+        // return this.map.getElementAt(4, 0);
+        
+        throw "notImplementedException";
+    }
+
+    // setColour(hexcode): String
+    // Set the hex code for the selected car colour
+    setColour(hexcode)
+    {
+        // Assign the currently selected colour
+
+        // WIP: Find the index / hex codes for car colour
+
+        // this.map.setElementAt(4, 0, hexcode);
+
+        throw "notImplementedException";
+    }
+
     // getRims(): String
     // Return the hex code for the selected rims
     getRims()
@@ -237,10 +263,10 @@ class Car
 
     // setPlateFrameNumber2(hexcode: String): Void
     // Assign the hex code for the second selected plate frame number
-    setPlateFrameNumber2()
+    setPlateFrameNumber2(hexcode)
     {
         // Assign the currently selected plate frame number
-        return this.map.getElementAt(7, 0);
+        this.map.setElementAt(7, 0, hexcode);
     }
     
     // getPlateFrameNumber2(): String
@@ -248,15 +274,15 @@ class Car
     getPlateFrameNumber2()
     {
         // Assign the currently selected plate frame number
-        this.map.setElementAt(7, 0, hexcode);
+        return this.map.getElementAt(7, 0);
     }
 
     // setPower(hexcode: String): Void
     // Assign the hex code for the selected power
-    setPower()
+    setPower(hexcode)
     {
         // Assign the currently selected power
-        return this.map.getElementAt(7, 4);
+        this.map.setElementAt(7, 4, hexcode);
     }
 
     // getPower(): String
@@ -264,15 +290,16 @@ class Car
     getPower()
     {
         // Assign the currently selected power
-        this.map.setElementAt(7, 4, hexcode);
+        return this.map.getElementAt(7, 4);
     }
 
     // setHandling(hexcode: String): Void
     // Assign the hex code for the selected handling
-    setHandling()
+    setHandling(hexcode)
     {
         // Assign the currently selected handling
-        return this.map.getElementAt(8, 0);
+        this.map.setElementAt(8, 0, hexcode);
+
     }
 
     // getHandling(): String
@@ -280,15 +307,15 @@ class Car
     getHandling()
     {
         // Assign the currently selected handling
-        this.map.setElementAt(8, 0, hexcode);
+        return this.map.getElementAt(8, 0);
     }
     
     // setRank(hexcode: String): Void
     // Assign the hex code for the selected rank
-    setRank()
+    setRank(hexcode)
     {
         // Assign the currently selected rank
-        return this.map.getElementAt(8, 4);
+        this.map.setElementAt(8, 4, hexcode);
     }
 
     // getRank(): String
@@ -296,15 +323,15 @@ class Car
     getRank()
     {
         // Assign the currently selected rank
-        this.map.setElementAt(8, 4, hexcode);
+        return this.map.getElementAt(8, 4);
     }
 
     // setStickerType(hexcode: String): Void
     // Assign the hex code for the selected sticker type
-    setStickerType()
+    setStickerType(hexcode)
     {
         // Assign the currently selected sticker type
-        return this.map.getElementAt(9, 4);
+        this.map.setElementAt(9, 4, hexcode);
     }
 
     // getStickerType(): String
@@ -312,15 +339,15 @@ class Car
     getStickerType()
     {
         // Assign the currently selected sticker type
-        this.map.setElementAt(9, 4, hexcode);
+        return this.map.getElementAt(9, 4);
     }
 
     // setStickerId(hexcode: String): Void
     // Assign the hex code for the selected sticker id
-    setStickerId()
+    setStickerId(hexcode)
     {
         // Assign the currently selected sticker id
-        return this.map.getElementAt(9, 8);
+        this.map.setElementAt(9, 8, hexcode);
     }
 
     // getStickerId(): String
@@ -328,6 +355,6 @@ class Car
     getStickerId()
     {
         // Assign the currently selected sticker id
-        this.map.setElementAt(9, 8, hexcode);
+        return this.map.getElementAt(9, 8);
     }
 }

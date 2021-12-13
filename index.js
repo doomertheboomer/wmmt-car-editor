@@ -85,12 +85,25 @@ function handleDownload()
         // downloadURL(data: Uint8array, filename: String): Void
         function downloadURL(data, filename) 
         {
+            // Create link element
             const a = document.createElement('a')
+
+            // Point link to the data
             a.href = data
+
+            // Set the download name to the filename
             a.download = filename
+
+            // Add the link to the document
             document.body.appendChild(a)
+
+            // Hide the link
             a.style.display = 'none'
+
+            // Click on the link
             a.click()
+
+            // Remove the link
             a.remove()
         }
 
@@ -128,202 +141,56 @@ function handleDownload()
 
 // Code after this runs on file load
 
-// Get the aero selector drop-down
-let s_cars = document.getElementById('s_cars');
-
-// Load all of the aero kits
-for (code in HEXTABLE.cars)
+// getOptions(code: String): Void
+// 
+function getOptions(code) 
 {
-    // Get the car value from the code
-    let cars = HEXTABLE.cars[code];
+    // Get the drop down for the given code
+    let dropdown = document.getElementById('s_' + code);
 
-    // Create a new option
-    let option = document.createElement('option');
+    // Loop over all of the hextables for the code
+    for (hexcode in HEXTABLE[code])
+    {
+        // Get the name of the object with the given hexcode
+        let name = HEXTABLE[code][hexcode];
 
-    // Assign the value to the code
-    option.value = code;
+        // Create a new option
+        let option = document.createElement('option');
 
-    // Assign the id to the option
-    option.id = 'o_cars_' + code;
+        // Assign the value to the code
+        option.value = hexcode;
 
-    // Assigning the text to the option
-    option.innerHTML = cars;
+        // Assign the id to the option
+        option.id = 'o_' + code + '_' + hexcode;
 
-    // Add the option to the drop-down
-    s_cars.appendChild(option);
+        // Assigning the text to the option
+        option.innerHTML = name;
+
+        // Add the option to the drop-down
+        dropdown.appendChild(option);
+    }
 }
 
-// Get the aero selector drop-down
-let s_aero = document.getElementById('s_aero');
+// Populate the car model drop-down
+getOptions('cars');
 
-// Load all of the aero kits
-for (code in HEXTABLE.aero)
-{
-    // Get the car value from the code
-    let aero = HEXTABLE.aero[code];
+// Populate the body kit drop-down
+getOptions('aero');
 
-    // Create a new option
-    let option = document.createElement('option');
+// Populate the wing drop-down
+getOptions('wing');
 
-    // Assign the value to the code
-    option.value = code;
+// Populate the hood drop-down
+getOptions('hood');
 
-    // Assign the id to the option
-    option.id = 'o_aero_' + code;
+// Populate the mirror drop-down
+getOptions('mirror');
 
-    // Assigning the text to the option
-    option.innerHTML = aero;
+// Populate the trunk drop-down
+getOptions('trunk');
 
-    // Add the option to the drop-down
-    s_aero.appendChild(option);
-}
+// Populate the neon drop-down
+getOptions('neon');
 
-// Get the wing selector drop-down
-let s_wing = document.getElementById('s_wing');
-
-// Load all of the aero kits
-for (code in HEXTABLE.wing)
-{
-    // Get the car value from the code
-    let wing = HEXTABLE.wing[code];
-
-    // Create a new option
-    let option = document.createElement('option');
-
-    // Assign the value to the code
-    option.value = code;
-
-    // Assign the id to the option
-    option.id = 'o_wing_' + code;
-
-    // Assigning the text to the option
-    option.innerHTML = wing;
-
-    // Add the option to the drop-down
-    s_wing.appendChild(option);
-}
-
-// Get the hood selector drop-down
-let s_hood = document.getElementById('s_hood');
-
-// Load all of the hoods
-for (code in HEXTABLE.hood)
-{
-    // Get the car value from the code
-    let hood = HEXTABLE.hood[code];
-
-    // Create a new option
-    let option = document.createElement('option');
-
-    // Assign the value to the code
-    option.value = code;
-
-    // Assign the id to the option
-    option.id = 'o_hood_' + code;
-
-    // Assigning the text to the option
-    option.innerHTML = hood;
-
-    // Add the option to the drop-down
-    s_hood.appendChild(option);
-}
-
-// Get the hood selector drop-down
-let s_mirror = document.getElementById('s_mirror');
-
-// Load all of the mirrors
-for (code in HEXTABLE.mirror)
-{
-    // Get the car value from the code
-    let mirror = HEXTABLE.mirror[code];
-
-    // Create a new option
-    let option = document.createElement('option');
-
-    // Assign the value to the code
-    option.value = code;
-
-    // Assign the id to the option
-    option.id = 'o_mirror_' + code;
-
-    // Assigning the text to the option
-    option.innerHTML = mirror;
-
-    // Add the option to the drop-down
-    s_mirror.appendChild(option);
-}
-
-// Get the trunk selector drop-down
-let s_trunk = document.getElementById('s_trunk');
-
-// Load all of the trunk
-for (code in HEXTABLE.trunk)
-{
-    // Get the car value from the code
-    let trunk = HEXTABLE.trunk[code];
-
-    // Create a new option
-    let option = document.createElement('option');
-
-    // Assign the value to the code
-    option.value = code;
-
-    // Assign the id to the option
-    option.id = 'o_trunk_' + code;
-    
-    // Assigning the text to the option
-    option.innerHTML = trunk;
-
-    // Add the option to the drop-down
-    s_trunk.appendChild(option);
-}
-
-// Get the trunk selector drop-down
-let s_neon = document.getElementById('s_neon');
-
-// Load all of the trunk
-for (code in HEXTABLE.neon)
-{
-    // Get the car value from the code
-    let neon = HEXTABLE.neon[code];
-
-    // Create a new option
-    let option = document.createElement('option');
-
-    // Assign the value to the code
-    option.value = code;
-
-    // Assign the id to the option
-    option.id = 'o_neon_' + code;
-
-    // Assigning the text to the option
-    option.innerHTML = neon;
-
-    // Add the option to the drop-down
-    s_neon.appendChild(option);
-}
-
-// Get the trunk selector drop-down
-let s_rims = document.getElementById('s_rims');
-
-// Load all of the trunk
-for (code in HEXTABLE.rims)
-{
-    // Get the car value from the code
-    let rims = HEXTABLE.rims[code];
-
-    // Create a new option
-    let option = document.createElement('option');
-
-    // Assign the value to the code
-    option.value = code;
-
-    // Assign the id to the option
-    option.id = 'o_rims_' + code;
-
-    // Assigning the text to the option
-    option.innerHTML = rims;
-
-    // Add the option to the drop-down
-    s_rims.appendChild(option);
-}
+// Populate the rims drop-down
+getOptions('rims');
