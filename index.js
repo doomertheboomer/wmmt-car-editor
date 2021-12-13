@@ -142,7 +142,9 @@ function handleDownload()
 // Code after this runs on file load
 
 // getOptions(code: String): Void
-// 
+// Given a property code, gets the items
+// available for that property (which are discovered)
+// and adds them to the respective drop-down list.
 function getOptions(code) 
 {
     // Get the drop down for the given code

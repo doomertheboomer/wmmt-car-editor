@@ -1,5 +1,11 @@
 const LOCATIONS = {
 
+    // Indexes are [y, x]
+    
+    // This file is not currently used, 
+    // and is mostly a reference. However, 
+    // it may be used directly in the future.
+
     // CAR & COLOUR SECTION
     
     'cars': [3, 4],
