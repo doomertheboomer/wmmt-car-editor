@@ -1,3 +1,4 @@
+// Data table for Maxi 6
 const HEXTABLE = {
     cars: { // Car IDs
         "86": "ACURA New NSX (ACURA)",
