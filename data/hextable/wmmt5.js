@@ -1,5 +1,5 @@
 // Data table for Maxi 5
-const HEXTABLE_5 = {
+const HEXTABLE = {
   cars: {
 
   },

@@ -1,18 +1,18 @@
-# wmmt6-car-editor
-## New Repository for the Wmmt6 Car Editor project.
-### Created by Scrubbs ([@SirScrubbington](https://twitter.com/SirScrubbington))
+# wmmt5-car-editor
+## New Repository for the Wmmt5 Car Editor project.
+### Created by Damon Murdoch ([@SirScrubbington](https://twitter.com/SirScrubbington))
 
 ## Description
-New Repository for the Wmmt6 Car Editor project.
+New Repository for the Wmmt5 Car Editor project.
 
 ### Version
 The latest revision for this software is 1.0.
 
 ### Language
-HTML/CSS/JS
+HTML/CSS/JavaScript
 
 ### Date Created
-12/09/2021 02:27:46
+12/17/2021 13:52:17
 
 ## Future Changes
 A list of future planned changes are listed below.
