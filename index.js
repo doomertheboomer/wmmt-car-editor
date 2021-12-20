@@ -40,6 +40,18 @@ function handleUpload()
             document.getElementById('o_neon_' + car.getNeon()).selected = true;
             document.getElementById('o_rims_' + car.getRims()).selected = true;
             document.getElementById('o_plate_' + car.getPlateFrame()).selected = true;
+            document.getElementById('o_power_' + car.getPower()).selected = true;
+            document.getElementById('o_handling_' + car.getHandling()).selected = true;
+            document.getElementById('o_rank_' + car.getRank()).selected = true;
+
+            // console.log(car.getPower(), car.getHandling(), car.getRank());
+
+            // Load the current properties (integer)
+            document.getElementById('i_colour').value = parseInt(car.getColour(), 16);
+            document.getElementById('i_rims_colour').value = parseInt(car.getRimsColour(), 16);
+
+            document.getElementById('i_plate-frame-number-1').value = parseInt(car.getPlateFrameNumber1(), 16);
+            document.getElementById('i_plate-frame-number-2').value = parseInt(car.getPlateFrameNumber2(), 16);
 
             // Enable the drop-downs
             document.getElementById('s_cars').disabled = false;
@@ -51,9 +63,25 @@ function handleUpload()
             document.getElementById('s_neon').disabled = false;
             document.getElementById('s_rims').disabled = false;
             document.getElementById('s_plate').disabled = false;
+            document.getElementById('s_power').disabled = false;
+            document.getElementById('s_handling').disabled = false;
+            document.getElementById('s_rank').disabled = false;
+
+            // Enable the number selections
+            document.getElementById('i_colour').disabled = false;
+            document.getElementById('i_rims_colour').disabled = false;
+
+            document.getElementById('i_plate-frame-number-1').disabled = false;
+            document.getElementById('i_plate-frame-number-2').disabled = false;
         }
         catch(err) // Fails to create car object
         {
+            console.log(
+                document.car.getPower(), 
+                document.car.getHandling(), 
+                document.car.getRank()
+            );
+            
             // Document car is null
             document.car = null;
             document.filename = null;
@@ -68,6 +96,16 @@ function handleUpload()
             document.getElementById('s_neon').disabled = true;
             document.getElementById('s_rims').disabled = true;
             document.getElementById('s_plate').disabled = true;
+            document.getElementById('s_power').disabled = true;
+            document.getElementById('s_handling').disabled = true;
+            document.getElementById('s_rank').disabled = true;
+
+            // Disable the number selections
+            document.getElementById('i_colour').disabled = true;
+            document.getElementById('i_rims_colour').disabled = true;
+
+            document.getElementById('i_plate-frame-number-1').disabled = true;
+            document.getElementById('i_plate-frame-number-2').disabled = true;
 
             // Write error to terminal
             console.error("Error:",err);
@@ -141,8 +179,6 @@ function handleDownload()
         // Do nothing
     }
 }
-
-// Code after this runs on file load
 
 // getOptions(code: String): Void
 // Given a property code, gets the items
@@ -232,6 +268,15 @@ getOptions('neon');
 
 // Populate the rims drop-down
 getOptions('rims');
+
+// Populate the rims drop-down
+getOptions('power');
+
+// Populate the rims drop-down
+getOptions('handling');
+
+// Populate the rims drop-down
+getOptions('rank');
 
 // Get the plate options drop-down
 getPlateOptions();

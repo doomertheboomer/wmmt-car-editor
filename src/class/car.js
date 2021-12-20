@@ -60,12 +60,7 @@ class Car
     getColour()
     {
         // Return the currently selected colour
-        
-        // WIP: Find the index / hex codes for car colour
-        
-        // return this.map.getElementAt(4, 0);
-        
-        throw "notImplementedException";
+        return this.map.getElementAt(4, 0);
     }
 
     // setColour(hexcode): String
@@ -73,12 +68,7 @@ class Car
     setColour(hexcode)
     {
         // Assign the currently selected colour
-
-        // WIP: Find the index / hex codes for car colour
-
-        // this.map.setElementAt(4, 0, hexcode);
-
-        throw "notImplementedException";
+        this.map.setElementAt(4, 0, hexcode);
     }
 
     // getRims(): String

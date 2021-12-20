@@ -37,9 +37,9 @@
                             Upload File
                         </th>
                         <td colspan=2>
-                            <i>
-                                <!-- For Teknoparrot, .car files are found in '**GAME PATH**\TeknoParrot_Cars'. -->
-                                Remember to back up your files!
+                            <i class='text-warning'>
+                                Experimental values are underexplored and 
+                                currently have no reference table. Use at your own risk!
                             </i>
                         </td>
                     </tr>
@@ -92,29 +92,28 @@
                             </select>
                         </td>
                     </tr>
-                    <!--
                     <tr>
                         <th>
-                            Car Colour
+                            Car Colour 
+                            <i class='text-warning'>
+                                (Experimental)
+                            </i>
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <input type='number' min='0' max='63' name='i_colour' id='i_colour' onChange='document.car.setColour(value)' disabled>
                         </td>
                     </tr>
                     <tr>
                         <th>
                             Rims Colour
+                            <i class='text-warning'>
+                                (Experimental)
+                            </i>
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <input type='number' min='0' max='63' name='i_rims_colour' id='i_rims_colour' onChange='document.car.setRimsColour(value)' disabled>
                         </td>
                     </tr>
-                    -->
-
                 </tbody>
             </table>
             <h4 class='text-center'>
@@ -246,28 +245,28 @@
                             </select>
                         </td>
                     </tr>
-                    <!--
                     <tr>
                         <th>
-                            Plate Frame Number (1)
+                            Plate Frame Number (First 2)
+                            <i class='text-warning'>
+                                (Experimental)
+                            </i>
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <input type='number' min='0' max='63' name='i_plate-frame-number-1' id='i_plate-frame-number-1' onChange='document.car.setPlateFrameNumber1(value)' disabled>
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            Plate Frame Number (2)
+                            Plate Frame Number (Last 2)
+                            <i class='text-warning'>
+                                (Experimental)
+                            </i>
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <input type='number' min='0' max='63' name='i_plate-frame-number-2' id='i_plate-frame-number-2' onChange='document.car.setPlateFrameNumber2(value)' disabled>
                         </td>
                     </tr>
-                    -->
                 </tbody>
             </table>
 
@@ -311,8 +310,6 @@
             </table>
             -->
 
-
-            <!--
             <h4 class='text-center'>
                 Other Settings
             </h4>
@@ -333,9 +330,11 @@
                             Power
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <select name='s_power' id='s_power' onChange='document.car.setPower(value)' disabled>
+                                <!--
+                                    Power populated by index.js
+                                -->
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -343,9 +342,11 @@
                             Handling
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <select name='s_handling' id='s_handling' onChange='document.car.setHandling(value)' disabled>
+                                <!--
+                                    Handling populated by index.js
+                                -->
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -353,15 +354,15 @@
                             Rank
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <select name='s_rank' id='s_rank' onChange='document.car.setRank(value)' disabled>
+                                <!--
+                                    Rank populated by index.js
+                                -->
+                            </select>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            -->
-
         </div>
         <div>
             <!--

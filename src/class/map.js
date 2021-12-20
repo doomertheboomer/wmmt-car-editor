@@ -147,16 +147,33 @@ class Map
     // Sets the element at the position in the map
     setElementAt(y, x, n)
     {
-        // If the point is valid
-        if(this.verifyPoint(x,y))
+        // If the variable provided is an integer
+        if ((typeof n) == ('number'))
         {
-            // Set the element in the map
-            this.map[y][x] = n;
+            // Convert the integer to binary string 
+            n = n.toString(16).toUpperCase().padStart(2, '0');
         }
-        else // Point is invalid
+
+        // If the provided argument is a string
+        // (With or without conversion)
+        if ((typeof n) == ('string'))
         {
-            // Out of range error
-            throw "OutOfBoundsError";
+            // If the point is valid
+            if(this.verifyPoint(x,y))
+            {
+                // Set the element in the map
+                this.map[y][x] = n;
+            }
+            else // Point is invalid
+            {
+                // Out of range error
+                throw "OutOfBoundsError";
+            }
+        }
+        else // Argument is not a string value
+        {
+            // Throw an exception for the argument type
+            throw "WrongArgumentTypeException"
         }
     }
 }
