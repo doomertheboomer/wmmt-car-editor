@@ -38,8 +38,11 @@
                         </th>
                         <td colspan=2>
                             <i class='text-warning'>
-                                Experimental values are underexplored and 
-                                currently have no reference table. Use at your own risk!
+                                For a full list of aero parts per car and more, please check
+                                <a target='_blank' href='https://soarsmedia.blogspot.com/p/wmmt6-index.html'>
+                                    SOARS media
+                                </a>
+                                .
                             </i>
                         </td>
                     </tr>
@@ -100,7 +103,10 @@
                             </i>
                         </th>
                         <td>
-                            <input type='number' min='0' max='63' name='i_colour' id='i_colour' onChange='document.car.setColour(value)' disabled>
+                            <input type='number' min='0' max='47' name='i_colour' id='i_colour' onChange='document.car.setColour(value)' disabled>
+                            <i class='text-warning'>
+                                Not supported by Teknoparrot
+                            </i>
                         </td>
                     </tr>
                     <tr>
@@ -111,7 +117,10 @@
                             </i>
                         </th>
                         <td>
-                            <input type='number' min='0' max='63' name='i_rims_colour' id='i_rims_colour' onChange='document.car.setRimsColour(value)' disabled>
+                            <input type='number' min='0' max='7' name='i_rims_colour' id='i_rims_colour' onChange='document.car.setRimsColour(value)' disabled>
+                            <i class='text-warning'>
+                                Not supported by all rims
+                            </i>
                         </td>
                     </tr>
                 </tbody>
@@ -253,7 +262,7 @@
                             </i>
                         </th>
                         <td>
-                            <input type='number' min='0' max='63' name='i_plate-frame-number-1' id='i_plate-frame-number-1' onChange='document.car.setPlateFrameNumber1(value)' disabled>
+                            <input type='number' min='0' max='255' name='i_plate-frame-number-1' id='i_plate-frame-number-1' onChange='document.car.setPlateFrameNumber1(value)' disabled>
                         </td>
                     </tr>
                     <tr>
@@ -264,13 +273,12 @@
                             </i>
                         </th>
                         <td>
-                            <input type='number' min='0' max='63' name='i_plate-frame-number-2' id='i_plate-frame-number-2' onChange='document.car.setPlateFrameNumber2(value)' disabled>
+                            <input type='number' min='0' max='255' name='i_plate-frame-number-2' id='i_plate-frame-number-2' onChange='document.car.setPlateFrameNumber2(value)' disabled>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <!--
             <h4 class='text-center'>
                 Sticker Settings
             </h4>
@@ -291,9 +299,11 @@
                             Sticker Type
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <select name='s_sticker-type' id='s_sticker-type' onChange='document.car.setStickerType(value)' disabled>
+                                <!--
+                                    Sticker types populated by index.js
+                                -->
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -301,14 +311,15 @@
                             Sticker ID
                         </th>
                         <td>
-                            <i>
-                                Not Implemented
-                            </i>
+                            <select name='s_sticker-id' id='s_sticker-id' onChange='document.car.setStickerId(value)' disabled>
+                                <!--
+                                    Sticker IDs populated by index.js
+                                -->
+                            </select>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            -->
 
             <h4 class='text-center'>
                 Other Settings

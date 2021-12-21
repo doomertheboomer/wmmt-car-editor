@@ -148,11 +148,19 @@ class Map
     setElementAt(y, x, n)
     {
         // If the variable provided is an integer
-        if ((typeof n) == ('number'))
+        if (typeof parseInt(n) == ('number'))
         {
             // Convert the integer to binary string 
-            n = n.toString(16).toUpperCase().padStart(2, '0');
+            n = parseInt(n).toString(16).toUpperCase().padStart(2, '0');
         }
+
+        
+        if ((typeof n) == ('number'))
+        {
+            
+        }
+
+        console.log(x, y, n);
 
         // If the provided argument is a string
         // (With or without conversion)

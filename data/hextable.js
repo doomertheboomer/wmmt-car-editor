@@ -331,32 +331,58 @@ const HEXTABLE = {
         "54": "Rays Homura 2X8GT"
     },
     power: { // Car Power
-        "00": 1,
-        "01": 2,
-        "02": 3,
-        "03": 4,
-        "04": 5,
-        "05": 6,
-        "06": 7,
-        "07": 8,
-        "08": 9,
-        "09": 10,
-        "0A": 11,
-        "0B": 12
+        "00": "0 Points (Stock)", // No mods
+        "01": "1 Point (360 HP)",
+        "02": "2 Points", 
+        "03": "3 Points", 
+        "04": "4 Points", 
+        "05": "5 Points", 
+        "06": "6 Points", 
+        "07": "7 Points", 
+        "08": "8 Points", 
+        "09": "9 Points",
+        "0A": "10 Points (600 HP)", // 600 HP
+        "0B": "11 Points (620 HP)", // 620 HP
+        "0C": "12 Points (640 HP)", // 640 HP
+        "0D": "13 Points (660 HP)", // 660 HP
+        "0E": "14 Points (680 HP)", // 680 HP
+        "0F": "15 Points (700 HP)", // 700 HP
+        "10": "16 Points (720 HP)", // 720 HP
+        "11": "17 Points (740 HP)", // 740 HP
+        "12": "18 Points (760 HP)", // 760 HP
+        "13": "19 Points (780 HP)", // 780 HP
+        "14": "20 Points (800 HP)", // 800 HP
+        "15": "21 Points (815 HP)", // 815 HP
+        "16": "22 Points (830 HP)", // 830 HP
+        "17": "23 Points (835 HP)", // 835 HP
+        "18": "24 Points (840 HP)" // 840 HP
     }, 
     handling: { // Car Handling
-        "00": 1,
-        "01": 2,
-        "02": 3,
-        "03": 4,
-        "04": 5,
-        "05": 6,
-        "06": 7,
-        "07": 8,
-        "08": 9,
-        "09": 10,
-        "0A": 11,
-        "0B": 12
+        "00": "0 Points (Stock)", // No mods
+        "01": "1 Point",
+        "02": "2 Points", 
+        "03": "3 Points", 
+        "04": "4 Points", 
+        "05": "5 Points", 
+        "06": "6 Points", 
+        "07": "7 Points", 
+        "08": "8 Points", 
+        "09": "9 Points",
+        "0A": "10 Points",
+        "0B": "11 Points",
+        "0C": "12 Points",
+        "0D": "13 Points",
+        "0E": "14 Points",
+        "0F": "15 Points",
+        "10": "16 Points",
+        "11": "17 Points",
+        "12": "18 Points",
+        "13": "19 Points",
+        "14": "20 Points",
+        "15": "21 Points",
+        "16": "22 Points",
+        "17": "23 Points",
+        "18": "24 Points"
     }, 
     rank: { // Car Ranking
         "01": "N", 
@@ -415,5 +441,70 @@ const HEXTABLE = {
         "36": "SSS2", 
         "37": "SSS1", 
         "38": "SSSS", 
+    },
+    'sticker-type': { // Sticker yes/no
+        "00": "None", 
+        "01": "Used"
+    }, 
+    'sticker-id': { // Sticker IDs
+        "00": "None",
+        "01": "Fire Pattern",
+        "02": "Fire Pattern 2", 
+        "03": "Circle", 
+        "04": "Circle 2", 
+        "05": "Triangle", 
+        "06": "Spear", 
+        "07": "Snake", 
+        "08": "Bat", 
+        "09": "Star", 
+        "0A": "Shooting Star", 
+        "0B": "Thunder Volt", 
+        "0C": "Illumination", 
+        "0D": "Arrow", 
+        "0E": "Tribal", 
+        "0F": "Tribal 2", 
+        "10": "Tramp", 
+        "11": "Tramp 2", 
+        "12": "Heart", 
+        "13": "Angel Heart",
+        "14": "Raibun", 
+        "15": "Plum Cloud", 
+        "16": "Wave Sentence", 
+        "17": "Maze", 
+        "18": "Pulse", 
+        "19": "Equalizer", 
+        "1A": "Paint", 
+        "1B": "Long Horn", 
+        "1C": "Wangan URL", 
+        "1D": "Galaga", 
+        "1E": "Pac-Man", 
+        "1F": "Love", 
+        "20": "Emotion", 
+        "21": "Square", 
+        "22": "Pine", 
+        "23": "Trap", 
+        "24": "Wing", 
+        "25": "Tribal 3", 
+        "26": "Tribal 4", 
+        "27": "Techno", 
+        "28": "Techno 2", 
+        "29": "Beard", 
+        "2A": "Flash", 
+        "2B": "Scratch", 
+        "2C": "Antique", 
+        "2D": "Arrow 2", 
+        "2E": "Checker Flag", 
+        "2F": "Checker Flag 2", 
+        "30": "Puzzle", 
+        "31": "Puzzle 2", 
+        "32": "Wave", 
+        "33": "Fang", 
+        "34": "Lock-On", 
+        "35": "Chain", 
+        "36": "Street", 
+        "37": "No Trespassing", 
+        "38": "Barcode", 
+        "39": "Zipper", 
+        "3A": "Wangan URL 2"
     }
 }
