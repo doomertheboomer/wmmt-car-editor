@@ -60,7 +60,7 @@ class Car
     getColour()
     {
         // Return the currently selected colour
-        return this.map.getElementAt(3, 8);
+        return this.map.getDecimalAt(3, 8);
     }
 
     // setColour(hexcode): String
@@ -68,7 +68,7 @@ class Car
     setColour(hexcode)
     {
         // Assign the currently selected colour
-        this.map.setElementAt(3, 8, hexcode);
+        this.map.setDecimalAt(3, 8, hexcode);
     }
 
     // getRims(): String
@@ -92,7 +92,7 @@ class Car
     getRimsColour()
     {
         // Assign the currently selected rims colour
-        return this.map.getElementAt(4, 4);
+        return this.map.getDecimalAt(4, 4);
     }
 
     // setRimsColour(hexcode: String): Void
@@ -100,7 +100,7 @@ class Car
     setRimsColour(hexcode)
     {
         // Assign the currently selected rims colour
-        this.map.setElementAt(4, 4, hexcode);
+        this.map.setDecimalAt(4, 4, hexcode);
     }
 
     // setAero(hexcode: String): Void
@@ -229,7 +229,7 @@ class Car
     setPlateFrameNumber1(hexcode)
     {
         // Assign the currently selected plate frame number
-        this.map.setElementAt(7, 0, hexcode);
+        this.map.setDecimalAt(7, 0, hexcode);
     }
     
     // getPlateFrameNumber1(): String
@@ -237,7 +237,7 @@ class Car
     getPlateFrameNumber1()
     {
         // Assign the currently selected plate frame number
-        return this.map.getElementAt(7, 0);
+        return this.map.getDecimalAt(7, 0);
     }
 
     // setPlateFrameNumber2(hexcode: String): Void
@@ -245,7 +245,7 @@ class Car
     setPlateFrameNumber2(hexcode)
     {
         // Assign the currently selected plate frame number
-        this.map.setElementAt(7, 0, hexcode);
+        this.map.setDecimalAt(7, 0, hexcode);
     }
     
     // getPlateFrameNumber2(): String
@@ -253,7 +253,7 @@ class Car
     getPlateFrameNumber2()
     {
         // Assign the currently selected plate frame number
-        return this.map.getElementAt(7, 0);
+        return this.map.getDecimalAt(7, 0);
     }
 
     // setPower(hexcode: String): Void
