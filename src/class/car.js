@@ -60,7 +60,7 @@ class Car
     getColour()
     {
         // Return the currently selected colour
-        return this.map.getElementAt(4, 0);
+        return this.map.getElementAt(3, 8);
     }
 
     // setColour(hexcode): String
@@ -68,7 +68,7 @@ class Car
     setColour(hexcode)
     {
         // Assign the currently selected colour
-        this.map.setElementAt(4, 0, hexcode);
+        this.map.setElementAt(3, 8, hexcode);
     }
 
     // getRims(): String
