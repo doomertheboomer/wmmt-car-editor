@@ -336,4 +336,50 @@ class Car
         // Assign the currently selected sticker id
         return this.map.getElementAt(9, 8);
     }
+
+    /*
+    // setPlateFrame(hexcode: String): Void
+    // Assign the hex code for the selected plate frame
+    setPlateFrame(hexcode)
+    {
+        // Split the hexcode on the dash
+        let hexcodes = hexcode.split('-');
+
+        // Assign the currently selected plate frame
+        this.map.setElementAt(6, 8, hexcodes[0]);
+
+        // Assign the currently selected frame colour
+        this.map.setElementAt(6, 12, hexcodes[1]);
+    }
+
+    // getPlateFrame(): String
+    // Return the hex code for the selected plate frame
+    getPlateFrame()
+    {
+        // Assign the currently selected plate frame
+        return this.map.getElementAt(6, 8) + '-' + this.map.getElementAt(6, 12);
+    }*/
+
+    // setTitle(String): Void
+    // Set the hex codes for the given title
+    setTitle(hexcode)
+    {
+        // Split the hexcode on the dash
+        let hexcodes = hexcode.split('-');
+
+        // Assign the currently selected title
+        this.map.setElementAt(10, 0, hexcodes[0]);
+        this.map.setElementAt(10, 1, hexcodes[1]);
+        this.map.setElementAt(10, 2, hexcodes[2]);
+    }
+
+    // getTitle(Void): String
+    // Get the hex codes for the selected title
+    getTitle()
+    {
+        // Return the currently selected title id
+        return this.map.getElementAt(10, 0) + '-' + 
+            this.map.getElementAt(10, 1) + '-' + 
+            this.map.getElementAt(10, 2);
+    }
 }

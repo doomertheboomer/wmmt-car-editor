@@ -9,8 +9,8 @@ const LOCATIONS = {
     // CAR & COLOUR SECTION
     
     'cars': [3, 4],
-    'colour': [], // TODO
-    'rims-colour': [4, 4], // TODO
+    'colour': [3, 8], // Does not work for Tekno
+    'rims-colour': [4, 4],
 
     // AERO SECTION
     
@@ -24,19 +24,25 @@ const LOCATIONS = {
 
     // PLATE SECTION
 
-    'plate-frame': [6, 8], // TODO
-    'plate-frame-colour': [6, 12], // TODO
-    'plate-number1': [7, 0], // TODO
-    'plate-number2': [7, 1], // TODO
+    'plate-frame': [6, 8],
+    'plate-frame-colour': [6, 12],
+    'plate-number0': [7, 0], // Have not tested
+    'plate-number1': [7, 1], // Have not tested
 
     // OTHER SECTION
 
-    'power': [7, 4], // TODO
-    'handling': [8, 0], // TODO
-    'rank': [8, 4], // TODO
+    'power': [7, 4],
+    'handling': [8, 0],
+    'rank': [8, 4],
 
     // STICKER SECTION
 
-    'sticker-type': [9, 4], // TODO
-    'sticker-id': [9, 8], // TODO
+    'sticker-type': [9, 4],
+    'sticker-id': [9, 8],
+
+    // TITLES SECTION
+
+    'title-0': [10, 0], // First byte
+    'title-1': [10, 1], // Second byte
+    'title-2': [10, 2], // Third byte
 }

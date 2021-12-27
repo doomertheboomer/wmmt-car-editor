@@ -200,13 +200,9 @@ function getOptions(code)
     // Get the keys from the hex table index and sort
     let keys = Object.keys(HEXTABLE[code]).sort();
 
-    // console.log(keys);
-
     // Loop over all of the hextables for the code
     for (key of keys)
     {
-        console.log(key);
-
         // Get the name of the object with the given hexcode
         let name = HEXTABLE[code][key];
 
@@ -257,6 +253,18 @@ function getPlateOptions()
             // Add the option to the drop-down
             dropdown.appendChild(option);
         }
+    }
+}
+
+function getTitles()
+{
+    // Get the drop-down for the title selection
+    let dropdown = document.getElementById('s_title');
+
+    // Loop over all of the titles
+    for(title of TITLES)
+    {
+        console.log(title);
     }
 }
 

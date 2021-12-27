@@ -374,6 +374,36 @@
                     </tr>
                 </tbody>
             </table>
+
+            <h4 class='text-center'>
+                Title Settings
+            </h4>
+            <table class='table table-dark' id='t_meta'>
+                <thead class='thead thead-dark'>
+                    <tr>
+                        <th>
+                            Property
+                        </th>
+                        <th>
+                            Selection
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class='tbody tbody-dark'>
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <td>
+                            <select name='s_title' id='s_title' onChange='document.car.setTitle(value)' disabled>
+                                <!--
+                                    Titles populated by index.js
+                                -->
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div>
             <!--
@@ -384,6 +414,12 @@
 
             <!-- Maximum Tune 6 Data -->
             <script type='text/javascript' src='data/hextable.js'>
+            </script>
+
+            <!-- Maximum Tune 6 Titles 
+                For now, I only have MaxiTune 5 titles :(
+            -->
+            <script type='text/javascript' src='data/titles.js'>
             </script>
 
             <!-- Maximum Tune Specific source file -->
