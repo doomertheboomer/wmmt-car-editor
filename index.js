@@ -32,6 +32,8 @@ function handleUpload()
                 // If car is created successfully, assign to the document
                 document.car = car;
 
+                console.log(car.getTitle());
+
                 // Enable the drop-downs and 
                 // load the current properties
                 document.getElementById('o_cars_' + car.getCar()).selected = true;
@@ -46,6 +48,9 @@ function handleUpload()
                 document.getElementById('o_power_' + car.getPower()).selected = true;
                 document.getElementById('o_handling_' + car.getHandling()).selected = true;
                 document.getElementById('o_rank_' + car.getRank()).selected = true;
+                document.getElementById('o_sticker-type_' + car.getStickerType()).selected = true;
+                document.getElementById('o_sticker-id_' + car.getStickerId()).selected = true;
+                document.getElementById('o_title_' + car.getTitle()).selected = true;
 
                 // Load the current properties (integer)
                 document.getElementById('i_colour').value = parseInt(car.getColour(), 16);
@@ -69,6 +74,7 @@ function handleUpload()
                 document.getElementById('s_rank').disabled = false;
                 document.getElementById('s_sticker-type').disabled = false;
                 document.getElementById('s_sticker-id').disabled = false;
+                document.getElementById('s_title').disabled = false;
 
                 // Enable the number selections
                 document.getElementById('i_colour').disabled = false;
@@ -79,12 +85,6 @@ function handleUpload()
             }
             catch(err) // Fails to create car object
             {
-                console.log(
-                    document.car.getPower(), 
-                    document.car.getHandling(), 
-                    document.car.getRank()
-                );
-                
                 // Document car is null
                 document.car = null;
                 document.filename = null;
@@ -104,6 +104,7 @@ function handleUpload()
                 document.getElementById('s_rank').disabled = true;
                 document.getElementById('s_sticker-type').disabled = true;
                 document.getElementById('s_sticker-id').disabled = true;
+                document.getElementById('s_title').disabled = true;
 
                 // Disable the number selections
                 document.getElementById('i_colour').disabled = true;
@@ -254,7 +255,7 @@ function getPlateOptions()
     }
 }
 
-function getTitles()
+function getTitleOptions()
 {
     // Get the drop-down for the title selection
     let dropdown = document.getElementById('s_title');
@@ -262,7 +263,28 @@ function getTitles()
     // Loop over all of the titles
     for(title of TITLES)
     {
-        console.log(title);
+        // Hexidecimal value
+        let hex = title[1];
+
+        // Text value
+        let text = title[3];
+
+        // Set the value of the option to the hex substring, each hex value seperated using dashes
+        let value = (hex.substring(0, 2) + '-' + hex.substring(2,4) + '-' + hex.substring(4, 6)).toUpperCase();
+
+        console.log("OPTION: ",hex, "(", value, ")");
+         
+        // Create a new option
+        let option = document.createElement('option');
+
+        // Set the option value to the generated value
+        option.value = value;
+
+        // e.g. abcdef -> ab-cd-ef
+        option.id = 'o_title_' + value;
+
+        // Set the option text to the title text
+        option.innerHTML = text;
     }
 }
 
@@ -307,3 +329,6 @@ getOptions('sticker-id');
 
 // Get the plate options drop-down
 getPlateOptions();
+
+// Get the title options drop-down
+getTitleOptions();

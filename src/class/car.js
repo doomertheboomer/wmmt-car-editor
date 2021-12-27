@@ -378,8 +378,8 @@ class Car
     getTitle()
     {
         // Return the currently selected title id
-        return this.map.getElementAt(10, 0) + '-' + 
-            this.map.getElementAt(10, 1) + '-' + 
-            this.map.getElementAt(10, 2);
+        return this.map.getElementAt(10, 1) + '-' + 
+            this.map.getElementAt(10, 2) + '-' + 
+            this.map.getElementAt(10, 3);
     }
 }
