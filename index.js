@@ -47,8 +47,6 @@ function handleUpload()
                 document.getElementById('o_handling_' + car.getHandling()).selected = true;
                 document.getElementById('o_rank_' + car.getRank()).selected = true;
 
-                // console.log(car.getPower(), car.getHandling(), car.getRank());
-
                 // Load the current properties (integer)
                 document.getElementById('i_colour').value = parseInt(car.getColour(), 16);
                 document.getElementById('i_rims_colour').value = parseInt(car.getRimsColour(), 16);

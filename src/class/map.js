@@ -143,45 +143,57 @@ class Map
         }
     }
 
-    // setElementAt(x: int, y: int, n: int): int
+    // setElementAt(y: int, x: int, n: int): int
     // Sets the element at the position in the map
     setElementAt(y, x, n)
     {
-        // If the variable provided is an integer
-        if (typeof parseInt(n) == ('number'))
+        // If the point is valid
+        if(this.verifyPoint(x,y))
         {
-            // Convert the integer to binary string 
-            n = parseInt(n).toString(16).toUpperCase().padStart(2, '0');
+            // Set the element in the map
+            this.map[y][x] = n;
         }
-
-        
-        if ((typeof n) == ('number'))
+        else // Point is invalid
         {
-            
+            // Out of range error
+            throw "OutOfBoundsError";
         }
+    }
 
-        console.log(x, y, n);
-
-        // If the provided argument is a string
-        // (With or without conversion)
-        if ((typeof n) == ('string'))
+    // getIntegerAt(x: int, y: int): void
+    // Converts the hexidecimal value from
+    // the map and converts it to decimal
+    getDecimalAt(y, x)
+    {
+        // If the point is valid
+        if(this.verifyPoint(x,y))
         {
-            // If the point is valid
-            if(this.verifyPoint(x,y))
-            {
-                // Set the element in the map
-                this.map[y][x] = n;
-            }
-            else // Point is invalid
-            {
-                // Out of range error
-                throw "OutOfBoundsError";
-            }
+            // Return the element in the map, converted to decimal
+            return parseInt(this.map[y][x], 16).toString();
         }
-        else // Argument is not a string value
+        else // Point is invalid
         {
-            // Throw an exception for the argument type
-            throw "WrongArgumentTypeException"
+            // Out of range error
+            throw "OutOfBoundsError";
+        }
+    }
+
+
+    // setIntegerAt(y: int, x: int, n: int): int
+    // Converts the integer to hexidecimal and sets
+    // it to the position in the map
+    setDecimalAt(y, x, n)
+    {
+        // If the point is valid
+        if(this.verifyPoint(x,y))
+        {
+            // Set the element in the map
+            this.map[y][x] = parseInt(n).toString(16).toUpperCase().padStart(2, '0');
+        }
+        else // Point is invalid
+        {
+            // Out of range error
+            throw "OutOfBoundsError";
         }
     }
 }
