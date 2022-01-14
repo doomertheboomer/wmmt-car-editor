@@ -226,10 +226,10 @@ class Car
 
     // setPlateFrameNumber1(hexcode: String): Void
     // Assign the hex code for the first selected plate frame number
-    setPlateFrameNumber1(hexcode)
+    setPlateFrameNumber1(integer)
     {
         // Assign the currently selected plate frame number
-        this.map.setDecimalAt(7, 0, hexcode);
+        this.map.setDecimalAt(7, 0, integer);
     }
     
     // getPlateFrameNumber1(): String
@@ -242,10 +242,10 @@ class Car
 
     // setPlateFrameNumber2(hexcode: String): Void
     // Assign the hex code for the second selected plate frame number
-    setPlateFrameNumber2(hexcode)
+    setPlateFrameNumber2(integer)
     {
         // Assign the currently selected plate frame number
-        this.map.setDecimalAt(7, 0, hexcode);
+        this.map.setDecimalAt(7, 1, integer);
     }
     
     // getPlateFrameNumber2(): String
@@ -253,7 +253,7 @@ class Car
     getPlateFrameNumber2()
     {
         // Assign the currently selected plate frame number
-        return this.map.getDecimalAt(7, 0);
+        return this.map.getDecimalAt(7, 1);
     }
 
     // setPower(hexcode: String): Void

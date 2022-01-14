@@ -23,7 +23,7 @@ const HEXTABLE = {
         "01": "CHEVROLET ZR1 [ZR1T]",
         "00": "CHEVROLET ZR1 [ZR1]",
         "70": "Dodge Charger SRT8 [SRT8]",
-        "6F": "Dodge Viper SRT10 [SRT10]",
+        "6F": "Dodge Viper SRT10 [SRT-10]",
         "88": "HONDA INTEGRA TYPE R [DC2]",
         "7F": "HONDA New NSX [NC1]",
         "80": "HONDA NSX [NA1]",

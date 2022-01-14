@@ -31,57 +31,6 @@ function handleUpload()
 
                 // If car is created successfully, assign to the document
                 document.car = car;
-
-                console.log(car.getTitle());
-
-                // Enable the drop-downs and 
-                // load the current properties
-                document.getElementById('o_cars_' + car.getCar()).selected = true;
-                document.getElementById('o_aero_' + car.getAero()).selected = true;
-                document.getElementById('o_wing_' + car.getWing()).selected = true;
-                document.getElementById('o_hood_' + car.getHood()).selected = true;
-                document.getElementById('o_mirror_' + car.getMirror()).selected = true;
-                document.getElementById('o_trunk_' + car.getTrunk()).selected = true;
-                document.getElementById('o_neon_' + car.getNeon()).selected = true;
-                document.getElementById('o_rims_' + car.getRims()).selected = true;
-                document.getElementById('o_plate_' + car.getPlateFrame()).selected = true;
-                document.getElementById('o_power_' + car.getPower()).selected = true;
-                document.getElementById('o_handling_' + car.getHandling()).selected = true;
-                document.getElementById('o_rank_' + car.getRank()).selected = true;
-                document.getElementById('o_sticker-type_' + car.getStickerType()).selected = true;
-                document.getElementById('o_sticker-id_' + car.getStickerId()).selected = true;
-                document.getElementById('o_title_' + car.getTitle()).selected = true;
-
-                // Load the current properties (integer)
-                document.getElementById('i_colour').value = parseInt(car.getColour(), 16);
-                document.getElementById('i_rims_colour').value = parseInt(car.getRimsColour(), 16);
-
-                document.getElementById('i_plate-frame-number-1').value = parseInt(car.getPlateFrameNumber1(), 16);
-                document.getElementById('i_plate-frame-number-2').value = parseInt(car.getPlateFrameNumber2(), 16);
-
-                // Enable the drop-downs
-                document.getElementById('s_cars').disabled = false;
-                document.getElementById('s_aero').disabled = false;
-                document.getElementById('s_wing').disabled = false;
-                document.getElementById('s_hood').disabled = false;
-                document.getElementById('s_mirror').disabled = false;
-                document.getElementById('s_trunk').disabled = false;
-                document.getElementById('s_neon').disabled = false;
-                document.getElementById('s_rims').disabled = false;
-                document.getElementById('s_plate').disabled = false;
-                document.getElementById('s_power').disabled = false;
-                document.getElementById('s_handling').disabled = false;
-                document.getElementById('s_rank').disabled = false;
-                document.getElementById('s_sticker-type').disabled = false;
-                document.getElementById('s_sticker-id').disabled = false;
-                document.getElementById('s_title').disabled = false;
-
-                // Enable the number selections
-                document.getElementById('i_colour').disabled = false;
-                document.getElementById('i_rims_colour').disabled = false;
-
-                document.getElementById('i_plate-frame-number-1').disabled = false;
-                document.getElementById('i_plate-frame-number-2').disabled = false;
             }
             catch(err) // Fails to create car object
             {
@@ -90,36 +39,193 @@ function handleUpload()
                 document.filename = null;
 
                 // Disable the drop-downs
-                document.getElementById('s_cars').disabled = true;
-                document.getElementById('s_aero').disabled = true;
-                document.getElementById('s_wing').disabled = true;
-                document.getElementById('s_hood').disabled = true;
-                document.getElementById('s_mirror').disabled = true;
-                document.getElementById('s_trunk').disabled = true;
-                document.getElementById('s_neon').disabled = true;
-                document.getElementById('s_rims').disabled = true;
-                document.getElementById('s_plate').disabled = true;
-                document.getElementById('s_power').disabled = true;
-                document.getElementById('s_handling').disabled = true;
-                document.getElementById('s_rank').disabled = true;
-                document.getElementById('s_sticker-type').disabled = true;
-                document.getElementById('s_sticker-id').disabled = true;
-                document.getElementById('s_title').disabled = true;
+                setDisabled('s_cars', true);
+                setDisabled('s_aero', true);
+                setDisabled('s_wing', true);
+                setDisabled('s_hood', true);
+                setDisabled('s_mirror', true);
+                setDisabled('s_trunk', true);
+                setDisabled('s_neon', true);
+                setDisabled('s_rims', true);
+                setDisabled('s_plate', true);
+                // setDisabled('s_power', true);
+                // setDisabled('s_handling', true);
+                setDisabled('s_rank', true);
+                // setDisabled('s_sticker-type', true);
+                // setDisabled('s_sticker-id', true);
+                // setDisabled('s_title', true);
 
                 // Disable the number selections
-                document.getElementById('i_colour').disabled = true;
-                document.getElementById('i_rims_colour').disabled = true;
+                // setDisabled('i_colour', true);
+                // setDisabled('i_rims_colour', true);
 
-                document.getElementById('i_plate-frame-number-1').disabled = true;
-                document.getElementById('i_plate-frame-number-2').disabled = true;
+                // setDisabled('i_plate-frame-number-1', true);
+                // setDisabled('i_plate-frame-number-2', true);
 
                 // Write error to terminal
                 console.error("Error:",err);
+            }
+
+            // If a car is loaded
+            if (document.car)
+            {
+                // Car created, configure drop-downs
+
+                // Dereference the car object
+                car = document.car
+
+                // Update the model search link
+                document.getElementById('a_model_search').href = getWikiSearch(car.getCar());
+
+                // Enable the drop-downs and 
+                // load the current properties
+                setSelected('o_cars_' + car.getCar(), true);
+                setSelected('o_aero_' + car.getAero(), true);
+                setSelected('o_wing_' + car.getWing(), true);
+                setSelected('o_hood_' + car.getHood(), true);
+                setSelected('o_mirror_' + car.getMirror(), true);
+                setSelected('o_trunk_' + car.getTrunk(), true);
+                setSelected('o_neon_' + car.getNeon(), true);
+                setSelected('o_rims_' + car.getRims(), true);
+                setSelected('o_plate_' + car.getPlateFrame(), true);
+                setSelected('o_power_' + car.getPower(), true);
+                setSelected('o_handling_' + car.getHandling(), true);
+                setSelected('o_rank_' + car.getRank(), true);
+                // setSelected('o_sticker-type_' + car.getStickerType(), true);
+                // setSelected('o_sticker-id_' + car.getStickerId(), true);
+                
+                // Pretty sure I have the wrong index for this
+                // setSelected('o_title_' + car.getTitle(), true);
+
+                // Load the current properties (integer)
+                // setValue('i_colour', parseInt(car.getColour(), 16));
+                // setValue('i_rims_colour', parseInt(car.getRimsColour(), 16));
+
+                // setValue('i_plate-frame-number-1').value = parseInt(car.getPlateFrameNumber1(), 16);
+                // setValue('i_plate-frame-number-2').value = parseInt(car.getPlateFrameNumber2(), 16);
+
+                // Enable the drop-downs
+                setDisabled('s_cars', false);
+                setDisabled('s_aero', false);
+                setDisabled('s_wing', false);
+                setDisabled('s_hood', false);
+                setDisabled('s_mirror', false);
+                setDisabled('s_trunk', false);
+                setDisabled('s_neon', false);
+                setDisabled('s_rims', false);
+                setDisabled('s_plate', false);
+                // setDisabled('s_power', false);
+                // setDisabled('s_handling', false);
+                setDisabled('s_rank', false);
+                // setDisabled('s_sticker-type', false);
+                // setDisabled('s_sticker-id', false);
+                // setDisabled('s_title', false);
+
+                // Enable the number selections
+                // setDisabled('i_colour', false);
+                // setDisabled('i_rims_colour', false);
+
+                // setDisabled('i_plate-frame-number-1', false);
+                // setDisabled('i_plate-frame-number-2', false);
             }
         };
 
         // Read the binary content from the file
         reader.readAsArrayBuffer(file);
+    }
+}
+
+// getWikiSearch(car_id: String): String
+// Gets the search string to search for 
+// the given model of car on the wikiwiki
+// site for maximum tune.
+function getWikiSearch(car_id)
+{
+    // Start of the wmmt wikiwiki search url
+    let url_start = "https://wikiwiki.jp/wmmt/?cmd=search&word=";
+
+    // End of the wmmt wikiwiki search url
+    let url_end = "&type=AND";
+
+    // Get the name / code for the car
+    let car = HEXTABLE.cars[car_id];
+
+    // Remove the content after the code from the string
+    let code = car.split(']')[0];
+
+    // Remove the content before the code from the string
+    code = code.split('[')[1];
+
+    // Return the code
+    return url_start + code + url_end;
+}
+
+// setValue(id: String, value: Boolean)
+// If it exists, sets the selected property for 
+// the given element to true. Otherwise, does nothing.
+function setValue(id, value)
+{
+    try
+    {
+        // Set the element with the given id to the provided value
+        document.getElementById(id).value = value;
+
+        // Successful assignment
+        return true;
+    }
+    catch(err) // General failure
+    {
+        // Report failure to console
+        console.log("Failed to set selected value of element with id '" + id + "' to value '" + value + "'! Reason:", err);
+
+        // Assignment failed
+        return false;
+    }
+}
+
+// setSelected(id: String, value: Boolean)
+// If it exists, sets the selected property for 
+// the given element to true. Otherwise, does nothing.
+function setSelected(id, value)
+{
+    try
+    {
+        // Set the element with the given id to the provided value
+        document.getElementById(id).selected = value;
+
+        // Successful assignment
+        return true;
+    }
+    catch(err) // General failure
+    {
+        // Report failure to console
+        console.log("Failed to set selected property of element with id '" + id + "' to value '" + value + "'! Reason:", err);
+
+        // Assignment failed
+        return false;
+    }
+}
+
+// setDisabled(id: String, value: Boolean)
+// If it exists, sets the disabled property for 
+// the given element to true. Otherwise, does nothing.
+function setDisabled(id, value)
+{
+    try
+    {
+        // Set the element with the given id to the provided value
+        document.getElementById(id).disabled = value;
+
+        // Successful assignment
+        return true;
+    }
+    catch(err) // General failure
+    {
+        // Report failure to console
+        console.log("Failed to set disabled property of element with id '" + id + "' to value '" + value + "'! Reason:", err);
+
+        // Assignment failed
+        return false;
     }
 }
 
@@ -272,7 +378,7 @@ function getTitleOptions()
         // Set the value of the option to the hex substring, each hex value seperated using dashes
         let value = (hex.substring(0, 2) + '-' + hex.substring(2,4) + '-' + hex.substring(4, 6)).toUpperCase();
 
-        console.log("OPTION: ",hex, "(", value, ")");
+        // console.log("OPTION: ",hex, "(", value, ")");
          
         // Create a new option
         let option = document.createElement('option');
@@ -286,6 +392,82 @@ function getTitleOptions()
         // Set the option text to the title text
         option.innerHTML = text;
     }
+}
+
+// Given a combo box value, 
+// sets the tuning settings for
+// the car and enables or disables
+// the drop-downs, depending on the 
+// setting applied.
+function setTune(value)
+{
+    // Values:
+    // 0 - No Tune 
+    // 1 - Basic Tuning
+    // 2 - Full Tune 
+    // 3 - Custon Tune
+
+    // Dereference the car object
+    let car = document.car;
+
+    switch(value)
+    {
+        case 0: // Leave as is
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 1: // No Tune
+
+            // Both power and handling 0 pts
+            car.setPower("00");
+            car.setHandling("00");
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 2: // Basic Tuning
+
+            // Both power and handling 10 pts
+            car.setPower("0A");
+            car.setHandling("0A");
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 3: // Full Tune
+
+            // Both power and handling 17 pts
+            car.setPower("11");
+            car.setHandling("11");
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 4: // Custom Tune
+
+            // Enable the power/handling dropdowns
+            setDisabled('s_power', false);
+            setDisabled('s_handling', false);
+            break;
+
+        default: // Unknown value provided
+
+            console.log("Unknown value '" + value + "'provided!");
+            break;
+    }
+
+    // Update the values in the drop down
+    setSelected('o_power_' + car.getPower(), true);
+    setSelected('o_handling_' + car.getHandling(), true);
 }
 
 // Populate the car model drop-down
@@ -322,13 +504,13 @@ getOptions('handling');
 getOptions('rank');
 
 // Populate the sticker type drop-down
-getOptions('sticker-type');
+// getOptions('sticker-type');
 
 // Populate the sticker id drop-down
-getOptions('sticker-id');
+// getOptions('sticker-id');
 
 // Get the plate options drop-down
 getPlateOptions();
 
 // Get the title options drop-down
-getTitleOptions();
+// getTitleOptions();
