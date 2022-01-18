@@ -39,6 +39,23 @@ class Car
         return this.map;
     }
 
+    // setLocations(locations: Object): Void
+    // Given a locations object, sets the
+    // hex locations for the car to the 
+    // given locations object.
+    setLocations(locations)
+    {
+        this.locations = locations;
+    }
+
+    // getLocations(Void): Object
+    // Returns the locations object
+    // used by the car
+    getLocations(locations)
+    {
+        return this.locations;
+    }
+
     // getCar(void): String
     // Return the hex code for the selected car
     getCar()
