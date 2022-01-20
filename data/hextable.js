@@ -1,13 +1,14 @@
 // Hex Address Table
 const HEXTABLE = {
     wmmt5: { 
+        name: "WMMT 5/5DX/5DX+",
         location: {
 
             // Indexes are [y, x]
 
             // 00000020
 
-            'plate-prefecture': [2, 0],
+            //'plate-prefecture': [2, 0],
             'cars': [2, 12],
 
             // 00000030
@@ -27,18 +28,18 @@ const HEXTABLE = {
             'wing': [5, 0],
             'mirror': [5, 4],
         
-            'body-sticker': [5, 8],
-            'japan-sticker': [5, 9],
-            'sticker-colour': [5, 12],
+            //'body-sticker': [5, 8],
+            //'japan-sticker': [5, 9],
+            //'sticker-colour': [5, 12],
 
             // 00000080
         
             'trunk': [8, 0],
         
             'plate-frame': [8, 4],
-            'special-plate-frame': [8, 5],
+            //'special-plate-frame': [8, 5],
             'plate-frame-colour': [8, 10],
-            'plate-number': [8, 12],
+            //'plate-number': [8, 12],
         }, 
         value: {
 
@@ -234,20 +235,199 @@ const HEXTABLE = {
                 "02": "Red Stripes", 
                 "03": "YM Speed Blue"
             }, 
-            district: {
-
-            }, 
             rims: {
-
+                "00": "Stock",
+                "0A": "Yokohama Model T5 (T5)",
+                "0B": "Watanabe Eight Spoke (EIGHT)",
+                "0C": "Watanabe Forged Mg Cyclone (CYCL)",
+                "0D": "Watanabe Stellar (STEL)",
+                "0E": "Watanabe GR-8",
+                "0F": "Watanabe New RS8 (RS8)",
+                "01": "Yokohama Advan Racing RCIII (RC3)",
+                "02": "Yokohama Advan Racing TCIII (TC3)",
+                "03": "Yokohama Super Advan Racing ver.2",
+                "04": "Yokohama Advan Racing RG-D2 (RGD2)",
+                "05": "Yokohama Advan Racing RGIII (RG3)",
+                "06": "Yokohama Advan Racing RSII (RS2)",
+                "07": "Yokohama Advan Racing RS-D (RSD)",
+                "08": "Yokohama AVS Model T6",
+                "09": "Yokohama Advan Racing GT (ARGT)",
+                "10": "Rays VR CE28N (CE28)",
+                "11": "Rays Gram Lights 57ANA (57ANA)",
+                "12": "Rays Lucianna Stratagia (LUCI)",
+                "13": "Rays Gram Lights 57D (57D)",
+                "14": "Rays VR TE37 Saga (37SAGA)",
+                "15": "Rays VR TE037 DURA (37DURA)",
+                "16": "Rays VR GT-Type M (GTM)",
+                "17": "Rays Gabbana (GABB)",
+                "18": "Rays VR RE30 (RE30)",
+                "19": "Rays Gram Lights 57F (57F)",
+                "1A": "Rays 57 Accelerate (57AC)",
+                "1B": "Rays ZE40 (ZE40)",
+                "1C": "(Unknown)",
+                "1D": "Enkei Racing RPF1 (RPF1)",
+                "1E": "Enkei Racing Revolution NT03R (NT03RR)",
+                "1F": "Enkei WPS JL01",
+                "20": "Enkei Racing RS05 (RS05)",
+                "21": "Enkei Racing JS+M",
+                "22": "Enkei ES-TARMAC (TARMAC)",
+                "23": "Enkei Performance Line PF07",
+                "24": "(Unknown)",
+                "25": "OZ Crono 3",
+                "26": "OZ Rally Racing (RR)",
+                "27": "OZ ForgiataGT (ForGT)",
+                "28": "OZ Leggenda (LEGG)",
+                "29": "OZ Superturismo LM (SUPE)",
+                "2A": "OZ Formula HLT",
+                "2B": "OZ Zeus HLT Forged (ZEUS)",
+                "2C": "OZ Torino (TRIN)",
+                "2D": "OZ Versilia (VERS)",
+                "2E": "OZ Ultraleggera (ULEG)",
+                "2F": "BBS RI-D",
+                "30": "BBS RI-A",
+                "31": "BBS FS",
+                "32": "BBS RG-R",
+                "33": "BBS Super-RS (SRS)",
+                "34": "BBS RI-D",
+                "35": "BBS LM",
+                "36": "BBS FZ-MG",
+                "37": "Yokohama Advan Racing RG-D (RGD)",
+                "38": "Yokohama Advan Racing TC II (TC2)",
+                "39": "Yokohama Racing Model T7 (T7)",
+                "3A": "(Unknown)",
+                "3B": "Yokohama Advan Racing RSII",
+                "3C": "Yokohama Advan Racing RZ",
+                "3D": "Yokohama AVS Model T6 (T6)",
+                "3E": "Enkei Racing RS+M",
+                "3F": "(Unknown)",
+                "40": "Yokohama Kreutzer Vi",
+                "41": "Yokohama Advan Racing RZ-DF (RZDF)",
+                "42": "Yokohama Advan Model F50 (F50)",
+                "43": "Rays VR TE37 (TE37)",
+                "44": "Rays GT Type C",
+                "45": "Rays BL-10-SX",
+                "46": "Rays Shotgun (SHOT)",
+                "47": "Rays X401 (X401)",
+                "48": "(Unknown)",
+                "49": "Rays 77NTL (77NTL)",
+                "4A": "Rays G10 (G10)",
+                "4B": "Rays SPR-EX",
+                "4C": "Rays F2B",
+                "4E": "(Unknown)",
+                "4F": "Rays Arpione (ARPI)",
+                "50": "Rays V350 (V350)",
+                "51": "(Unknown)",
+                "52": "Rays Scudo (SCUD)",
+                "53": "(Unknown)",
+                "54": "Rays Homura 2X8GT"
             }, 
             power: {
-
+                "00": "0 Points (Stock)", // No mods
+                "01": "1 Point (360 HP)",
+                "02": "2 Points", 
+                "03": "3 Points", 
+                "04": "4 Points", 
+                "05": "5 Points", 
+                "06": "6 Points", 
+                "07": "7 Points", 
+                "08": "8 Points", 
+                "09": "9 Points",
+                "0A": "10 Points (600 HP)", // 600 HP
+                "0B": "11 Points (620 HP)", // 620 HP
+                "0C": "12 Points (640 HP)", // 640 HP
+                "0D": "13 Points (660 HP)", // 660 HP
+                "0E": "14 Points (680 HP)", // 680 HP
+                "0F": "15 Points (700 HP)", // 700 HP
+                "10": "16 Points (720 HP)", // 720 HP
+                "11": "17 Points (740 HP)", // 740 HP
+                "12": "18 Points (760 HP)", // 760 HP
+                "13": "19 Points (780 HP)", // 780 HP
+                "14": "20 Points (800 HP)", // 800 HP
+                "15": "21 Points (815 HP)", // 815 HP
+                "16": "22 Points (830 HP)", // 830 HP
             }, 
             handling: {
-
+                "00": "0 Points (Stock)", // No mods
+                "01": "1 Point",
+                "02": "2 Points", 
+                "03": "3 Points", 
+                "04": "4 Points", 
+                "05": "5 Points", 
+                "06": "6 Points", 
+                "07": "7 Points", 
+                "08": "8 Points", 
+                "09": "9 Points",
+                "0A": "10 Points",
+                "0B": "11 Points",
+                "0C": "12 Points",
+                "0D": "13 Points",
+                "0E": "14 Points",
+                "0F": "15 Points",
+                "10": "16 Points",
+                "11": "17 Points",
+                "12": "18 Points",
+                "13": "19 Points",
+                "14": "20 Points",
+                "15": "21 Points",
+                "16": "22 Points",
             }, 
             rank: {
-
+                "01": "N", 
+                "02": "C9", 
+                "03": "C8", 
+                "04": "C7", 
+                "05": "C6", 
+                "06": "C5", 
+                "07": "C4", 
+                "08": "C3", 
+                "09": "C2", 
+                "0A": "C1", 
+                "0B": "B9", 
+                "0C": "B8", 
+                "0D": "B7", 
+                "0E": "B6", 
+                "0F": "B5", 
+                "10": "B4", 
+                "11": "B3", 
+                "12": "B2", 
+                "13": "B1", 
+                "14": "A9", 
+                "15": "A8", 
+                "16": "A7", 
+                "17": "A6", 
+                "18": "A5", 
+                "19": "A4", 
+                "1A": "A3", 
+                "1B": "A2", 
+                "1C": "A1", 
+                "1D": "S9", 
+                "1E": "S8", 
+                "1F": "S7", 
+                "20": "S6", 
+                "21": "S5", 
+                "22": "S4", 
+                "23": "S3", 
+                "24": "S2", 
+                "25": "S1", 
+                "26": "SS9", 
+                "27": "SS8", 
+                "28": "SS7", 
+                "29": "SS6", 
+                "2A": "SS5", 
+                "2B": "SS4", 
+                "2C": "SS3", 
+                "2D": "SS2", 
+                "2E": "SS1", 
+                "2F": "SSS9", 
+                "30": "SSS8", 
+                "31": "SSS7", 
+                "32": "SSS6", 
+                "33": "SSS5", 
+                "34": "SSS4", 
+                "35": "SSS3", 
+                "36": "SSS2", 
+                "37": "SSS1", 
+                "38": "SSSS", 
             }, 
             sticker: {
                 body: { 
@@ -851,6 +1031,7 @@ const HEXTABLE = {
         }
     }, 
     wmmt6: {
+        name: "WMMT 6",
         location: {
 
             // Indexes are [y, x]
@@ -875,25 +1056,14 @@ const HEXTABLE = {
 
             'plate-frame': [6, 8],
             'plate-frame-colour': [6, 12],
-            'plate-number0': [7, 0], // Have not tested
-            'plate-number1': [7, 1], // Have not tested
+            //'plate-number0': [7, 0], // Have not tested
+            //'plate-number1': [7, 1], // Have not tested
 
             // OTHER SECTION
 
             'power': [7, 4],
             'handling': [8, 0],
             'rank': [8, 4],
-
-            // STICKER SECTION
-
-            'sticker-type': [9, 4],
-            'sticker-id': [9, 8],
-
-            // TITLES SECTION
-
-            'title-0': [10, 0], // First byte
-            'title-1': [10, 1], // Second byte
-            'title-2': [10, 2], // Third byte
         }, 
         value: {
 
@@ -1130,17 +1300,6 @@ const HEXTABLE = {
                     "04": "Yellow"
                 } 
             }, 
-            district: { // District Name
-                "00": "Blank",
-                "01": "Hokkaido",
-                "03": "Iwate",
-                "05": "Akita",
-                "10": "Toyama",
-                "28": "Fukuoka",
-                "0D": "Tokyo",
-                "0E": "Kanagawa",
-                "2F": "Okinawa"
-            },
             rims: { // Wheels / Rims
                 "00": "Stock",
                 "0A": "Yokohama Model T5 (T5)",
@@ -1349,77 +1508,6 @@ const HEXTABLE = {
                 "47": "SSSS1", 
                 "48": "SSSSS", 
             },
-            /*
-            'sticker-type': { // Sticker yes/no
-                "00": "None", 
-                "01": "Used"
-            }, 
-            'sticker-id': { // Sticker IDs
-                "00": "None",
-                "01": "Fire Pattern",
-                "02": "Fire Pattern 2", 
-                "03": "Circle", 
-                "04": "Circle 2", 
-                "05": "Triangle", 
-                "06": "Spear", 
-                "07": "Snake", 
-                "08": "Bat", 
-                "09": "Star", 
-                "0A": "Shooting Star", 
-                "0B": "Thunder Volt", 
-                "0C": "Illumination", 
-                "0D": "Arrow", 
-                "0E": "Tribal", 
-                "0F": "Tribal 2", 
-                "10": "Tramp", 
-                "11": "Tramp 2", 
-                "12": "Heart", 
-                "13": "Angel Heart",
-                "14": "Raibun", 
-                "15": "Plum Cloud", 
-                "16": "Wave Sentence", 
-                "17": "Maze", 
-                "18": "Pulse", 
-                "19": "Equalizer", 
-                "1A": "Paint", 
-                "1B": "Long Horn", 
-                "1C": "Wangan URL", 
-                "1D": "Galaga", 
-                "1E": "Pac-Man", 
-                "1F": "Love", 
-                "20": "Emotion", 
-                "21": "Square", 
-                "22": "Pine", 
-                "23": "Trap", 
-                "24": "Wing", 
-                "25": "Tribal 3", 
-                "26": "Tribal 4", 
-                "27": "Techno", 
-                "28": "Techno 2", 
-                "29": "Beard", 
-                "2A": "Flash", 
-                "2B": "Scratch", 
-                "2C": "Antique", 
-                "2D": "Arrow 2", 
-                "2E": "Checker Flag", 
-                "2F": "Checker Flag 2", 
-                "30": "Puzzle", 
-                "31": "Puzzle 2", 
-                "32": "Wave", 
-                "33": "Fang", 
-                "34": "Lock-On", 
-                "35": "Chain", 
-                "36": "Street", 
-                "37": "No Trespassing", 
-                "38": "Barcode", 
-                "39": "Zipper", 
-                "3A": "Wangan URL 2"
-            }
-            */
         }
     }
-}
-
-// Data table for Maxi 6
-const HEXTABLE = {
 }

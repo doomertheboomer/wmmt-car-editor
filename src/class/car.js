@@ -10,17 +10,33 @@ class Car
         // Verify the dimensions are 16x14
         // ALL WMMT6 car files are this size
 
-        // If width is 16 and height is 14
-        if(d.x == 16 && d.y == 14)
+        console.log(d.x, d.y);
+
+        // If the width is 16 and height is 16
+        if(d.x == 16 && d.y == 16)
         {
-            // Set the map for this car to the given map
-            this.map = map;
+            // This is a MT5/5DX/5DX+ File
+            this.game = 'wmmt5';
+        }
+        // If width is 16 and height is 14
+        else if(d.x == 16 && d.y == 14)
+        {
+            // This is an MT6 File
+            this.game = 'wmmt6';
         }
         else // Other dimensions
         {
             // Throw error to calling process
             throw "InvalidBufferMapError";
         }
+
+        console.log("Game detected:", this.game);
+
+        // Set the map for this car to the given map
+        this.map = map;
+
+        // Use the location data for maximum tune 6
+        this.locations = HEXTABLE[this.game].location;
     }
 
     // setMap(map: Map): void
@@ -39,6 +55,16 @@ class Car
         return this.map;
     }
 
+    setGame(game)
+    {
+        this.game = game;
+    }
+
+    getGame()
+    {
+        return this.game;
+    }
+
     // setLocations(locations: Object): Void
     // Given a locations object, sets the
     // hex locations for the car to the 
@@ -51,352 +77,33 @@ class Car
     // getLocations(Void): Object
     // Returns the locations object
     // used by the car
-    getLocations(locations)
+    getLocations()
     {
         return this.locations;
     }
 
-    // getCar(void): String
-    // Return the hex code for the selected car
-    getCar()
+    // setField(field: String, value: String)
+    // If the field is present, returns the value
+    // of the field. Otherwise, returns null.
+    setField(field, option)
     {
-        // Return the currently selected car
-        return this.map.getElementAt(3, 4);
+        // Get the hex index for the field
+        let coords = this.locations[field];
+
+        // Set the element in the element corresponding to the field location
+        this.map.setElementAt(coords[0], coords[1], option);
     }
 
-    // setCar(hexcode: String): Void
-    // Assign the hex code for the selected car
-    setCar(hexcode)
+    // getField(field: String)
+    // If the field is present, returns
+    // the value of the field. Otherwise,
+    // returns null.
+    getField(field)
     {
-        // Assign the currently selected car
-        this.map.setElementAt(3, 4, hexcode);
-    }
+        // Get the hex index for the field
+        let coords = this.locations[field];
 
-    // getColour(void): String
-    // Get the hex code for the selected car colour
-    getColour()
-    {
-        // Return the currently selected colour
-        return this.map.getDecimalAt(3, 8);
-    }
-
-    // setColour(hexcode): String
-    // Set the hex code for the selected car colour
-    setColour(hexcode)
-    {
-        // Assign the currently selected colour
-        this.map.setDecimalAt(3, 8, hexcode);
-    }
-
-    // getRims(): String
-    // Return the hex code for the selected rims
-    getRims()
-    {
-        // Return the currently selected rims
-        return this.map.getElementAt(4, 0);
-    }
-
-    // setRims(hexcode: String): Void
-    // Assign the hex code for the selected rims
-    setRims(hexcode)
-    {
-        // Assign the currently selected rims
-        this.map.setElementAt(4, 0, hexcode);
-    }
-
-    // getRimsColour(): String
-    // Return the hex code for the selected rims colour
-    getRimsColour()
-    {
-        // Assign the currently selected rims colour
-        return this.map.getDecimalAt(4, 4);
-    }
-
-    // setRimsColour(hexcode: String): Void
-    // Assign the hex code for the selected rims colour
-    setRimsColour(hexcode)
-    {
-        // Assign the currently selected rims colour
-        this.map.setDecimalAt(4, 4, hexcode);
-    }
-
-    // setAero(hexcode: String): Void
-    // Assign the hex code for the selected aero kit
-    setAero(hexcode)
-    {
-        // Assign the currently selected aero kit
-        this.map.setElementAt(4, 8, hexcode);
-    }
-
-    // getAero(): String
-    // Return the hex code for the selected aero kit
-    getAero()
-    {
-        // Assign the currently selected aero kit
-        return this.map.getElementAt(4, 8);
-    }
-
-    // setHood(hexcode: String): Void
-    // Assign the hex code for the selected hood
-    setHood(hexcode)
-    {
-        // Assign the currently selected hood
-        this.map.setElementAt(4, 12, hexcode);
-    }
-
-    // getHood(): String
-    // Return the hex code for the selected hood
-    getHood()
-    {
-
-        // Assign the currently selected hood
-        return this.map.getElementAt(4, 12);
-    }
-
-    // setWing(hexcode: String): Void
-    // Assign the hex code for the selected wing
-    setWing(hexcode)
-    {
-        // Assign the currently selected wing
-        this.map.setElementAt(5, 8, hexcode);
-    }
-
-    // getWing(): String
-    // Return the hex code for the selected wing
-    getWing()
-    {
-        // Assign the currently selected wing
-        return this.map.getElementAt(5, 8);
-    }
-
-    // setMirror(hexcode: String): Void
-    // Assign the hex code for the selected mirror
-    setMirror(hexcode)
-    {
-        // Assign the currently selected mirror
-        this.map.setElementAt(5, 12, hexcode);
-    }
-    
-    // getMirror(): String
-    // Return the hex code for the selected mirror
-    getMirror()
-    {
-
-        // Assign the currently selected mirror
-        return this.map.getElementAt(5, 12);
-    }
-
-    // setNeon(hexcode: String): Void
-    // Assign the hex code for the selected neon
-    setNeon(hexcode)
-    {
-        // Assign the currently selected neon
-        this.map.setElementAt(6, 0, hexcode);
-    }
-
-    // getNeon(): String
-    // Return the hex code for the selected neon
-    getNeon()
-    {
-        // Assign the currently selected neon
-        return this.map.getElementAt(6, 0);
-
-    }
-
-    // setTrunk(hexcode: String): Void
-    // Assign the hex code for the selected trunk
-    setTrunk(hexcode)
-    {
-        // Assign the currently selected trunk
-        this.map.setElementAt(6, 4, hexcode);
-    }
-
-    // getTrunk(): String
-    // Return the hex code for the selected trunk
-    getTrunk()
-    {
-        // Assign the currently selected trunk
-        return this.map.getElementAt(6, 4);
-    }
-
-    // setPlateFrame(hexcode: String): Void
-    // Assign the hex code for the selected plate frame
-    setPlateFrame(hexcode)
-    {
-        // Split the hexcode on the dash
-        let hexcodes = hexcode.split('-');
-
-        // Assign the currently selected plate frame
-        this.map.setElementAt(6, 8, hexcodes[0]);
-
-        // Assign the currently selected frame colour
-        this.map.setElementAt(6, 12, hexcodes[1]);
-    }
-
-    // getPlateFrame(): String
-    // Return the hex code for the selected plate frame
-    getPlateFrame()
-    {
-        // Assign the currently selected plate frame
-        return this.map.getElementAt(6, 8) + '-' + this.map.getElementAt(6, 12);
-    }
-
-    // setPlateFrameNumber1(hexcode: String): Void
-    // Assign the hex code for the first selected plate frame number
-    setPlateFrameNumber1(integer)
-    {
-        // Assign the currently selected plate frame number
-        this.map.setDecimalAt(7, 0, integer);
-    }
-    
-    // getPlateFrameNumber1(): String
-    // Return the hex code for the first selected plate frame number
-    getPlateFrameNumber1()
-    {
-        // Assign the currently selected plate frame number
-        return this.map.getDecimalAt(7, 0);
-    }
-
-    // setPlateFrameNumber2(hexcode: String): Void
-    // Assign the hex code for the second selected plate frame number
-    setPlateFrameNumber2(integer)
-    {
-        // Assign the currently selected plate frame number
-        this.map.setDecimalAt(7, 1, integer);
-    }
-    
-    // getPlateFrameNumber2(): String
-    // Return the hex code for the second selected plate frame number
-    getPlateFrameNumber2()
-    {
-        // Assign the currently selected plate frame number
-        return this.map.getDecimalAt(7, 1);
-    }
-
-    // setPower(hexcode: String): Void
-    // Assign the hex code for the selected power
-    setPower(hexcode)
-    {
-        // Assign the currently selected power
-        this.map.setElementAt(7, 4, hexcode);
-    }
-
-    // getPower(): String
-    // Return the hex code for the selected power
-    getPower()
-    {
-        // Assign the currently selected power
-        return this.map.getElementAt(7, 4);
-    }
-
-    // setHandling(hexcode: String): Void
-    // Assign the hex code for the selected handling
-    setHandling(hexcode)
-    {
-        // Assign the currently selected handling
-        this.map.setElementAt(8, 0, hexcode);
-
-    }
-
-    // getHandling(): String
-    // Return the hex code for the selected handling
-    getHandling()
-    {
-        // Assign the currently selected handling
-        return this.map.getElementAt(8, 0);
-    }
-    
-    // setRank(hexcode: String): Void
-    // Assign the hex code for the selected rank
-    setRank(hexcode)
-    {
-        // Assign the currently selected rank
-        this.map.setElementAt(8, 4, hexcode);
-    }
-
-    // getRank(): String
-    // Return the hex code for the selected rank
-    getRank()
-    {
-        // Assign the currently selected rank
-        return this.map.getElementAt(8, 4);
-    }
-
-    // setStickerType(hexcode: String): Void
-    // Assign the hex code for the selected sticker type
-    setStickerType(hexcode)
-    {
-        // Assign the currently selected sticker type
-        this.map.setElementAt(9, 4, hexcode);
-    }
-
-    // getStickerType(): String
-    // Return the hex code for the selected sticker type
-    getStickerType()
-    {
-        // Assign the currently selected sticker type
-        return this.map.getElementAt(9, 4);
-    }
-
-    // setStickerId(hexcode: String): Void
-    // Assign the hex code for the selected sticker id
-    setStickerId(hexcode)
-    {
-        // Assign the currently selected sticker id
-        this.map.setElementAt(9, 8, hexcode);
-    }
-
-    // getStickerId(): String
-    // Return the hex code for the selected sticker id
-    getStickerId()
-    {
-        // Assign the currently selected sticker id
-        return this.map.getElementAt(9, 8);
-    }
-
-    /*
-    // setPlateFrame(hexcode: String): Void
-    // Assign the hex code for the selected plate frame
-    setPlateFrame(hexcode)
-    {
-        // Split the hexcode on the dash
-        let hexcodes = hexcode.split('-');
-
-        // Assign the currently selected plate frame
-        this.map.setElementAt(6, 8, hexcodes[0]);
-
-        // Assign the currently selected frame colour
-        this.map.setElementAt(6, 12, hexcodes[1]);
-    }
-
-    // getPlateFrame(): String
-    // Return the hex code for the selected plate frame
-    getPlateFrame()
-    {
-        // Assign the currently selected plate frame
-        return this.map.getElementAt(6, 8) + '-' + this.map.getElementAt(6, 12);
-    }*/
-
-    // setTitle(String): Void
-    // Set the hex codes for the given title
-    setTitle(hexcode)
-    {
-        // Split the hexcode on the dash
-        let hexcodes = hexcode.split('-');
-
-        // Assign the currently selected title
-        this.map.setElementAt(10, 0, hexcodes[0]);
-        this.map.setElementAt(10, 1, hexcodes[1]);
-        this.map.setElementAt(10, 2, hexcodes[2]);
-    }
-
-    // getTitle(Void): String
-    // Get the hex codes for the selected title
-    getTitle()
-    {
-        // Return the currently selected title id
-        return this.map.getElementAt(10, 1) + '-' + 
-            this.map.getElementAt(10, 2) + '-' + 
-            this.map.getElementAt(10, 3);
+        // Get the element in the element corresponding to the field location
+        return this.map.getElementAt(coords[0], coords[1]);
     }
 }

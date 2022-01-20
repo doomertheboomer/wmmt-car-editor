@@ -1,6 +1,12 @@
 // By default, no car is selected
 document.car = null;
 
+// Fields which should be checked for
+document.fields = [
+    'cars', 'aero', 'wing', 'hood', 'mirror', 'trunk',
+    'neon', 'rims', 'plate', 'power', 'handling', 'rank'
+]
+
 // No recorded file name
 document.filename = null;
 
@@ -27,7 +33,9 @@ function handleUpload()
             {
                 // Get the map from the buffer, and 
                 // create a new car using the map
-                let car = new Car(new Map(e.target.result));
+                let car = new Car(
+                    new Map(e.target.result)  // Binary data of the car file
+                );
 
                 // If car is created successfully, assign to the document
                 document.car = car;
@@ -38,29 +46,18 @@ function handleUpload()
                 document.car = null;
                 document.filename = null;
 
-                // Disable the drop-downs
-                setDisabled('s_cars', true);
-                setDisabled('s_aero', true);
-                setDisabled('s_wing', true);
-                setDisabled('s_hood', true);
-                setDisabled('s_mirror', true);
-                setDisabled('s_trunk', true);
-                setDisabled('s_neon', true);
-                setDisabled('s_rims', true);
-                setDisabled('s_plate', true);
-                // setDisabled('s_power', true);
-                // setDisabled('s_handling', true);
-                setDisabled('s_rank', true);
-                // setDisabled('s_sticker-type', true);
-                // setDisabled('s_sticker-id', true);
-                // setDisabled('s_title', true);
-
-                // Disable the number selections
-                // setDisabled('i_colour', true);
-                // setDisabled('i_rims_colour', true);
-
-                // setDisabled('i_plate-frame-number-1', true);
-                // setDisabled('i_plate-frame-number-2', true);
+                // Loop over all of the elements
+                document.fields.forEach(field => {
+                    try
+                    {
+                        // Element is implemented, enable it
+                        setDisabled('s_' + field, true);  
+                    }
+                    catch // Element invalid / not implemented
+                    {
+                        // Do nothing
+                    }
+                });
 
                 // Write error to terminal
                 console.error("Error:",err);
@@ -74,59 +71,34 @@ function handleUpload()
                 // Dereference the car object
                 car = document.car
 
-                // Update the model search link
-                document.getElementById('a_model_search').href = getWikiSearch(car.getCar());
+                // List of values to process
 
-                // Enable the drop-downs and 
-                // load the current properties
-                setSelected('o_cars_' + car.getCar(), true);
-                setSelected('o_aero_' + car.getAero(), true);
-                setSelected('o_wing_' + car.getWing(), true);
-                setSelected('o_hood_' + car.getHood(), true);
-                setSelected('o_mirror_' + car.getMirror(), true);
-                setSelected('o_trunk_' + car.getTrunk(), true);
-                setSelected('o_neon_' + car.getNeon(), true);
-                setSelected('o_rims_' + car.getRims(), true);
-                setSelected('o_plate_' + car.getPlateFrame(), true);
-                setSelected('o_power_' + car.getPower(), true);
-                setSelected('o_handling_' + car.getHandling(), true);
-                setSelected('o_rank_' + car.getRank(), true);
-                // setSelected('o_sticker-type_' + car.getStickerType(), true);
-                // setSelected('o_sticker-id_' + car.getStickerId(), true);
+                // For each field in the form
+                document.fields.forEach(field => {
+
+                    // Populate the drop-down
+                    getOptions(field);
+                });
+
+                // Loop over all of the elements
+                document.fields.forEach(field => {
+                    try
+                    {
+                        // Get the information for the given element
+                        setSelected('o_' + field + '_' + car.getField(field),  true);
+
+                        // Element is implemented, enable it
+                        setDisabled('s_' + field, false);
+                    }
+                    catch // Element invalid / not implemented
+                    {
+                        // Disable it
+                        setDisabled('s_' + field, true);
+                    }
+                });
                 
-                // Pretty sure I have the wrong index for this
-                // setSelected('o_title_' + car.getTitle(), true);
-
-                // Load the current properties (integer)
-                // setValue('i_colour', parseInt(car.getColour(), 16));
-                // setValue('i_rims_colour', parseInt(car.getRimsColour(), 16));
-
-                // setValue('i_plate-frame-number-1').value = parseInt(car.getPlateFrameNumber1(), 16);
-                // setValue('i_plate-frame-number-2').value = parseInt(car.getPlateFrameNumber2(), 16);
-
-                // Enable the drop-downs
-                setDisabled('s_cars', false);
-                setDisabled('s_aero', false);
-                setDisabled('s_wing', false);
-                setDisabled('s_hood', false);
-                setDisabled('s_mirror', false);
-                setDisabled('s_trunk', false);
-                setDisabled('s_neon', false);
-                setDisabled('s_rims', false);
-                setDisabled('s_plate', false);
-                // setDisabled('s_power', false);
-                // setDisabled('s_handling', false);
-                setDisabled('s_rank', false);
-                // setDisabled('s_sticker-type', false);
-                // setDisabled('s_sticker-id', false);
-                // setDisabled('s_title', false);
-
-                // Enable the number selections
-                // setDisabled('i_colour', false);
-                // setDisabled('i_rims_colour', false);
-
-                // setDisabled('i_plate-frame-number-1', false);
-                // setDisabled('i_plate-frame-number-2', false);
+                // Update the model search link
+                document.getElementById('a_model_search').href = getWikiSearch(car.getField('cars'));
             }
         };
 
@@ -148,7 +120,7 @@ function getWikiSearch(car_id)
     let url_end = "&type=AND";
 
     // Get the name / code for the car
-    let car = HEXTABLE.cars[car_id];
+    let car = HEXTABLE[document.car.getGame()].value.cars[car_id];
 
     // Remove the content after the code from the string
     let code = car.split(']')[0];
@@ -293,39 +265,78 @@ function handleDownload()
     }
 }
 
+// setOption(code: String, value: String): Void
+// Given a property code and a value, updates
+// the value on the car to the selected property
+// and return true if successful and false if not.
+function setOption(code, value)
+{
+    // If a car is currently loaded
+    if (document.car !== null)
+    {
+        // Update the selected field with the new value
+        document.car.setField(code, value);
+
+        // Successfully updated
+        return true;
+    }
+
+    // No update
+    return false;
+}
+
 // getOptions(code: String): Void
 // Given a property code, gets the items
 // available for that property (which are discovered)
 // and adds them to the respective drop-down list.
 function getOptions(code) 
 {
-    // Get the drop down for the given code
-    let dropdown = document.getElementById('s_' + code);
-
-    // Get the keys from the hex table index and sort
-    let keys = Object.keys(HEXTABLE[code]).sort();
-
-    // Loop over all of the hextables for the code
-    for (key of keys)
+    // If a car is currently loaded
+    if (document.car !== null)
     {
-        // Get the name of the object with the given hexcode
-        let name = HEXTABLE[code][key];
+        // Get the drop down for the given code
+        let dropdown = document.getElementById('s_' + code);
 
-        // Create a new option
-        let option = document.createElement('option');
+        // Get the game for the current car
+        let game = document.car.getGame();
 
-        // Assign the value to the code
-        option.value = key;
+        // Verify the code is valid / has been implemented
+        if (HEXTABLE[game].value.hasOwnProperty(code))
+        {
+            // Get the keys for the given aspect of the car 
+            let keys = HEXTABLE[game].value[code];
 
-        // Assign the id to the option
-        option.id = 'o_' + code + '_' + key;
+            Object.keys(keys).forEach(key => {
+                
+                // Get the name of the object with the given hexcode
+                let name = HEXTABLE[game].value[code][key];
 
-        // Assigning the text to the option
-        option.innerHTML = name;
+                // Create a new option
+                let option = document.createElement('option');
 
-        // Add the option to the drop-down
-        dropdown.appendChild(option);
+                // Assign the value to the code
+                option.value = key;
+
+                // Assign the id to the option
+                option.id = 'o_' + code + '_' + key;
+
+                // Assigning the text to the option
+                option.innerHTML = name;
+
+                // Add the option to the drop-down
+                dropdown.appendChild(option);
+
+            });
+
+        }
+        else // Key is not valid or is not implemented
+        {
+            console.log("Feature not implemented for game '",game,"':", code);
+        }
     }
+
+    // No update
+    return false;
 }
 
 // getPlateOptions(Void): Void
@@ -378,8 +389,6 @@ function getTitleOptions()
         // Set the value of the option to the hex substring, each hex value seperated using dashes
         let value = (hex.substring(0, 2) + '-' + hex.substring(2,4) + '-' + hex.substring(4, 6)).toUpperCase();
 
-        // console.log("OPTION: ",hex, "(", value, ")");
-         
         // Create a new option
         let option = document.createElement('option');
 
@@ -470,47 +479,63 @@ function setTune(value)
     setSelected('o_handling_' + car.getHandling(), true);
 }
 
-// Populate the car model drop-down
-getOptions('cars');
+// setupGameDropdown(void): void
+// Sets the game drop-down 
+// members to the games listed
+// in hextable.js.
+function setupGameDropdown()
+{
+    // Get the select drop-down for the game
+    let select = document.getElementById('s_game');
 
-// Populate the body kit drop-down
-getOptions('aero');
+    // Loop over all of the games in the list
+    Object.keys(HEXTABLE).forEach(game => {
 
-// Populate the wing drop-down
-getOptions('wing');
+        // Create a new option object
+        let option = document.createElement('option');
 
-// Populate the hood drop-down
-getOptions('hood');
+        // Set the text of the option to the game name
+        option.innerHTML = HEXTABLE[game].name;
 
-// Populate the mirror drop-down
-getOptions('mirror');
+        // Set the id for the option
+        option.id = 'o_' + game;
 
-// Populate the trunk drop-down
-getOptions('trunk');
+        // Set the value of the option to the game id
+        option.value = game;
 
-// Populate the neon drop-down
-getOptions('neon');
+        // Append the option to the drop-down
+        select.appendChild(option);
+    });
+}
 
-// Populate the rims drop-down
-getOptions('rims');
+// setGameDropdown(value): void
+// Updates the selected game, which
+// updates the hex table for the game
+// which is being used.
+function setGameDropdown(value)
+{
+    // Retrieve the game selection drop-down element
+    element = document.getElementById('s_game');
 
-// Populate the rims drop-down
-getOptions('power');
+    // Verify the game is currently selected in the drop-down
+    setSelected('o_' + value, true);
+    
+    // If a car object exists
+    if (document.car !== null)
+    {
+        // Set the locations reference for the car object
+        // to the currently selected game
+        document.car.setLocations(HEXTABLE[value].location);
+    }
 
-// Populate the rims drop-down
-getOptions('handling');
+    // Update the selected game in the document
+    document.game = value;
+}
 
-// Populate the rims drop-down
-getOptions('rank');
-
-// Populate the sticker type drop-down
-// getOptions('sticker-type');
-
-// Populate the sticker id drop-down
-// getOptions('sticker-id');
-
-// Get the plate options drop-down
-getPlateOptions();
-
-// Get the title options drop-down
-// getTitleOptions();
+// resetForm(void): void
+// Reset the current form to default
+function resetPage()
+{
+    // Hard refresh the page with no cache
+    document.location.reload(true)
+}

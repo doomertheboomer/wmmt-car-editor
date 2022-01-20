@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 <html>
@@ -15,17 +16,21 @@
         </div>
         <div id='d_header' class='text-center'>
             <h1>
-                Wangan Midnight Maximum Tune 6 Car Editor
+                <!-- Wangan Midnight Maximum Tune 6 Car Editor -->
+                Maximum Tune Car Editor
             </h1>
-            <h2>
-                For use with TeknoParrot or JConfig
-            </h2>
             <h3>
+                For WMMT5/DX/+ and WMMT6
+            </h3>
+            <h4>
+                Supports TeknoParrot or JConfig
+            </h4>
+            <h5>
                 Tool by 
                 <a href='https://www.twitter.com/SirScrubbington'>
                     SirScrubbington
                 </a>
-            </h3>
+            </h5>
             <h6>
                 <i>
                     Encounter a bug? Report it
@@ -41,13 +46,16 @@
             <table class='table table-dark' id='t_upload'>
                 <thead class='thead thead-dark'>
                     <tr>
-                        <th colspan=3>
-                            Upload File
+                        <th colspan=5>
+                            Option
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <th>
+                            Select File
+                        </th>
                         <td>
                             <input name="file" type="file" accept=".car" id="i_file"/>
                         </td>
@@ -60,6 +68,21 @@
                             <a href='#' onClick='handleDownload()'>
                                 Download File
                             </a>
+                        </td>
+                        <td>
+                            <a href='#' onClick='resetPage()'>
+                                Reset Form
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Select Game
+                        </th>
+                        <td colspan=4>
+                            <select id='s_game' disabled>
+                                <!-- Populated by index.js -->
+                            </select>
                         </td>
                     </tr>
                 </tbody>
@@ -92,7 +115,8 @@
                             Car Model
                         </th>
                         <td>
-                            <select name='s_cars' id='s_cars' onChange='document.car.setCar(value)' disabled>
+                            <!-- <select name='s_cars' id='s_cars' onChange='document.car.setCar(value)' disabled> -->
+                            <select name='s_cars' id='s_cars' onChange='document.SetOption("car", value)' disabled>
                                 <option id='o_carname'>
                                     No File Uploaded
                                 </option>
