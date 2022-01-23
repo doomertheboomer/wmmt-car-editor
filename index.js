@@ -381,8 +381,6 @@ function handleUpload()
                             // all of the possibilities
                             document.car.getOptions(field).forEach(option => {
 
-                                console.log(option);
-
                                 // Create the id for the drop-down option
                                 let o_id = 'o_' + field + '_' + option.id;
 

@@ -42,8 +42,6 @@ class Car
             throw ("Unrecognised game:" + gameCheck);
         }
 
-        console.log("Game detected:", game);
-
         // Set the map for this car to the given map
         this.map = map;
         
