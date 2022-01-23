@@ -10,33 +10,53 @@ class Car
         // Verify the dimensions are 16x14
         // ALL WMMT6 car files are this size
 
-        console.log(d.x, d.y);
+        // No game by default
+        let game = null;
 
-        // If the width is 16 and height is 16
-        if(d.x == 16 && d.y == 16)
+        // 88 06 - MT5
+        // ?? ?? - MT5DX
+        // E8 85 - MT5DX+
+        // F8 3F - MT6
+
+        // Get the first two nibbles in the file - identifies the game
+        let gameCheck = map.getElementAt(0, 0) + map.getElementAt(0, 1);
+
+        // Check for Maximum Tune 5
+        if (gameCheck === '8806')
         {
-            // This is a MT5/5DX/5DX+ File
-            this.game = 'wmmt5';
+            // Set the game to Maxi 5
+            game = 'wmmt5';
         }
-        // If width is 16 and height is 14
-        else if(d.x == 16 && d.y == 14)
+        else if (gameCheck === 'E885') // Maximum Tune 5DX/5DX+
         {
-            // This is an MT6 File
-            this.game = 'wmmt6';
+            game = 'wmmt5dx';
         }
-        else // Other dimensions
+        else if (gameCheck === 'F83F') // Maximum Tune 6
         {
-            // Throw error to calling process
-            throw "InvalidBufferMapError";
+            // Set the game to Maxi 6
+            game = 'wmmt6';
+        }
+        else // Try to load it as an MT6 file
+        {
+            // Throw the error to the calling process
+            throw ("Unrecognised game:" + gameCheck);
         }
 
-        console.log("Game detected:", this.game);
+        console.log("Game detected:", game);
 
         // Set the map for this car to the given map
         this.map = map;
+        
+        // Get the hex table info for the game selected
+        let hexInfo = HEXTABLE[game];
 
         // Use the location data for maximum tune 6
-        this.locations = HEXTABLE[this.game].location;
+        this.locations = new Hextable(
+            hexInfo.name, // Name
+            game, // Id (game id)
+            hexInfo.location, // Locations
+            hexInfo.value // Values
+        )
     }
 
     // setMap(map: Map): void
@@ -44,6 +64,7 @@ class Car
     // map to the given map object.
     setMap(map)
     {
+        // Update the map object
         this.map = map;
     }
 
@@ -52,17 +73,36 @@ class Car
     // within the car object.
     getMap()
     {
+        // Return the map object
         return this.map;
     }
 
-    setGame(game)
+    // setGame(game: String): Void
+    setGameId(game)
     {
-        this.game = game;
+        // Updates the id of the game
+        this.locations.setId(game);
     }
 
-    getGame()
+    // getGame(void): String
+    getGameId()
     {
-        return this.game;
+        // Return the id of the game
+        return this.locations.getId();
+    }
+
+    // setGame(game: String): Void
+    setGameName(game)
+    {
+        // Updates the name of the game
+        this.locations.setName(game);
+    }
+
+    // getGame(void): String
+    getGameName()
+    {
+        // Return the name of the game
+        return this.locations.getName();
     }
 
     // setLocations(locations: Object): Void
@@ -71,6 +111,7 @@ class Car
     // given locations object.
     setLocations(locations)
     {
+        // Update the locations object
         this.locations = locations;
     }
 
@@ -79,6 +120,7 @@ class Car
     // used by the car
     getLocations()
     {
+        // Return the locations object
         return this.locations;
     }
 
@@ -88,7 +130,7 @@ class Car
     setField(field, option)
     {
         // Get the hex index for the field
-        let coords = this.locations[field];
+        let coords = this.getLocations().getLocation(field);
 
         // Set the element in the element corresponding to the field location
         this.map.setElementAt(coords[0], coords[1], option);
@@ -101,9 +143,47 @@ class Car
     getField(field)
     {
         // Get the hex index for the field
-        let coords = this.locations[field];
+        let coords = this.getLocations().getLocation(field);
 
         // Get the element in the element corresponding to the field location
         return this.map.getElementAt(coords[0], coords[1]);
+    }
+
+    // getFields(void): List
+    getFields()
+    {
+        // Return the list of keys for the locations object
+        return this.getLocations().getKeys();
+    }
+
+    // getOptions(field: String)
+    // Gets all of the possible 
+    // options which can be applied
+    // to this car for this game.
+    getOptions(field)
+    {
+        // List of options to return
+        let list = [];
+
+        // Get the list of options for the given field
+        let options = this.getLocations().getValues()[field];
+
+        // Loop over all of the options in the values list for the field
+        Object.keys(options).forEach(option => {
+
+            list.push({
+
+                // Name of the option
+                name: options[option],
+
+                // ID (Hex Value) for the option
+                id: option 
+
+            });
+
+        });
+
+        // Return the completed list
+        return list;
     }
 }

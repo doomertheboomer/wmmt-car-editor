@@ -77,11 +77,14 @@
                     </tr>
                     <tr>
                         <th>
-                            Select Game
+                            Game Selected
                         </th>
                         <td colspan=4>
                             <select id='s_game' disabled>
                                 <!-- Populated by index.js -->
+                                <option>
+                                    No Game Selected
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -118,7 +121,7 @@
                             <!-- <select name='s_cars' id='s_cars' onChange='document.car.setCar(value)' disabled> -->
                             <select name='s_cars' id='s_cars' onChange='document.SetOption("car", value)' disabled>
                                 <option id='o_carname'>
-                                    No File Uploaded
+                                    Not Available
                                 </option>
                             </select>
                         </td>
@@ -129,6 +132,9 @@
                         </th>
                         <td>
                             <select name='s_rank' id='s_rank' onChange='document.car.setRank(value)' disabled>
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -184,9 +190,9 @@
                         </th>
                         <td>
                             <select name='s_aero' id='s_aero' onChange='document.car.setAero(value)' disabled>
-                                <!--
-                                    Aero Parts populated by index.js
-                                -->
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -196,9 +202,9 @@
                         </th>
                         <td>
                             <select name='s_wing' id='s_wing' onChange='document.car.setWing(value)' disabled>
-                                <!--
-                                    Wings populated by index.js
-                                -->
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -208,9 +214,9 @@
                         </th>
                         <td>
                             <select name='s_hood' id='s_hood' onChange='document.car.setHood(value)' disabled>
-                                <!--
-                                    Hoods populated by index.js
-                                -->
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -220,9 +226,9 @@
                         </th>
                         <td>
                             <select name='s_mirror' id='s_mirror' onChange='document.car.setMirror(value)' disabled>
-                                <!--
-                                    Mirrors populated by index.js
-                                -->
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -232,9 +238,9 @@
                         </th>
                         <td>
                             <select name='s_trunk' id='s_trunk' onChange='document.car.setTrunk(value)' disabled>
-                                <!--
-                                    Trunks populated by index.js
-                                -->
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -244,9 +250,9 @@
                         </th>
                         <td>
                             <select name='s_neon' id='s_neon' onChange='document.car.setNeon(value)' disabled>
-                                <!--
-                                    Neon populated by index.js
-                                -->
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -256,18 +262,9 @@
                         </th>
                         <td>
                             <select name='s_rims' id='s_rims' onChange='document.car.setRims(value)' disabled>
-                                <!--
-                                    Rims populated by index.js
-                                -->
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Plates
-                        </th>
-                        <td>
-                            <select name='s_plate' id='s_plate' onChange='document.car.setPlateFrame(value)' disabled>
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -290,6 +287,15 @@
                     </tr>
                 </thead>
                 <tbody class='tbody tbody-dark'>
+                        <tr>
+                            <th>
+                                Plates
+                            </th>
+                            <td>
+                                <select name='s_plate' id='s_plate' onChange='document.car.setPlateFrame(value)' disabled>
+                                </select>
+                            </td>
+                        </tr>
                         <tr>
                             <th>
                                 Plate Frame Number (First 2)
@@ -409,6 +415,9 @@
                         </th>
                         <td>
                             <select name='s_power' id='s_power' onChange='document.car.setPower(value)' disabled>
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -418,6 +427,9 @@
                         </th>
                         <td>
                             <select name='s_handling' id='s_handling' onChange='document.car.setHandling(value)' disabled>
+                                <option id='o_carname'>
+                                    Not Available
+                                </option>
                             </select>
                         </td>
                     </tr>

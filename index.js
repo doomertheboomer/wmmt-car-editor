@@ -1,136 +1,8 @@
 // By default, no car is selected
 document.car = null;
 
-// Fields which should be checked for
-document.fields = [
-    'cars', 'aero', 'wing', 'hood', 'mirror', 'trunk',
-    'neon', 'rims', 'plate', 'power', 'handling', 'rank'
-]
-
 // No recorded file name
 document.filename = null;
-
-// handleUpload(Void): Void
-// Handle the file upload to the site
-function handleUpload()
-{
-    // Get the file from the upload 
-    let file = document.getElementById('i_file').files[0];
-
-    // If no file has been uploaded
-    if (file !== undefined)
-    {
-        // Set the filename variable to the name of the uploaded file
-        document.filename = file.name;
-
-        // File reader object for opening user input
-        const reader = new FileReader();
-
-        // Code to run if reader succeeds
-        reader.onload = function(e) {
-
-            try
-            {
-                // Get the map from the buffer, and 
-                // create a new car using the map
-                let car = new Car(
-                    new Map(e.target.result)  // Binary data of the car file
-                );
-
-                // If car is created successfully, assign to the document
-                document.car = car;
-            }
-            catch(err) // Fails to create car object
-            {
-                // Document car is null
-                document.car = null;
-                document.filename = null;
-
-                // Loop over all of the elements
-                document.fields.forEach(field => {
-                    try
-                    {
-                        // Element is implemented, enable it
-                        setDisabled('s_' + field, true);  
-                    }
-                    catch // Element invalid / not implemented
-                    {
-                        // Do nothing
-                    }
-                });
-
-                // Write error to terminal
-                console.error("Error:",err);
-            }
-
-            // If a car is loaded
-            if (document.car)
-            {
-                // Car created, configure drop-downs
-
-                // Dereference the car object
-                car = document.car
-
-                // List of values to process
-
-                // For each field in the form
-                document.fields.forEach(field => {
-
-                    // Populate the drop-down
-                    getOptions(field);
-                });
-
-                // Loop over all of the elements
-                document.fields.forEach(field => {
-                    try
-                    {
-                        // Get the information for the given element
-                        setSelected('o_' + field + '_' + car.getField(field),  true);
-
-                        // Element is implemented, enable it
-                        setDisabled('s_' + field, false);
-                    }
-                    catch // Element invalid / not implemented
-                    {
-                        // Disable it
-                        setDisabled('s_' + field, true);
-                    }
-                });
-                
-                // Update the model search link
-                document.getElementById('a_model_search').href = getWikiSearch(car.getField('cars'));
-            }
-        };
-
-        // Read the binary content from the file
-        reader.readAsArrayBuffer(file);
-    }
-}
-
-// getWikiSearch(car_id: String): String
-// Gets the search string to search for 
-// the given model of car on the wikiwiki
-// site for maximum tune.
-function getWikiSearch(car_id)
-{
-    // Start of the wmmt wikiwiki search url
-    let url_start = "https://wikiwiki.jp/wmmt/?cmd=search&word=";
-
-    // End of the wmmt wikiwiki search url
-    let url_end = "&type=AND";
-
-    // Get the name / code for the car
-    let car = HEXTABLE[document.car.getGame()].value.cars[car_id];
-
-    // Remove the content after the code from the string
-    let code = car.split(']')[0];
-
-    // Remove the content before the code from the string
-    code = code.split('[')[1];
-
-    // Return the code
-    return url_start + code + url_end;
-}
 
 // setValue(id: String, value: Boolean)
 // If it exists, sets the selected property for 
@@ -155,7 +27,65 @@ function setValue(id, value)
     }
 }
 
-// setSelected(id: String, value: Boolean)
+// resetPage(void): Void
+// Hard reloads the current
+// page and empties all of the
+// input fields.
+function resetPage()
+{
+    // Page hard reload (clear cache)
+    window.location.reload(true);
+}
+
+// resetDropdown(id: String): Void
+// If it exists, resets the select
+// element with the given id to the
+// default option.
+function resetDropdown(id)
+{
+    try
+    {
+        // Get the element with the given id
+        let element = document.getElementById(id);
+
+        // Clear the inner html of the element
+        element.innerHTML = "";
+
+        // Add the default element to the child
+        element.appendChild(newOption(
+            'o_' + id + '_default', // Element id
+            'default', // Default option
+            'Not Available' // Default text
+        )); 
+    }
+    catch
+    {
+        console.log("Failed: Dropdown '",id,"' does not exist!");
+    }
+}
+
+// newOption(id: String, value: String, content: String): Element
+// Creates a select element with the given id, value and content
+// and returns it to the calling process.
+function newOption(id, value, content)
+{
+    // Create a new option
+    let option = document.createElement('option');
+
+    // Assign the html content to the innerHTML
+    option.innerHTML = content;
+
+    // Set the option value to the value provided
+    option.value = value;
+
+    // Set the option id to the id provided
+    option.id = id;
+
+    // Return the created option object
+    return option;
+}
+
+// setSelected(id: String, value: Boolean): Void
 // If it exists, sets the selected property for 
 // the given element to true. Otherwise, does nothing.
 function setSelected(id, value)
@@ -199,6 +129,119 @@ function setDisabled(id, value)
         // Assignment failed
         return false;
     }
+}
+
+// Given a combo box value, 
+// sets the tuning settings for
+// the car and enables or disables
+// the drop-downs, depending on the 
+// setting applied.
+function setTune(value)
+{
+    // Values:
+    // 0 - No Tune 
+    // 1 - Basic Tuning
+    // 2 - Full Tune 
+    // 3 - Custon Tune
+
+    // Dereference the car object
+    let car = document.car;
+
+    switch(value)
+    {
+        case 0: // Leave as is
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 1: // No Tune
+
+            // Both power and handling 0 pts
+            car.setField('power', '00');
+            car.setField('handling', '00');
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 2: // Basic Tuning
+
+            // Both power and handling 10 pts
+            car.setField('power', '0A');
+            car.setField('handling', '0A');
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 3: // Full Tune
+
+            // Both power and handling 17 pts
+
+            // If the game is wmmt6 (840hp)
+            if(car.getGameId() == 'wmmt6')
+            {
+                // Both power and handling 16 pts 
+                car.setField('power', '10');
+                car.setField('handling', '10');
+            }
+            else // Otherwise, game is wmmt5/5dx (830hp)
+            {
+                // Both power and handling 16 pts 
+                car.setField('power', '11');
+                car.setField('handling', '11');
+            }
+
+            // Disable the power/handling dropdowns
+            setDisabled('s_power', true);
+            setDisabled('s_handling', true);
+            break;
+
+        case 4: // Custom Tune
+
+            // Enable the power/handling dropdowns
+            setDisabled('s_power', false);
+            setDisabled('s_handling', false);
+            break;
+
+        default: // Unknown value provided
+
+            console.log("Unknown value '" + value + "'provided!");
+            break;
+    }
+
+    // Update the values in the drop down
+    setSelected('o_power_' + car.getField('power'), true);
+    setSelected('o_handling_' + car.getField('handling'), true);
+}
+
+// getWikiSearch(car_id: String): String
+// Gets the search string to search for 
+// the given model of car on the wikiwiki
+// site for maximum tune.
+function getWikiSearch()
+{
+    // Start of the wmmt wikiwiki search url
+    let url_start = "https://wikiwiki.jp/wmmt/?cmd=search&word=";
+
+    // End of the wmmt wikiwiki search url
+    let url_end = "&type=AND";
+
+    // Get the name and code for the car
+    let car = document.car.getFieldName('cars');
+
+    // Remove the content after the code from the string
+    let code = car.split(']')[0];
+
+    // Remove the content before the code from the string
+    code = code.split('[')[1];
+
+    // Return the code
+    return url_start + code + url_end;
 }
 
 // handleDownload(Void): Void
@@ -265,277 +308,158 @@ function handleDownload()
     }
 }
 
-// setOption(code: String, value: String): Void
-// Given a property code and a value, updates
-// the value on the car to the selected property
-// and return true if successful and false if not.
-function setOption(code, value)
+// handleUpload(Void): Void
+// Handle the file upload to the site
+function handleUpload()
 {
-    // If a car is currently loaded
-    if (document.car !== null)
+    // Get the file from the upload 
+    let file = document.getElementById('i_file').files[0];
+
+    // If a file has been uploaded
+    if (file !== undefined)
     {
-        // Update the selected field with the new value
-        document.car.setField(code, value);
+        // Set the filename variable to the name of the uploaded file
+        document.filename = file.name;
 
-        // Successfully updated
-        return true;
-    }
+        // File reader object for opening user input
+        const reader = new FileReader();
 
-    // No update
-    return false;
-}
+        // Code to run if reader succeeds
+        reader.onload = function(e) {
 
-// getOptions(code: String): Void
-// Given a property code, gets the items
-// available for that property (which are discovered)
-// and adds them to the respective drop-down list.
-function getOptions(code) 
-{
-    // If a car is currently loaded
-    if (document.car !== null)
-    {
-        // Get the drop down for the given code
-        let dropdown = document.getElementById('s_' + code);
+            try
+            {
+                // Null out the existing car object
+                document.car = null;
 
-        // Get the game for the current car
-        let game = document.car.getGame();
+                // Disable all of the select tags
+                disableAllWithTag('select');
 
-        // Verify the code is valid / has been implemented
-        if (HEXTABLE[game].value.hasOwnProperty(code))
-        {
-            // Get the keys for the given aspect of the car 
-            let keys = HEXTABLE[game].value[code];
+                // Get the map from the buffer, and 
+                // create a new car using the map
+                let car = new Car(
+                    new Map(e.target.result)  // Binary data of the car file
+                );
 
-            Object.keys(keys).forEach(key => {
-                
-                // Get the name of the object with the given hexcode
-                let name = HEXTABLE[game].value[code][key];
+                // If car is created successfully, assign to the document
+                document.car = car;
 
-                // Create a new option
-                let option = document.createElement('option');
+                // If a car is loaded
+                if (document.car)
+                {                    
+                    // Update the selected game on the form
+                    setSelected('o_' + document.car.getGameId(), true);
 
-                // Assign the value to the code
-                option.value = key;
+                    // Loop over all of the supported fields
+                    document.car.getFields().forEach(field => {
 
-                // Assign the id to the option
-                option.id = 'o_' + code + '_' + key;
+                        // Create the id for the drop-down select
+                        let id = 's_' + field;
 
-                // Assigning the text to the option
-                option.innerHTML = name;
+                        // Get the select element from the id
+                        let select = null; 
+                        
+                        try
+                        {
+                            // Get the select drop-down for the element
+                            select = document.getElementById(id);
+                        }
+                        catch // No select exists
+                        {
+                            // Must not be implemented yet, log to console
+                            console.log('Not implemented:', select);
+                        }
 
-                // Add the option to the drop-down
-                dropdown.appendChild(option);
 
-            });
+                        // Ensure the select exists before continuing
+                        if (select)
+                        {
+                            // Reset the content of the select
+                            resetDropdown('s_' + field);
 
-        }
-        else // Key is not valid or is not implemented
-        {
-            console.log("Feature not implemented for game '",game,"':", code);
-        }
-    }
+                            // Populate the drop-down with 
+                            // all of the possibilities
+                            document.car.getOptions(field).forEach(option => {
 
-    // No update
-    return false;
-}
+                                console.log(option);
 
-// getPlateOptions(Void): Void
-function getPlateOptions()
-{
-    // Get the drop down for the given code
-    let dropdown = document.getElementById('s_plate');
+                                // Create the id for the drop-down option
+                                let o_id = 'o_' + field + '_' + option.id;
 
-    // Loop over all of the values in the hex table
-    for (colour in HEXTABLE.frame)
-    {
-        // Loop over all of the options for the colour
-        for (plate in HEXTABLE.frame[colour])
-        {
-            // Get the name from the hextable element
-            let name = HEXTABLE.frame[colour][plate];
-         
-            // Create a new option
-            let option = document.createElement('option');
+                                // Append an option element to the select dropdown
+                                select.appendChild(newOption(o_id, option.id, option.name));
+                            }); 
 
-            // Assign the value to the code
-            option.value = colour + '-' + plate;
+                            // Set the selected option 
+                            // to the current option
 
-            // Assign the id to the option
-            option.id = 'o_plate_' + colour + '-' + plate;
+                            setSelected('o_' + field + '_' + document.car.getField(field), true);
 
-            // Assign the text to the option
-            option.innerHTML = name;
+                            // Enable the drop-down for the select field
+                            setDisabled('s_' + field, false);
+                        }
 
-            // Add the option to the drop-down
-            dropdown.appendChild(option);
-        }
-    }
-}
+                    });
 
-function getTitleOptions()
-{
-    // Get the drop-down for the title selection
-    let dropdown = document.getElementById('s_title');
+                    
+                    // Set the tune to defailt
+                    setTune(0);
+                }
+                else // Car is not loaded
+                {
+                    console.log("Failed: Car object not loaded properly!");
+                }
+            }
+            catch(err) // Fails to create car object
+            {
+                // Document car is null
+                document.car = null;
+                document.filename = null;
 
-    // Loop over all of the titles
-    for(title of TITLES)
-    {
-        // Hexidecimal value
-        let hex = title[1];
+                // Disable all of the drop-downs
 
-        // Text value
-        let text = title[3];
+                // Write error to terminal
+                console.error("Error:",err);
+            }
+        };
 
-        // Set the value of the option to the hex substring, each hex value seperated using dashes
-        let value = (hex.substring(0, 2) + '-' + hex.substring(2,4) + '-' + hex.substring(4, 6)).toUpperCase();
-
-        // Create a new option
-        let option = document.createElement('option');
-
-        // Set the option value to the generated value
-        option.value = value;
-
-        // e.g. abcdef -> ab-cd-ef
-        option.id = 'o_title_' + value;
-
-        // Set the option text to the title text
-        option.innerHTML = text;
+        // Read the binary content from the file
+        reader.readAsArrayBuffer(file);
     }
 }
 
-// Given a combo box value, 
-// sets the tuning settings for
-// the car and enables or disables
-// the drop-downs, depending on the 
-// setting applied.
-function setTune(value)
-{
-    // Values:
-    // 0 - No Tune 
-    // 1 - Basic Tuning
-    // 2 - Full Tune 
-    // 3 - Custon Tune
+// Initial Setup
+Object.keys(HEXTABLE).forEach(id => {
 
-    // Dereference the car object
-    let car = document.car;
-
-    switch(value)
-    {
-        case 0: // Leave as is
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 1: // No Tune
-
-            // Both power and handling 0 pts
-            car.setPower("00");
-            car.setHandling("00");
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 2: // Basic Tuning
-
-            // Both power and handling 10 pts
-            car.setPower("0A");
-            car.setHandling("0A");
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 3: // Full Tune
-
-            // Both power and handling 17 pts
-            car.setPower("11");
-            car.setHandling("11");
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 4: // Custom Tune
-
-            // Enable the power/handling dropdowns
-            setDisabled('s_power', false);
-            setDisabled('s_handling', false);
-            break;
-
-        default: // Unknown value provided
-
-            console.log("Unknown value '" + value + "'provided!");
-            break;
-    }
-
-    // Update the values in the drop down
-    setSelected('o_power_' + car.getPower(), true);
-    setSelected('o_handling_' + car.getHandling(), true);
-}
-
-// setupGameDropdown(void): void
-// Sets the game drop-down 
-// members to the games listed
-// in hextable.js.
-function setupGameDropdown()
-{
-    // Get the select drop-down for the game
+    // Get the game selected drop-down from the form
     let select = document.getElementById('s_game');
 
-    // Loop over all of the games in the list
-    Object.keys(HEXTABLE).forEach(game => {
+    // Get the name of the game
+    value = HEXTABLE[id].name;
 
-        // Create a new option object
-        let option = document.createElement('option');
+    // Add an option element to the drop-down with the id and value
+    select.appendChild(newOption(
+        'o_' + id, // ID for the option
+        id, // Value for the option
+        value // Text for the option
+    ));
+});
 
-        // Set the text of the option to the game name
-        option.innerHTML = HEXTABLE[game].name;
+// disableDropdowns(tag: String): void
+// Given a tag (element type), disables
+// all of the elements with that type.
+function disableAllWithTag(tag)
+{
+    // Retrieve all of the elements with the given tag
+    let elements = document.getElementsByTagName(tag);
 
-        // Set the id for the option
-        option.id = 'o_' + game;
-
-        // Set the value of the option to the game id
-        option.value = game;
-
-        // Append the option to the drop-down
-        select.appendChild(option);
+    // Loop over all of the selected elements
+    Object.keys(elements).forEach(element => {
+        
+        // Disable the selected element
+        setDisabled(elements[element].id, true);
     });
 }
 
-// setGameDropdown(value): void
-// Updates the selected game, which
-// updates the hex table for the game
-// which is being used.
-function setGameDropdown(value)
-{
-    // Retrieve the game selection drop-down element
-    element = document.getElementById('s_game');
-
-    // Verify the game is currently selected in the drop-down
-    setSelected('o_' + value, true);
-    
-    // If a car object exists
-    if (document.car !== null)
-    {
-        // Set the locations reference for the car object
-        // to the currently selected game
-        document.car.setLocations(HEXTABLE[value].location);
-    }
-
-    // Update the selected game in the document
-    document.game = value;
-}
-
-// resetForm(void): void
-// Reset the current form to default
-function resetPage()
-{
-    // Hard refresh the page with no cache
-    document.location.reload(true)
-}
+// Disable all of the select tags
+disableAllWithTag('select');
