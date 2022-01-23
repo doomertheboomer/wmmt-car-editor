@@ -1,16 +1,17 @@
-# wmmt6-car-editor
-## Maximum Tune 6 Car Save File Editor
+# Maximum Tune Car Editor
+## Maximum Tune 5 / 5DX / 5DX+ / 6 Car Save File Editor
 ### Created by Damon Murdoch ([@SirScrubbington](https://twitter.com/SirScrubbington))
 
 ## Description
 This application is a save file editor
-for maximum tune 6, which works for both
-Teknoparrot and JConfig. The software
-has been implemented in vanilla JavaScript
-with a bootstrap CSS interface. 
+for all of the modern maximum tune games, 
+which has been designed for Teknoparrot but 
+should in theory work for JConfig as well. 
+The software has been implemented in vanilla 
+JavaScript with a bootstrap CSS interface. 
 
 ### Version
-The latest revision for this software is 1.1
+The latest revision for this software is 2.0 (Migrated from the Maximum Tune 6 Car editor)
 
 ### Language
 HTML/CSS/JavaScript
@@ -23,7 +24,7 @@ A list of future planned changes are listed below.
 
 | Change Description | Priority |
 | ------------------ | -------- | 
-| Create WMMT5/5dx/5dx+ Version | Medium |
+| Add Stickers / Other Missing Features for MT5/MT5DX/MT5DX+ | High |
 
 ### Problems or improvements
 If you have any suggested fixes or improvements for this project, please 
