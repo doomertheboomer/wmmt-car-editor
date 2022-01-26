@@ -186,14 +186,14 @@ function setTune(value)
             if(car.getGameId() == 'wmmt6')
             {
                 // Both power and handling 16 pts 
-                car.setField('power', '10');
-                car.setField('handling', '10');
+                car.setField('power', '11');
+                car.setField('handling', '11');
             }
             else // Otherwise, game is wmmt5/5dx (830hp)
             {
                 // Both power and handling 16 pts 
-                car.setField('power', '11');
-                car.setField('handling', '11');
+                car.setField('power', '10');
+                car.setField('handling', '10');
             }
 
             // Disable the power/handling dropdowns
@@ -377,9 +377,19 @@ function handleUpload()
                             // Reset the content of the select
                             resetDropdown('s_' + field);
 
-                            // Populate the drop-down with 
-                            // all of the possibilities
-                            document.car.getOptions(field).forEach(option => {
+                            // Get the drop-down with all of the possibilities
+                            let options = document.car.getOptions(field);
+
+                            // Sort the options based on the id
+                            options.sort(function(a, b){
+
+                                // Compare the value of the hex strings between the objects
+                                return Number("0x" + a.id) > Number("0x" + b.id);
+
+                            }); 
+
+                            // Populate the drop-down with all of the possibilities
+                            options.forEach(option => {
 
                                 // Create the id for the drop-down option
                                 let o_id = 'o_' + field + '_' + option.id;
@@ -399,7 +409,6 @@ function handleUpload()
 
                     });
 
-                    
                     // Set the tune to defailt
                     setTune(0);
                 }
