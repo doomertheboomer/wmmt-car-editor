@@ -17,6 +17,7 @@ class Car
         // ?? ?? - MT5DX
         // E8 85 - MT5DX+
         // F8 3F - MT6
+        // A8 69 - MT6R
 
         // Get the first two nibbles in the file - identifies the game
         let gameCheck = map.getElementAt(0, 0) + map.getElementAt(0, 1);
@@ -31,7 +32,7 @@ class Car
         {
             game = 'wmmt5dx';
         }
-        else if (gameCheck === 'F83F') // Maximum Tune 6
+        else if (gameCheck === 'F83F' || gameCheck === 'A869') // Maximum Tune 6
         {
             // Set the game to Maxi 6
             game = 'wmmt6';
