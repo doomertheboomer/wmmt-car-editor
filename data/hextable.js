@@ -1344,7 +1344,7 @@ const HEXTABLE = {
         }
     }, 
     wmmt6: {
-        name: "WMMT 6",
+        name: "WMMT 6/6R",
         location: {
 
             // Indexes are [y, x]
@@ -1353,9 +1353,7 @@ const HEXTABLE = {
             
             'cars': [3, 4],
             'colour-stock': [3, 8], // Does not work for Tekno
-
-            // Does not work for MT6 yet :(
-            // 'colour-custom': [3, 12], // Custom colour maybe???
+            'colour-custom': [3, 12], // Does not work for Tekno
 
             'colour-rims': [4, 4],
 
