@@ -17673,90 +17673,540 @@ const HEXTABLE = {
                 "10": 'Purple Tribal'
             }, 
             rims: { // Wheels / Rims
-                "00": "Stock",
-                "0A": "Yokohama Model T5 (T5)",
-                "0B": "Watanabe Eight Spoke (EIGHT)",
-                "0C": "Watanabe Forged Mg Cyclone (CYCL)",
-                "0D": "Watanabe Stellar (STEL)",
-                "0E": "Watanabe GR-8",
-                "0F": "Watanabe New RS8 (RS8)",
-                "01": "Yokohama Advan Racing RCIII (RC3)",
-                "02": "Yokohama Advan Racing TCIII (TC3)",
-                "03": "Yokohama Super Advan Racing ver.2",
-                "04": "Yokohama Advan Racing RG-D2 (RGD2)",
-                "05": "Yokohama Advan Racing RGIII (RG3)",
-                "06": "Yokohama Advan Racing RSII (RS2)",
-                "07": "Yokohama Advan Racing RS-D (RSD)",
-                "08": "Yokohama AVS Model T6",
-                "09": "Yokohama Advan Racing GT (ARGT)",
-                "10": "Rays VR CE28N (CE28)",
-                "11": "Rays Gram Lights 57ANA (57ANA)",
-                "12": "Rays Lucianna Stratagia (LUCI)",
-                "13": "Rays Gram Lights 57D (57D)",
-                "14": "Rays VR TE37 Saga (37SAGA)",
-                "15": "Rays VR TE037 DURA (37DURA)",
-                "16": "Rays VR GT-Type M (GTM)",
-                "17": "Rays Gabbana (GABB)",
-                "18": "Rays VR RE30 (RE30)",
-                "19": "Rays Gram Lights 57F (57F)",
-                "1A": "Rays 57 Accelerate (57AC)",
-                "1B": "Rays ZE40 (ZE40)",
-                "1C": "(Unknown)",
-                "1D": "Enkei Racing RPF1 (RPF1)",
-                "1E": "Enkei Racing Revolution NT03R (NT03RR)",
-                "1F": "Enkei WPS JL01",
-                "20": "Enkei Racing RS05 (RS05)",
-                "21": "Enkei Racing JS+M",
-                "22": "Enkei ES-TARMAC (TARMAC)",
-                "23": "Enkei Performance Line PF07",
-                "24": "(Unknown)",
-                "25": "OZ Crono 3",
-                "26": "OZ Rally Racing (RR)",
-                "27": "OZ ForgiataGT (ForGT)",
-                "28": "OZ Leggenda (LEGG)",
-                "29": "OZ Superturismo LM (SUPE)",
-                "2A": "OZ Formula HLT",
-                "2B": "OZ Zeus HLT Forged (ZEUS)",
-                "2C": "OZ Torino (TRIN)",
-                "2D": "OZ Versilia (VERS)",
-                "2E": "OZ Ultraleggera (ULEG)",
-                "2F": "BBS RI-D",
-                "30": "BBS RI-A",
-                "31": "BBS FS",
-                "32": "BBS RG-R",
-                "33": "BBS Super-RS (SRS)",
-                "34": "BBS RI-D",
-                "35": "BBS LM",
-                "36": "BBS FZ-MG",
-                "37": "Yokohama Advan Racing RG-D (RGD)",
-                "38": "Yokohama Advan Racing TC II (TC2)",
-                "39": "Yokohama Racing Model T7 (T7)",
-                "3A": "(Unknown)",
-                "3B": "Yokohama Advan Racing RSII",
-                "3C": "Yokohama Advan Racing RZ",
-                "3D": "Yokohama AVS Model T6 (T6)",
-                "3E": "Enkei Racing RS+M",
-                "3F": "(Unknown)",
-                "40": "Yokohama Kreutzer Vi",
-                "41": "Yokohama Advan Racing RZ-DF (RZDF)",
-                "42": "Yokohama Advan Model F50 (F50)",
-                "43": "Rays VR TE37 (TE37)",
-                "44": "Rays GT Type C",
-                "45": "Rays BL-10-SX",
-                "46": "Rays Shotgun (SHOT)",
-                "47": "Rays X401 (X401)",
-                "48": "(Unknown)",
-                "49": "Rays 77NTL (77NTL)",
-                "4A": "Rays G10 (G10)",
-                "4B": "Rays SPR-EX",
-                "4C": "Rays F2B",
-                "4E": "(Unknown)",
-                "4F": "Rays Arpione (ARPI)",
-                "50": "Rays V350 (V350)",
-                "51": "(Unknown)",
-                "52": "Rays Scudo (SCUD)",
-                "53": "(Unknown)",
-                "54": "Rays Homura 2X8GT"
+                "00": { // "Stock"
+                    "type": "Stock", 
+                    "variant": [
+                        "Stock"
+                    ]
+                },
+                "01": { // "Yokohama ADVAN Racing RCIII"
+                    "type": "Yokohama ADVAN Racing RCIII", 
+                    "color": [
+                        "White", 
+                        "Gold"
+                    ]
+                },
+                "02": { //"Yokohama Advan Racing TCIII (TC3)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "03": { // "Yokohama Super ADVAN Racing Ver. 2"
+                    "type": "Yokohama Super ADVAN Racing Ver. 2",
+                    "variant": [
+                        "Silver", 
+                        "Metal-Silver", 
+                        "Metal-Red", 
+                        "Metal-Gold",
+                        "Metal-Blue",
+                        "Metal-Gray",
+                    ]
+                },
+                "04": { //"Yokohama Advan Racing RG-D2 (RGD2)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "05": { //"Yokohama Advan Racing RGIII (RG3)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "06": { //"Yokohama Advan Racing RSII (RS2)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "07": { //"Yokohama Advan Racing RS-D (RSD)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "08": { // "Yokohama AVS Model T6"
+                    "type": "Yokohama AVS Model T6",
+                    "variant": [
+                        "Gray", 
+                        "Metallic",
+                        "Gold",
+                        "Silver"
+                    ]
+                },
+                "09": { //"Yokohama Advan Racing GT (ARGT)", 
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "0A": { // "Yokohama AVS Model T5"
+                    "type": "Yokohama AVS Model T5", 
+                    "variant": [
+                        "Gray", 
+                        "Metallic", 
+                        "Gold", 
+                        "Silver"
+                    ]
+                },
+                "0B": { // "Watanabe Eight Spoke"
+                    "type": "Watanabe Eight Spoke", 
+                    "variant": [
+                        "Silver", 
+                        "Silver-Gold", 
+                        "Silver-Black", 
+                        "Silver-Bronze", 
+                        "Bronze",
+                        "Red"
+                    ]
+                },
+                "0C": { // "Watanabe Forged MG Cyclone"
+                    "type": "Watanabe Forged MG Cyclone", 
+                    "variant": [
+                        "Bronze", 
+                        "Gold", 
+                        "Black", 
+                        "Silver", 
+                        "White"
+                    ]
+                },
+                "0D": { // "Watanabe Stellar"
+                    "type": "Watanabe Stellar", 
+                    "variant": [
+                        "Gray", 
+                        "Red",
+                        "Gold", 
+                        "Black"
+                    ]
+                },
+                "0E": { // "Watanabe GR-8"
+                    "type": "Watanabe GR-8", 
+                    "variant": [
+                        "Black", 
+                        "Gold", 
+                        "Red", 
+                        "Silver", 
+                        "White"
+                    ]
+                },
+                "0F": { // "Watanabe New RS8"
+                    "type": "Watanabe New RS8", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                "10": { // "RAYS VR CE28N"
+                    "type": "RAYS VR CE28N", 
+                    "variant": [
+                        "Bronze", 
+                        "Silver", 
+                        "Gold"
+                    ]
+                },
+                "11": { // "RAYS GRAM Lights 57A"
+                    "type": "RAYS GRAM Lights 57A", 
+                    "variant": [
+                        "Gray-White Curved", 
+                        "Gray-White"
+                    ]
+                }, 
+                "12": { // "Rays Lucianna Stratagia (LUCI)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "13": { // "RAYS Gram Lights 57F"
+                    "type": "RAYS Gram Lights 57F", 
+                    "variant": [
+                        "Red", 
+                        "Bronze", 
+                        "Silver", 
+                        "White"
+                    ]
+                },
+                "14": { // "RAYS VR TE37"
+                    "type": "RAYS VR TE37", 
+                    "variant": [
+                        "Bronze", 
+                        "Silver"
+                    ]
+                },
+                "15": { // "Rays VR TE037 DURA (37DURA)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "16": { // "RAYS VR GT-TypeM" 
+                    "type": "RAYS VR GT-TypeM" , 
+                    "variant": [
+                        "White", 
+                        "Gray", 
+                        "Silver"
+                    ]
+                }, 
+                "17": { // "RAYS GABBANA"
+                    "type": "RAYS GABBANA", 
+                    "color": [
+                        "Gray", 
+                        "White", 
+                        "Gold"
+                    ]
+                }, 
+                "18": { // "RAYS VR RE30"
+                    "type": "RAYS VR RE30", 
+                    "variant": [
+                        "Black", 
+                        "Gray", 
+                        "Silver", 
+                        "Bronze", 
+                        "Brown"
+                    ]
+                }, 
+                "19": { // "RAYS Gram Lights 57F"
+                    "type": "RAYS Gram Lights 57F", 
+                    "variant": [
+                        "Red", 
+                        "Bronze", 
+                        "Silver", 
+                        "White"
+                    ]
+                },
+                "1A": { // "Rays 57 Accelerate (57AC)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "1B": { // "Rays ZE40 (ZE40)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                // "1C": { // "(Unknown)", },
+                "1D": { // "ENKEI RACING RPF1"
+                    "type": "ENKEI RACING RPF1", 
+                    "variant": [
+                        "Gray", 
+                        "Gold", 
+                        "White"
+                    ]
+                }, 
+                "1E": { // "Enkei Racing Revolution NT03R (NT03RR)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "1F": { // "Enkei WPS JL01",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "20": { // "Enkei Racing RS05 (RS05)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "21": { // "ENKEI RACING RS+M"
+                    "type": "ENKEI RACING RS+M", 
+                    "variant": [
+                        "Silver"
+                    ]
+                }, 
+                "22": { // "ENKEI RACING ES TARMAC"
+                    "type": "ENKEI RACING ES TARMAC", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                "23": { // "ENKEI PerformanceLine PF02"
+                    "type": "ENKEI PerformanceLine PF02", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                // "24": "(Unknown)",
+                "25": { // "OZ Crono-3"
+                    "type": "OZ Crono-3", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                "26": { // "OZ Rally Racing (RR)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "27": { // "OZ ForgiataGT (ForGT)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "28": { // "OZ Leggenda (LEGG)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "29": { // "OZ Superturismo-LM"
+                    "type": "OZ Superturismo-LM", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                "2A": { // "OZ Formula-HLT"
+                    "type": "OZ Formula-HLT", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                "2B": { // "OZ Zeus HLT Forged (ZEUS)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "2C": { // "OZ Torino (TRIN)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "2D": { // "OZ Versilia"
+                    "type": "OZ Versilia", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                "2E": { // "OZ Ultraleggera"
+                    "type": "OZ Ultraleggera", 
+                    "color": [ 
+                        "Default", 
+                    ]
+                }, 
+                "2F": { // "BBS RI-D",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "30": { // "BBS RI-A",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "31": { // "BBS FS",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "32": { // "BBS RG-R",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "33": { // "BBS Super-RS (SRS)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "34": { // "BBS RI-D",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "35": { // "BBS LM",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "36": { // "BBS FZ-MG",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "37": { // "Yokohama ADVAN Racing RG-D" 
+                    "type": "Yokohama ADVAN Racing RG-D", 
+                    "color": [
+                        "Gray", 
+                        "Black", 
+                        "Gold"
+                    ]
+                },
+                "38": { // "Yokohama ADVAN Racing TCII"
+                    "type": "Yokohama ADVAN Racing TCII",
+                    "variant": [
+                        "Gold", 
+                        "White", 
+                        "Silver"
+                    ]
+                },
+                "39": { // "Yokohama AVS Model T7"
+                    "type": "Yokohama AVS Model T7",
+                    "variant": [
+                        "Gray", 
+                        "Metallic", 
+                        "Gold", 
+                        "Silver"
+                    ]
+                },
+                // "3A": "(Unknown)",
+                },
+                "3B": { // "Yokohama Advan Racing RSII",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "3C": { // "Yokohama Advan Racing RZ",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "3D": { // "Yokohama AVS Model T6 (T6)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "3E": { // "Enkei Racing RS+M",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                // "3F": { // "(Unknown)", },
+                "40": { // "Yokohama Kreutzer Vi",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "41": { // "Yokohama Advan Racing RZ-DF (RZDF)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "42": { // "Yokohama Advan Model F50 (F50)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                },
+                "43": { // "RAYS VR TE37"
+                    "type": "RAYS VR TE37", 
+                    "variant": [
+                        "Bronze", 
+                        "Silver"
+                    ]
+                },
+                "44": { // "RAYS VR GT-Type C" 
+                    "type": "RAYS VR GT-Type C",
+                    "variant": [
+                        "Gray", 
+                        "Silver", 
+                        "Metallic"
+                    ]
+                },
+                "45": { // "RAYS BL-70-SX"
+                    "type": "RAYS BL-70-SX", 
+                    "variant": [
+                        "Gray", 
+                        "Silver"
+                    ]
+                }, 
+                "46": { // "RAYS Shotgun" 
+                    "type": "RAYS Shotgun", 
+                    "variant": [
+                        "Black Stripe", 
+                        "Blue Stripe", 
+                        "Red Stripe"
+                    ]
+                }, 
+                "47": { // "RAYS X401"
+                    "type": "RAYS X401", 
+                    "variant": [
+                        "Gray", 
+                        "Black"
+                    ]
+                }, 
+                // "48": "(Unknown)",
+                "49": { // "RAYS G-Games 77 NTL"
+                    "type": "RAYS G-Games 77 NTL", 
+                    "variant": [
+                        "Gray", 
+                        "Silver"
+                    ]
+                }, 
+                "4A": { // "RAYS VR G10"
+                    "type": "RAYS VR G10", 
+                    "variant": [
+                        "Gray"
+                    ]
+                }, 
+                "4B": { // "RAYS SPR-EX"
+                    "type": "RAYS SPR-EX", 
+                    "variant": [
+                        "White", 
+                        "Gray"
+                    ]
+                },
+                "4C": { // "RAYS BLACKFLEET F2B" 
+                    "type": "RAYS BLACKFLEET F2B", 
+                    "variant": [
+                        "Black", 
+                        "Red", 
+                        "Purple", 
+                        "Silver",
+                        "Gold", 
+                        "White"
+                    ]
+                }, 
+                // "4E": { // "(Unknown)", }, 
+                "4F": { // "Rays Arpione (ARPI)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                }, 
+                "50": { // "Rays V350 (V350)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                }, 
+                // "51": { // "(Unknown)", }, 
+                "52": { // "Rays Scudo (SCUD)",
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                }, 
+                // "53": { // "(Unknown)", }, 
+                "54": { // "Rays Homura 2X8GT"
+                    "type": "", 
+                    "colors": [
+                        
+                    ]
+                }, 
             },
             power: { // Car Power
                 "00": "0 Points (Stock)", // No mods
