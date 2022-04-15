@@ -155,6 +155,31 @@ class Car
         return this.getLocations().getKeys();
     }
 
+    // getOption(field: String, id: String)
+    // Given a field and an option id, returns
+    // the name of the option at that given index.
+    getOption(field, id)
+    {
+        // Get the list of options for the given field
+        let options = this.getLocations().getValues()[field];
+
+        // Loop over all of the options in the values list for the field
+        for(let option of Object.keys(options))
+        {
+            // console.log(option, id);
+
+            // If the id provided matches the current option
+            if (option == id)
+            {
+                // Return the specified option
+                return options[option];
+            }
+        }
+
+        // Option not found, return null
+        return null;
+    }
+
     // getOptions(field: String)
     // Gets all of the possible 
     // options which can be applied
