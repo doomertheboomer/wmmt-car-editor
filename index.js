@@ -452,6 +452,27 @@ Object.keys(HEXTABLE).forEach(id => {
     ));
 });
 
+// updateField(name: String, value: Int)
+// Given a field name and a value, updates
+// the car's value for that field and refreshes
+// any other drop-downs that rely on that value.
+function updateField(name, value)
+{
+    // Update the field for the car
+    document.car.setField(name, value);
+
+    // Update any related drop-downs
+    document.querySelectorAll(`[id^="` + name + `"]`).forEach(dd => {
+
+        // Clear the content from the drop-down
+        resetDropdown(dd.id);
+
+        // 
+        
+
+    });
+}
+
 // disableDropdowns(tag: String): void
 // Given a tag (element type), disables
 // all of the elements with that type.
@@ -464,7 +485,7 @@ function disableAllWithTag(tag)
     Object.keys(elements).forEach(element => {
         
         // Disable the selected element
-        setDisabled(elements[element].id, true);
+        setDisabled(elements[element].id, true);\
     });
 }
 
