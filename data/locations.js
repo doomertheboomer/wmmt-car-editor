@@ -97,6 +97,29 @@ class Hextable
 
     // Operational Functions
 
+    // getRandom(field): String
+    // If the field is present, 
+    // returns a random value
+    // selectable for the field.
+    // Otherwise, returns null
+    getRandom(field)
+    {
+        // Get the set for the field
+        let set = this.values[field];
+
+        // Get the keys for the set
+        let keys = Object.keys(set);
+
+        // Get a random index in the range of the set
+        let rand = Math.floor(Math.random() * keys.length);
+
+        // Return the value at the given index
+        return {
+            'id': keys[rand], 
+            'value': set[keys[rand]]
+        };
+    }
+
     // getLocation(field: String)
     // Given the name of a property,
     // returns the hex address for 

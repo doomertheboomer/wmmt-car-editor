@@ -34,6 +34,10 @@ const HEXTABLE = {
             'body-sticker-variant': [5, 12],
             'japan-sticker-variant': [5, 12],
 
+            // 00000070
+
+            'neon': [7, 12],
+
             // 00000080
         
             'trunk': [8, 0],
@@ -522,6 +526,21 @@ const HEXTABLE = {
                 "08": "Sticker Option 9", 
                 "09": "Sticker Option 10", 
             },
+            neon: { // Neon / Underglow
+                "00": "No Neon", 
+                "01": "Green Straight", 
+                "02": "Blue Straight", 
+                "03": "Purple Straight", 
+                "04": "Red Straight", 
+                "05": "Yellow Straight", 
+                "06": "Light Purple Straight", 
+                "07": "Green Dotted", 
+                "08": "Blue Dotted", 
+                "09": "Purple Dotted", 
+                "0A": "Purple Dotted", 
+                "0B": "Yellow Dotted", 
+                "0C": "Light Purple Dotted", 
+            }, 
             'colour-stock': { // Stock Colour
                 "00": "Stock Colour 1",
                 "01": "Stock Colour 2",

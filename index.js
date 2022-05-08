@@ -158,6 +158,9 @@ function setTune(value)
 
         case 1: // No Tune
 
+            // Set the car's rank to 'n'
+            car.setField('rank', '01');
+
             // Both power and handling 0 pts
             car.setField('power', '00');
             car.setField('handling', '00');
@@ -168,6 +171,9 @@ function setTune(value)
             break;
 
         case 2: // Basic Tuning
+            
+            // Set the car's rank to 'n'
+            car.setField('rank', '03');
 
             // Both power and handling 10 pts
             car.setField('power', '0A');
@@ -185,12 +191,18 @@ function setTune(value)
             // If the game is wmmt6 (840hp)
             if(car.getGameId() == 'wmmt6')
             {
+                // Set the car's rank to 'n'
+                car.setField('rank', '08');
+    
                 // Both power and handling 16 pts 
                 car.setField('power', '11');
                 car.setField('handling', '11');
             }
             else // Otherwise, game is wmmt5/5dx (830hp)
             {
+                // Set the car's rank to 'n'
+                car.setField('rank', '07');
+
                 // Both power and handling 16 pts 
                 car.setField('power', '10');
                 car.setField('handling', '10');
@@ -213,6 +225,9 @@ function setTune(value)
             console.log("Unknown value '" + value + "'provided!");
             break;
     }
+
+    // Update the form's selected rank
+    setSelected('o_rank_' + car.getField('rank'), true);
 
     // Update the values in the drop down
     setSelected('o_power_' + car.getField('power'), true);
@@ -409,6 +424,26 @@ function handleUpload()
 
                     });
 
+                    // Enable the randomise buttons (WMMT5/5DX/5DX+ and 6/6R)
+                    document.getElementById('btn_random-all').disabled = false;
+                    document.getElementById('btn_random-aeros').disabled = false;
+
+                    // Check what the game the car is from
+
+                    // Game is MT6/6R
+                    if (document.car.getGameId() === 'wmmt6')
+                    {
+                        // Disable the MT5/5DX/5DX+ Specific randomise buttons
+                        document.getElementById('btn_random-colours').disabled = true;
+                        document.getElementById('btn_random-stickers').disabled = true;
+                    }
+                    else // Game is 5/5DX/5DX+
+                    {
+                        // Enable the MT5/5DX/5DX+ Specific randomise buttons
+                        document.getElementById('btn_random-colours').disabled = false;
+                        document.getElementById('btn_random-stickers').disabled = false;
+                    }
+
                     // Set the tune to defailt
                     setTune(0);
                 }
@@ -433,6 +468,133 @@ function handleUpload()
         // Read the binary content from the file
         reader.readAsArrayBuffer(file);
     }
+}
+
+// randomiseField(field: String): Void
+// Given a field, randomises the field if
+// it is compatible with the current vehicle.
+function randomiseField(field)
+{
+    // Get locations object
+    let locations = document.car.getLocations();
+
+    // Get the random value from the field
+    let rand = locations.getRandom(field);
+
+    // Set the value of the car to the random field
+    document.car.setField(field, rand.id);
+
+    // Set the selected drop-down option to the new setting
+    setSelected('o_' + field + '_' + rand.id, true);
+}
+
+// randomiseSticker(void): Void
+// (MT5/5dx/5dx+ only) randomises
+// the sticker pattern on the given
+// car.
+function randomiseStickers()
+{
+    // Fields specific to mt5/5dx/5dx+
+    field = null;
+
+    // Coinflip: Either Japan Challenge 
+    // stickers, or standard stickers
+    if (Math.random() < 0.5){
+
+        // Standard stickers
+
+        // Unselect the japan body sticker
+        document.car.setField('japan-sticker-type', '00');
+        setSelected('o_japan-sticker-type_00', true);
+
+        // Add standard sticker to the fields list
+        field = 'body-sticker-type';
+    }
+    else
+    {
+        // Japan Challenge
+
+        // Unselect the standard body sticker
+        document.car.setField('body-sticker-type', '00');
+        setSelected('o_body-sticker-type_00', true);
+        
+        // Add japan sticker to the fields list
+        field = 'japan-sticker-type';
+    }
+    
+    // Set the selected sticker variant to default
+    document.car.setField('japan-sticker-variant', '00');
+    setSelected('o_japan-sticker-variant_00', true);
+
+    // Set the selected field to a random sticker
+    randomiseField(field);
+}
+
+// randomiseColours(void): Void
+// Randomises all of the colours 
+// for the car.
+function randomiseColours()
+{
+    // Colours (MT5/5dx/5dx+ only)
+    let fields = [
+        'colour-stock', 'colour-custom'
+    ]
+
+    // Loop over the fields
+    fields.forEach(field => {
+
+        // Randomise field
+        randomiseField(field);
+    });
+}
+
+// randomiseAeros(void): Void
+// Randomises all of the aeros
+// on the car.
+function randomiseAeros()
+{
+    // Universal Aero Parts
+    let fields = [
+        'aero', 'wing', 'hood', 
+        'mirror', 'trunk', 'neon', 
+        'rims', 'plate-frame-type'
+    ]
+
+    // Loop over the fields
+    fields.forEach(field => {
+
+        // Randomise field
+        randomiseField(field);
+    });
+}
+
+// randomiseAll(void): Void
+// Randomises all of the aero parts
+// compatible with the current vehicle.
+function randomiseAll()
+{
+    // Car is from wmmt6/wmmt6r
+    if (document.car.getGameId() == 'wmmt6')
+    {
+        // Fields specific to mt6
+        fields = fields.concat([
+            // None yet, lol
+        ]);
+    }
+    else // wmmt5/5dx/5dx+
+    {
+        // Randomise colours
+        randomiseColours();
+
+        // Randomise stickers
+        randomiseStickers();
+    }
+
+    // Randomise aero parts
+    randomiseAeros();
+
+    // Randomise rank
+    randomiseField('rank');
 }
 
 // Initial Setup
