@@ -576,10 +576,7 @@ function randomiseAll()
     // Car is from wmmt6/wmmt6r
     if (document.car.getGameId() == 'wmmt6')
     {
-        // Fields specific to mt6
-        fields = fields.concat([
-            // None yet, lol
-        ]);
+        // Nothing yet, lol
     }
     else // wmmt5/5dx/5dx+
     {
