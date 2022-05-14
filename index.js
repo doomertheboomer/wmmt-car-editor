@@ -427,6 +427,7 @@ function handleUpload()
                     // Enable the randomise buttons (WMMT5/5DX/5DX+ and 6/6R)
                     document.getElementById('btn_random-all').disabled = false;
                     document.getElementById('btn_random-aeros').disabled = false;
+                    document.getElementById('btn_random-colours').disabled = false;
 
                     // Check what the game the car is from
 
@@ -434,13 +435,11 @@ function handleUpload()
                     if (document.car.getGameId() === 'wmmt6')
                     {
                         // Disable the MT5/5DX/5DX+ Specific randomise buttons
-                        document.getElementById('btn_random-colours').disabled = true;
                         document.getElementById('btn_random-stickers').disabled = true;
                     }
                     else // Game is 5/5DX/5DX+
                     {
                         // Enable the MT5/5DX/5DX+ Specific randomise buttons
-                        document.getElementById('btn_random-colours').disabled = false;
                         document.getElementById('btn_random-stickers').disabled = false;
                     }
 
@@ -580,12 +579,12 @@ function randomiseAll()
     }
     else // wmmt5/5dx/5dx+
     {
-        // Randomise colours
-        randomiseColours();
-
         // Randomise stickers
         randomiseStickers();
     }
+
+    // Randomise colours
+    randomiseColours();
 
     // Randomise aero parts
     randomiseAeros();
