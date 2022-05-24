@@ -363,64 +363,38 @@
             </tr>
           </thead>
           <tbody class='tbody tbody-dark'>
-              <tr>
-                <th>
-                  Plate Frame
-                </th>
-                <td>
-                  Frame Type
-                </td>
-                <td>
-                  <select name='s_plate-frame-type' id='s_plate-frame-type' onChange='document.car.setField("plate-frame-type", value)' disabled>
-                    <option id='o_default'>
-                      Not Available
-                    </option>
-                  </select>
-                </td>
-                <td>
-                  Frame Variant
-                </td>
-                <td>
-                  <select name='s_plate-frame-variant' id='s_plate-frame-variant' onChange='document.car.setField("plate-frame-variant", value)' disabled>
-                    <option id='o_default'>
-                      Not Available
-                    </option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  Plate Frame Numbers
-                </th>
-                <td>
-                  <select name='s_plate-number0' id='s_plate-number0' onChange='document.car.setField("plate-number0", value)' disabled>
-                    <option id='o_default'>
-                      Not Available
-                    </option>
-                  </select>
-                </td>
-                <td>
-                  <select name='s_plate-number1' id='s_plate-number1' onChange='document.car.setField("plate-number1", value)' disabled>
-                    <option id='o_default'>
-                      Not Available
-                    </option>
-                  </select>
-                </td>
-                <td>
-                  <select name='s_plate-number2' id='s_plate-number2' onChange='document.car.setField("plate-number2", value)' disabled>
-                    <option id='o_default'>
-                      Not Available
-                    </option>
-                  </select>
-                </td>
-                <td>
-                  <select name='s_plate-number3' id='s_plate-number3' onChange='document.car.setField("plate-number3", value)' disabled>
-                    <option id='o_default'>
-                      Not Available
-                    </option>
-                  </select>
-                </td>
-              </tr>
+            <tr>
+              <th>
+                Plate Frame Type
+              </th>
+              <td>
+                <select name='s_plate-frame-type' id='s_plate-frame-type' onChange='document.car.setField("plate-frame-type", value)' disabled>
+                  <option id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Plate Frame Variant
+              </th>
+              <td>
+                <select name='s_plate-frame-variant' id='s_plate-frame-variant' onChange='document.car.setField("plate-frame-variant", value)' disabled>
+                  <option id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                License Plate Number
+              </th>
+              <td>
+                <input class = 'form-control col-lg-1' type='number' min=0 max=9999 name='i_plate-number' id='i_plate-number' onChange='document.car.setField("plate-number", value)' disabled>
+              </td>
+            </tr>
           </tbody>
         </table>
         
