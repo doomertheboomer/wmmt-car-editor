@@ -636,7 +636,7 @@ const HEXTABLE = {
             'rank': [11, 12],
 
             // 000000C0
-            'window-sticker-enabled': [12, 0],
+            'window-sticker-switch': [12, 0],
 
             // 000000D0 
             'window-sticker-type': [13, 4],
@@ -1408,7 +1408,7 @@ const HEXTABLE = {
 
             // STICKER SECTION
 
-            'window-sticker-enabled': [9, 0],
+            'window-sticker-switch': [9, 0],
             'window-sticker-type': [9, 8],
             'rival-marker': [9, 12], // ?? I don't know lol
 

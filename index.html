@@ -36,6 +36,11 @@
         </h5>
         <h6>
           <i>
+            Features not working in-game yet? Try my latest OpenParrot test release <a href='https://github.com/damon-murdoch/OpenParrot'>here</a> :)
+          </i>
+        </h6>
+        <h6>
+          <i>
             Encounter a bug? Report it
             <a target = '_blank' href='https://www.github.com/damon-murdoch/wmmt-car-editor/issues'>
               here
@@ -105,8 +110,11 @@
               <th colspan=3>
                 All Games
               </th>
-              <th colspan=1>
+              <th colspan>
                 5/5DX/5DX+ Only
+              </th>
+              <th colspan>
+                5DX/5DX+/6/6R Only
               </th>
             </tr>
           </thead>
@@ -130,6 +138,11 @@
               <td>
                 <button id='btn_random-stickers'  class='btn btn-sm btn-success' onClick='randomiseStickers()' disabled>
                   Randomise Stickers
+                </button>
+              </td>
+              <td>
+                <button id='btn_random-scratch'  class='btn btn-sm btn-success' onClick='randomiseScratch()' disabled>
+                  Randomise Scratch Off Items
                 </button>
               </td>
             </tr>
@@ -392,7 +405,7 @@
                 License Plate Number
               </th>
               <td>
-                <input class = 'form-control col-lg-1' type='number' min=0 max=9999 name='i_plate-number' id='i_plate-number' onChange='document.car.setField("plate-number", value)' disabled>
+                <input class = 'form-control form-control-sm' type='number' value=0 min=0 max=9999 size=4 name='i_plate-number' id='i_plate-number' onChange='setLicensePlate(value)' disabled>
               </td>
             </tr>
           </tbody>
@@ -408,9 +421,8 @@
         </h6>
         <h6 class='text-center'>
           <i>
-            Body stickers and Japan Challenge stickers are not compatible, 
-            and only one can be enabled at a time. Please set the other back to
-            default when one is selected.
+            MT5/5DX/5DX+ Only. Body Stickers and Japan Challenge stickers are not compatible, and only one may be enabled
+            at a time.
           </i>
         </h6>
         <table class='table table-dark' id='t_sticker'>
@@ -419,7 +431,7 @@
               <th>
                 Property
               </th>
-              <th>
+              <th colspan=3>
                 Selection
               </th>
             </tr>
@@ -427,34 +439,34 @@
           <tbody class='tbody tbody-dark'>
             <tr>
               <th>
-                Body Stickers
+                Sticker Types
               </th>
-              <td>
-                <select name='s_body-sticker-type' id='s_body-sticker-type' onChange='document.car.setField("body-sticker-type", value)'>
+              <td colspan>
+                <select name='s_body-sticker-variant' id='s_body-sticker-variant' onChange='document.car.setField("body-sticker-variant", value)'>
                   <option name='o_default' id='o_default'>
                     Not Available
                   </option>
                 </select>
               </td>
-            </tr>
-            <tr>
-              <th>
-                Japan Challenge Stickers
-              </th>
               <td>
-                <select name='s_japan-sticker-type' id='s_japan-sticker-type' onChange='document.car.setField("japan-sticker-type", value)'>
-                  <option name='o_default' id='o_default'>
-                    Not Available
-                  </option>
-                </select>
+                <label>
+                  Body Sticker
+                </label>
+                <input class='form-check-input' type='radio' name='sticker-type' onClick="setStickerType('body')" disabled>
+              </td>
+              <td>
+                <label>
+                  Japan Challenge Sticker
+                </label>
+                <input class='form-check-input' type='radio' name='sticker-type' onClick="setStickerType('japan')" disabled>
               </td>
             </tr>
             <tr>
               <th>
-                Body / Japan Sticker Variant
+                Sticker Variant
               </th>
-              <td>
-                <select name='s_japan-sticker-variant' id='s_japan-sticker-variant' onChange='document.car.setField("japan-sticker-variant", value)'>
+              <td colspan=3>
+                <select name='s_body-sticker-variant' id='s_body-sticker-variant' onChange='document.car.setField("body-sticker-variant", value)'>
                   <option name='o_default' id='o_default'>
                     Not Available
                   </option>
@@ -465,7 +477,7 @@
               <th>
                 Roof Stickers
               </th>
-              <td>
+              <td colspan=3>
                 <select name='s_roof-sticker-type' id='s_roof-sticker-type' onChange='document.car.setField("roof-sticker-type", value)'>
                   <option name='o_default' id='o_default'>
                     Not Available
@@ -477,8 +489,74 @@
               <th>
                 Roof Sticker Variant
               </th>
-              <td>
+              <td colspan=3>
                 <select name='s_roof-sticker-variant' id='s_roof-sticker-variant' onChange='document.car.setField("roof-sticker-variant", value)'>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 class='text-center'>
+          Scratch Off Item Settings
+        </h4>
+        <h6 class='text-center'>
+          <!--
+          <a target='_blank' href='https://wanganmaxi-official.com/wanganmaxi5dxplus/en/terminal/itemList/page03.php'>
+            Sticker Reference (5DX+)
+          </a>
+          -->
+        </h6>
+        <h6 class='text-center'>
+          <i>
+            MT5DX/DX+/6/6R Only. Window Sticker Enabled must be set for window stickers to be displayed. Window text currently not possible.
+          </i>
+        </h6>
+        <table class='table table-dark' id='t_sticker'>
+          <thead class='thead thead-dark'>
+            <tr>
+              <th>
+                Property
+              </th>
+              <th colspan=2>
+                Selection
+              </th>
+            </tr>
+          </thead>
+          <tbody class='tbody tbody-dark'>
+            <tr>
+              <th>
+                Window Sticker Enabled
+              </th>
+              <td colspan=2>
+                <select name='s_window-sticker-switch' id='s_window-sticker-switch' onChange='document.car.setField("roof-sticker-enabled", value)'>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Window Sticker Variant
+              </th>
+              <td colspan=2>
+                <select name='s_window-sticker-type' id='s_window-sticker-type' onChange='document.car.setField("roof-sticker-type", value)'>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Rival Marker
+              </th>
+              <td colspan=2>
+                <select name='s_rival-marker' id='s_rival-marker' onChange='document.car.setField("rival-marker", value)'>
                   <option name='o_default' id='o_default'>
                     Not Available
                   </option>

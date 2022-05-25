@@ -131,6 +131,8 @@ class Car
         // Get the hex index for the field
         let coords = this.getLocations().getLocation(field);
 
+        
+
         // Set the element in the element corresponding to the field location
         this.map.setElementAt(coords[0], coords[1], option);
     }

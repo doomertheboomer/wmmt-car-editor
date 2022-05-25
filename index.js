@@ -4,6 +4,9 @@ document.car = null;
 // No recorded file name
 document.filename = null;
 
+// Car sticker type
+document.stickerType = null;
+
 // setValue(id: String, value: Boolean)
 // If it exists, sets the selected property for 
 // the given element to true. Otherwise, does nothing.
@@ -390,7 +393,7 @@ function handleUpload()
                         if (select)
                         {
                             // Reset the content of the select
-                            resetDropdown('s_' + field);
+                            resetDropdown(id);
 
                             // Get the drop-down with all of the possibilities
                             let options = document.car.getOptions(field);
@@ -419,7 +422,7 @@ function handleUpload()
                             setSelected('o_' + field + '_' + document.car.getField(field), true);
 
                             // Enable the drop-down for the select field
-                            setDisabled('s_' + field, false);
+                            setDisabled(id, false);
                         }
 
                     });
@@ -434,14 +437,37 @@ function handleUpload()
                     // Game is MT6/6R
                     if (document.car.getGameId() === 'wmmt6')
                     {
-                        // Disable the MT5/5DX/5DX+ Specific randomise buttons
+                        // Disable random stickers button
                         document.getElementById('btn_random-stickers').disabled = true;
+
+                        // Enable random scratch off items button
+                        document.getElementById('btn_random-scratch').disabled = false;
+                    }
+                    else if (document.car.getGameId() === 'wmmt5dx')
+                    {
+                        // Enable the MT5/5DX/5DX+ Specific randomise buttons
+                        document.getElementById('btn_random-stickers').disabled = false;
+                        
+                        // Enable random scratch off items button
+                        document.getElementById('btn_random-scratch').disabled = false;
+
+                        // Get the current sticker type
+                        getStickerType();
                     }
                     else // Game is 5/5DX/5DX+
                     {
                         // Enable the MT5/5DX/5DX+ Specific randomise buttons
                         document.getElementById('btn_random-stickers').disabled = false;
+
+                        // Disable random scratch off items button
+                        document.getElementById('btn_random-scratch').disabled = true;
+
+                        // Get the current sticker type
+                        getStickerType();
                     }
+
+                    // Enable the plate number input button
+                    document.getElementById('i_plate-number').disabled = false;
 
                     // Set the tune to defailt
                     setTune(0);
@@ -469,6 +495,114 @@ function handleUpload()
     }
 }
 
+// getStickerType(Void): Void
+// Retrieves the sticker type from
+// the car file. If both are set, 
+// defaults to base body sticker.
+function getStickerType()
+{
+    // Get the body sticker value for the car
+    let bodySticker = document.car.getField('body-sticker-type');
+
+    // Get the japan sticker value for the car
+    let japanSticker = document.car.getField('japan-sticker-type');
+
+    // If both of the stickers are disabled, or both of them are enabled
+    if (bodySticker === '00' && japanSticker === '00' || bodySticker !== '00' && japanSticker !== '00')
+    {
+        // Default to body stickers
+        document.stickerType = 'body';
+    }
+    // If the body sticker is enabled
+    else if (bodySticker !== '00')
+    {
+        // Default to body stickers
+        document.stickerType = 'body';
+    }
+    // If the Japan sticker is enabled
+    else if (japanSticker !== '00')
+    {
+        // Default to japan stickers
+        document.stickerType = 'japan';
+    }
+}
+
+// setStickerType(field: String): Void
+// Given a sticker type, sets that sticker
+// type to the currently selected sticker type
+// and reset the selected sticker drop down
+function setStickerType(value)
+{
+    // Update the current sticker type
+    document.stickerType = value;
+
+    // Create the id for the drop-down select
+    let id = 's_' + value + '-sticker-type';
+
+    // Get the select drop-down for the sticker type
+    let select = document.getElementById(id);
+
+    // Reset the body sticker variant drop down
+    resetDropdown('s_body-sticker-variant');
+
+    // Get the drop-down with all of the possibilities
+    let options = document.car.getOptions(id);
+
+    // Sort the options based on the id
+    options.sort(function(a, b){
+
+        // Compare the value of the hex strings between the objects
+        return Number("0x" + a.id) > Number("0x" + b.id);
+
+    }); 
+
+    // Populate the drop-down with all of the possibilities
+    options.forEach(option => {
+
+        // Create the id for the drop-down option
+        let o_id = 'o_' + field + '_' + option.id;
+
+        // Append an option element to the select dropdown
+        select.appendChild(newOption(o_id, option.id, option.name));
+    }); 
+
+    // Update the selected sticker
+    let selected = document.getStickerValue();
+}
+
+// setStickerValue(value: Int): Void
+// Sets the current sticker value, 
+// based upon whichever sticker type
+// is active.
+function setStickerValue(value)
+{
+
+}
+
+// getStickerValue(Void): Int
+// Gets the current sticker value, 
+// based upon whichever sticker type
+// is active.
+function getStickerValue()
+{
+
+}
+
+// getLicensePlate(Void): Int
+// Gets the current license plate value
+function getLicensePlate()
+{
+
+
+}
+
+// setLicensePlate(Void): Int
+// Sets the current license plate value
+function setLicensePlate()
+{
+
+}
+
 // randomiseField(field: String): Void
 // Given a field, randomises the field if
 // it is compatible with the current vehicle.
@@ -485,6 +619,25 @@ function randomiseField(field)
 
     // Set the selected drop-down option to the new setting
     setSelected('o_' + field + '_' + rand.id, true);
+}
+
+// randomiseScratch(void): Void
+// (MT5DX/DX+/6/6R Only) randomises
+// the scratch off items (window sticker, 
+// versus markers) for the given car.
+function randomiseScratch()
+{
+    // Colours (MT5/5dx/5dx+ only)
+    let fields = [
+        'window-sticker-switch', 'window-sticker-type', 'rival-marker'
+    ]
+
+    // Loop over the fields
+    fields.forEach(field => {
+
+        // Randomise field
+        randomiseField(field);
+    });
 }
 
 // randomiseSticker(void): Void
@@ -575,7 +728,16 @@ function randomiseAll()
     // Car is from wmmt6/wmmt6r
     if (document.car.getGameId() == 'wmmt6')
     {
-        // Nothing yet, lol
+        // Randomise scratch off items
+        randomiseScratch();
+    }
+    else if (document.car.getGameId() == 'wmmt5dx')
+    {
+        // Randomise stickers
+        randomiseStickers();
+
+        // Randomise scratch off items
+        randomiseScratch();
     }
     else // wmmt5/5dx/5dx+
     {
