@@ -5,11 +5,40 @@ document.car = null;
 document.filename = null;
 
 // Car sticker type
-document.stickerType = null;
+// Defaults to normal body
+document.stickerType = 0;
 
-// setValue(id: String, value: Boolean)
-// If it exists, sets the selected property for 
-// the given element to true. Otherwise, does nothing.
+// Sync car model and id
+// Defaults to true (yes)
+document.carSync = 1;
+
+// setField(id: String, value: Int)
+function setField(id, value)
+{
+    // If car is initialised
+    if (document.car)
+    {
+        // Set the field in the car
+        document.car.setField(id, value);
+
+        // Update the value of the input field
+        setValue('s_' + id, value);
+
+        // Success code
+        return 0;
+    }
+    else // Car not initialised
+    {
+        console.log("Failed to set value of field '" + id + "' to value '" + value + "'! Reason:", err);
+
+        // Failure code
+        return 1;
+    }
+}
+
+// setValue(id: String, value: Int)
+// If it exists, sets the value of a 
+// selected menu to the value provided.
 function setValue(id, value)
 {
     try
@@ -17,16 +46,16 @@ function setValue(id, value)
         // Set the element with the given id to the provided value
         document.getElementById(id).value = value;
 
-        // Successful assignment
-        return true;
+        // Success code
+        return 0;
     }
     catch(err) // General failure
     {
         // Report failure to console
         console.log("Failed to set selected value of element with id '" + id + "' to value '" + value + "'! Reason:", err);
 
-        // Assignment failed
-        return false;
+        // Failure code
+        return 1;
     }
 }
 
@@ -132,109 +161,6 @@ function setDisabled(id, value)
         // Assignment failed
         return false;
     }
-}
-
-// Given a combo box value, 
-// sets the tuning settings for
-// the car and enables or disables
-// the drop-downs, depending on the 
-// setting applied.
-function setTune(value)
-{
-    // Values:
-    // 0 - No Tune 
-    // 1 - Basic Tuning
-    // 2 - Full Tune 
-    // 3 - Custon Tune
-
-    // Dereference the car object
-    let car = document.car;
-
-    switch(value)
-    {
-        case 0: // Leave as is
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 1: // No Tune
-
-            // Set the car's rank to 'n'
-            car.setField('rank', '01');
-
-            // Both power and handling 0 pts
-            car.setField('power', '00');
-            car.setField('handling', '00');
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 2: // Basic Tuning
-            
-            // Set the car's rank to 'n'
-            car.setField('rank', '03');
-
-            // Both power and handling 10 pts
-            car.setField('power', '0A');
-            car.setField('handling', '0A');
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 3: // Full Tune
-
-            // Both power and handling 17 pts
-
-            // If the game is wmmt6 (840hp)
-            if(car.getGameId() == 'wmmt6')
-            {
-                // Set the car's rank to 'n'
-                car.setField('rank', '08');
-    
-                // Both power and handling 16 pts 
-                car.setField('power', '11');
-                car.setField('handling', '11');
-            }
-            else // Otherwise, game is wmmt5/5dx (830hp)
-            {
-                // Set the car's rank to 'n'
-                car.setField('rank', '07');
-
-                // Both power and handling 16 pts 
-                car.setField('power', '10');
-                car.setField('handling', '10');
-            }
-
-            // Disable the power/handling dropdowns
-            setDisabled('s_power', true);
-            setDisabled('s_handling', true);
-            break;
-
-        case 4: // Custom Tune
-
-            // Enable the power/handling dropdowns
-            setDisabled('s_power', false);
-            setDisabled('s_handling', false);
-            break;
-
-        default: // Unknown value provided
-
-            console.log("Unknown value '" + value + "'provided!");
-            break;
-    }
-
-    // Update the form's selected rank
-    setSelected('o_rank_' + car.getField('rank'), true);
-
-    // Update the values in the drop down
-    setSelected('o_power_' + car.getField('power'), true);
-    setSelected('o_handling_' + car.getField('handling'), true);
 }
 
 // getWikiSearch(car_id: String): String

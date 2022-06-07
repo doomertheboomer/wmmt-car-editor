@@ -31,7 +31,8 @@ const HEXTABLE = {
             'body-sticker-type': [5, 8],
             'japan-sticker-type': [5, 9],
 
-            'body-sticker-variant': [5, 12],
+            'body-sticker-colour': [5, 12], // Same offset
+            'japan-sticker-colour': [5, 12],
 
             // 00000070
 
@@ -42,7 +43,7 @@ const HEXTABLE = {
             'trunk': [8, 0],
         
             'plate-frame-type': [8, 4],
-            'plate-frame-variant': [8, 10],
+            'plate-frame-colour': [8, 10],
             'plate-number': [8, 12],
 
             // 00000090
@@ -52,7 +53,7 @@ const HEXTABLE = {
 
             // 000000A0
 
-            'title': [10, 0], 
+            'title': [10, 0],
             'rank': [10, 4],
         }, 
         value: {
@@ -396,7 +397,7 @@ const HEXTABLE = {
                 "0E": "Japan Challenge 7 Fall (1 Variant)", 
                 "0F": "Japan Challenge 8 Winter (1 Variant)", 
             }, 
-            'body-sticker-variant': { // Body Sticker Variant
+            'body-sticker-colour': { // Body Sticker Variant
                 "00": "Sticker Option 1", 
                 "01": "Sticker Option 2", 
                 "02": "Sticker Option 3", 
@@ -445,7 +446,7 @@ const HEXTABLE = {
                 "0E": "Dot Pattern 3 (8 Variants)",
                 "0F": "Illumination 3 (6 Variants)",
             }, 
-            'plate-frame-variant': { // Plate Frame Variant
+            'plate-frame-colour': { // Plate Frame Variant
                 "00": "Frame Option 1", 
                 "01": "Frame Option 2", 
                 "02": "Frame Option 3", 
@@ -580,74 +581,270 @@ const HEXTABLE = {
 
             // Indexes are [y, x]
 
-            // 00000020
+            // 0x20
 
             'region': [2, 8],
 
-            // 00000030
-
-            'cars': [3, 4],        
-            
+            // 0x30
+            'car-id': [3, 0],
+            'car-model': [3, 4],        
             'colour-stock': [3, 8],
             'colour-custom': [3, 12],
         
-            // 00000040
+            // 0x40
 
             'rims': [4, 0],
             'colour-rims': [4, 4],
-
             'aero': [4, 8],
             'hood': [4, 12],
 
-            // 00000050
+            // 0x50
         
             'wing': [5, 8],
             'mirror': [5, 12],
 
-            // 00000060
+            // 0x60
         
             'body-sticker-type': [6, 0], // Only ONE of this or japan sticker at a time
-            'body-sticker-variant': [6, 4],
+            'body-sticker-colour': [6, 4],
 
-            // 00000070
+            // 0x70
 
-            'roof-sticker-type': [7, 8], 
-            'roof-sticker-variant': [7, 12],
+            // 0x80
 
-            // 00000090
+            'side-sticker-type': [8, 0], 
+            'side-sticker-colour': [8, 4],
+            'roof-sticker-type': [8, 8],
+            'roof-sticker-colour': [8, 12],
+
+            // 0x90
 
             'neon': [9, 0],
             'trunk': [9, 4],
-        
             'plate-frame-type': [9, 8],
-            'plate-frame-variant': [9, 12],
+            'plate-frame-colour': [9, 12],
 
-            // 000000A0
+            // 0xA0
 
             'plate-number': [10, 0],
             'japan-sticker-type': [10, 4], // Only ONE of this or body sticker at a time
-
-            // 000000A0
+            'japan-sticker-colour': [10, 8], // Only ONE of this or body sticker at a time
             'power': [10, 12],
 
-            // 000000B0
+            // 0xB0
 
             'handling': [11, 8],
             'rank': [11, 12],
 
-            // 000000C0
-            'window-sticker-switch': [12, 0],
+            // 0xC0
+            'window-sticker-toggle': [12, 0],
 
-            // 000000D0 
+            // 0xD0 
+            'window-sticker-font': [13, 0],
             'window-sticker-type': [13, 4],
+            'window-sticker-colour': [13, 8],
             'rival-marker': [13, 12],
+
+            // 0xE0
+            'rival-marker-colour': [14, 0]
         }, 
         value: {
 
-            region: { // Region IDs
-
+            'region': { // Region IDs
+                "00": "OCR", 
+                "01": "ARG", 
+                "02": "AUS", 
+                "03": "AUT", 
+                "04": "BHR", 
+                "05": "BEL", 
+                "06": "BRA", 
+                "07": "BRN", 
+                "08": "CAN", 
+                "09": "CHL", 
+                "0A": "CHN", 
+                "0B": "DNK", 
+                "0C": "FIN", 
+                "0D": "FRA", 
+                "0E": "DEU", 
+                "0F": "HKG", 
+                "10": "HUN", 
+                "11": "IND", 
+                "12": "IDN", 
+                "13": "ITA", 
+                "14": "JPN", 
+                "15": "KOR", 
+                "16": "MAC", 
+                "17": "MYS", 
+                "18": "MEX", 
+                "19": "NLD", 
+                "1A": "NZL", 
+                "1B": "OMN", 
+                "1C": "PRY", 
+                "1D": "PER", 
+                "1E": "PHL", 
+                "1F": "QAT", 
+                "20": "RUS", 
+                "21": "SAU", 
+                "22": "SGP", 
+                "23": "ZAF", 
+                "24": "ESP", 
+                "25": "LKA", 
+                "26": "CHE", 
+                "27": "TWN", 
+                "28": "THA", 
+                "29": "TUR", 
+                "2A": "ARE", 
+                "2B": "GBR", 
+                "2C": "USA", 
+                "2D": "URY", 
+                "2E": "VNM"
             },
-            cars: { // Car IDs
+            'car-id': { // Car IDs
+                "00": "CORVETTE ZR1 (C6)", 
+                "01": "CORVETTE ZR1 (C6) Taxi", 
+                "02": "CORVETTE Camaro SS RS",
+                "03": "CORVETTE Camaro SS RS (Matte)",
+                "04": "CORVETTE Stingray (C3)",
+                "05": "Roadster RS RHT (NCEC)",
+                "06": "RX-7 Type R (FD3S)",
+                "07": "SAVANNA RX-7 GT-X (FC3S)",
+                "08": "RX-8 Type S (SE3P)",
+                "09": "EUNOS Cosmo TYPE-S (JCESE)",
+                "0A": "MAZDASPEED Atenza (GG3P)",
+                "0B": "Driving School Atenza (GG3P)",
+                "0C": "SAVANNA RX-7 TURBO SE-Limited (SA22C)",
+                "0D": "Cosmo SPORTS (L10B)",
+                "0E": "LANCER EVOLUTION X GSR (CZ4A)",
+                "0F": "LANCER Evolution IX MR GSR (CT9A)",
+                "10": "LANCER Evolution VIII MR GSR (CT9A)", 
+                "11": "LANCER Evolution VIII RS (CT9A)", 
+                "12": "LANCER EVOLUTION VI GSR (CP9A)",
+                "13": "LANCER EVOLUTION VI RS (CP9A)",
+                "14": "LANCER EVOLUTION V GSR (CP9A)",
+                "15": "LANCER EVOLUTION V RS (CP9A)",
+                "16": "LANCER Evolution III GSR (CE9A)",
+                "17": "LANCER Evolution III RS (CE9A)",
+                "18": "GTO TWIN TURBO (Z16A)",
+                "19": "STARION GSR-VR (A187A)",
+                "1A": "PAJERO EVOLUTION (V55W)",
+                "1B": "NISSAN GT-R (R35)",
+                "1C": "NISSAN GT-R (R35) Spec V",
+                "1D": "SKYLINE GT-R V-specII (BNR34)",
+                "1E": "SKYLINE GT-R V-specII NÜR (BNR34)",
+                "1F": "SKYLINE GT-R V-spec (BCNR33)",
+                "20": "SKYLINE GT-R (BNR32)", 
+                "21": "SKYLINE GT-R (KPGC10)", 
+                "22": "FAIRLADY Z Version ST (Z34)",
+                "23": "FAIRLADY Z Version S (Z33)",
+                "24": "Nissan 300ZX (Z32)",
+                "25": "Nissan 200ZX (Z31)",
+                // "26": "",
+                "27": "Fairlady Z (S30)",
+                "28": "Silvia spec.R (S15)",
+                "29": "180SX TYPE III (RPS13)",
+                "2A": "SKYLINE COUPE 370GT Type S (CKV36)",
+                "2B": "FUGA 370GT Type S (KY51)",
+                "2C": "Ruf CTR",
+                "2D": "Ruf RGT",
+                "2E": "Ruf RK Coupe",
+                "2F": "IMPREZA WRX STI (GRB)",
+                "30": "IMPREZA WRX STI (GDB-F)", 
+                "31": "Impreza WRX STi (GDB-C)", 
+                "32": "Impreza WRX STi (GDB-C) Spec C",
+                "33": "Impreza WRX STi Version VI (GC8)",
+                "34": "Impreza WRX STi Version VI (GC8) RS",
+                "35": "LEGACY B4 2.0GT spec.B (BL5)",
+                "36": "ALCYONE SVX Version L (CXD)",
+                "37": "R2 (RC2)",
+                "38": "LEGACY B4 2.5GT S Package (BM9)",
+                "39": "Supra RZ (JZA80)",
+                "3A": "SUPRA 2.5GT TWIN TURBO R (JZA70)",
+                "3B": "MR2 GT-S (SW20)",
+                "3C": "CHASER Tourer V (JZX100)",
+                "3D": "CELSIOR (UCF10)",
+                // "3E": "",
+                // "3F": "",
+                // "40": "", 
+                // "41": "", 
+                "42": "CELSIOR (UCF10) Taxi",
+                // "43": "",
+                // "44": "",
+                // "45": "",
+                // "46": "",
+                "47": "ARISTO V300 'VERTEX EDITION' (JZS161)",
+                "48": "ARISTO V300 'VERTEX EDITION' (JZS161) Taxi",
+                "49": "COROLLA SEDAN G (NZE121)",
+                "4A": "HIACE WAGON (KZH100G)",
+                "4B": "HIACE WAGON (KZH100G) Lifted",
+                "4C": "CROWN ATHLETE (GRS204)",
+                "4D": "SPRINTER TRUENO GT-APEX (AE86)",
+                "4E": "CELICA XX 2800GT (MA61)",
+                "4F": "Toyota 2000GT",
+                "50": "Toyota 2000GT", 
+                // MT5 ON
+                "51": "Z4 sDrive35is (E89)", 
+                "52": "M3 COUPE (E92)",
+                "53": "CHEVROLET Camaro Z28 [Z28]",
+                "54": "Corvette STINGRAY (C2)",
+                "55": "EUNOS ROADSTER (NA6CE)",
+                "56": "SAVANNA GT (S124A)",
+                "57": "500E (W124)",
+                "58": "SLK350 BlueEFFICIENCY (R172)",
+                "59": "GALANT VR-4 (E-E39A)",
+                "5A": "Gloria GranTurismo ULTIMA (Y33)", 
+                "5B": "SKYLINE Hardtop 2000 TURBO INTERCOOLER RS-X (R30)", 
+                "5C": "STAGEA Autech Version 260RS (WGNC34)", 
+                "5D": "RUF RT35",
+                "5E": "WRX STI (GVB)", 
+                "5F": "Subaru BRZ", 
+                "60": "Toyota Soarer", 
+                "61": "Toyota 86", 
+                "62": "Hiace Super GL",
+                "63": "Maxi G Truck",
+                "64": "BMW Z4 S DRIVE 35is [E89P]",
+                "65": "BMW M3 (Matte)",
+                "66": "CHEVROLET CAMARO SS RS [CAMAROT]",
+                "67": "SLK Taxi",
+                "68": "Hiace Super GL Lift",
+                "69": "BMW M1 [E26] (Test)",
+                "6A": "BMW M3 CSL [E46] (Test)",
+                "6B": "Mercedes-Benz SLS AMG [C197] (Test)",
+                "6C": "Mercedes-Benz 190E 2.5-16 Evolution2 [W201] (Test)",
+                "6D": "Audi R8 5.2 FSI quattro [R8] (Test)",
+                "6E": "Audi RS 4 Avant [RS4] (Test)",
+                "6F": "Dodge Viper SRT10 [SRT-10]",
+                "70": "Dodge Charger SRT8 [SRT8]",
+                "71": "SUBARU LEVORG [VMG]",
+                // MT5DX
+                "72": "BMW M6 Gran Coupe [M6]",
+                "73": "BMW 2002 TURBO [2002]",
+                "74": "MAZDA ROADSTER ND [ND5RC]",
+                "75": "NISSAN LAUREL 25 CLUB|S [C35]",
+                "76": "NISSAN GT-R NISMO [BNR35N]",
+                "77": "NISSAN FAIRLADY Z NISMO [Z34N]",
+                "78": "RUF RCT [RCT]",
+                "79": "TOYOTA MARKII TOURER V [MARK2]",
+                "7A": "BMW MINI Cooper S Crossover [R60]",
+                // MT5DX+
+                "7B": "Lamborghini Aventador LP700-4 [LP700]",
+                "7C": "Lamborghini Countach LP400 [LP400]",
+                "7D": "Lamborghini Miura P400S [P400S]",
+                "7E": "Lamborghini Diablo VT [DIABLO]",
+                "7F": "HONDA New NSX [NC1]",
+                "80": "HONDA NSX [NA1]",
+                "81": "HONDA NSX-R [NA2]",
+                "83": "HONDA S2000 [AP2]",
+                "82": "HONDA S660 [JW5]",
+                "84": "NISSAN GT-R MC [BNR35MC]",
+                "85": "NISSAN SILVIA K's [PS13]",
+                "86": "ACURA New NSX (ACURA)",
+                "87": "ACURA NSX (ACURA)",
+                "88": "HONDA INTEGRA TYPE R [DC2]",
+                "89": "MAZDA ROADSTER ND RF [NDERC]",
+                "8A": "NISSAN LEOPARD Ultima [UF31]",
+                "8B": "NISSAN FAIRLADY Z S130 [GS130]",
+            }, 
+            'car-model': { // Car IDs
                 "00": "CORVETTE ZR1 (C6)", 
                 "01": "CORVETTE ZR1 (C6) Taxi", 
                 "02": "CORVETTE Camaro SS RS",
@@ -847,85 +1044,6 @@ const HEXTABLE = {
                 "27": "Custom Colour 39",
                 "28": "Custom Colour 40",
             },
-            aero: { // Body Kits
-                "00": "Stock",
-                "01": "Aero Set A",
-                "02": "Aero Set B",
-                "03": "Aero Set C",
-                "04": "Aero Set D",
-                "05": "Aero Set E",
-                "06": "Aero Set F",
-                "07": "Aero Set G",
-                "08": "Aero Set H"
-            }, 
-            wing: { // Rear Wings
-                "00": "Stock",
-                "01": "GT Wing Straight",
-                "02": "GT Wing 3D",
-                "03": "Exclusive Wing A",
-                "04": "GT Wing Twin",
-                "05": "GT Wing 3D 2",
-                "06": "Exclusive Wing B",
-                "07": "Exclusive Wing B",
-                "08": "GT Wing Swan",
-                "09": "No Wing",
-            }, 
-            hood: { // Bonnet / Hood
-                "00": "Stock",
-                "01": "Carbon Hood Original Style",
-                "02": "FRP Bonnet A",
-                "03": "Carbon Bonnet (with duct 1)",
-                "04": "FRP Bonnet B",
-                "05": "FRP Bonnet C",
-                "06": "FRP Bonnet D",
-                "07": "Carbon Bonnet (with duct 2)",
-                "08": "Carbon Bonnet (with duct 3)"
-            }, 
-            mirror: { // Mirror
-                "00": "Stock Mirror",
-                "01": "Aero Mirror"
-            }, 
-            trunk: { // Trunk
-                "00": "Stock Trunk",
-                "01": "Carbon Trunk"
-            }, 
-            neon: { // Neon / Underglow
-                "00": "No Neon", 
-                "01": "Green Straight", 
-                "02": "Blue Straight", 
-                "03": "Purple Straight", 
-                "04": "Red Straight", 
-                "05": "Yellow Straight", 
-                "06": "Light Purple Straight", 
-                "07": "Green Dotted", 
-                "08": "Blue Dotted", 
-                "09": "Purple Dotted", 
-                "0A": "Purple Dotted", 
-                "0B": "Yellow Dotted", 
-                "0C": "Light Purple Dotted", 
-            }, 
-            'plate-frame-type': { // License Plate Frame
-                "00": "Stock", 
-                "01": "Green (L/R Lights)",
-                "02": "Red Stripes", 
-                "03": "YM Speed Blue"
-            }, 
-            'plate-frame-variant': {
-                "00": "Frame Option 1", 
-                "01": "Frame Option 2", 
-                "02": "Frame Option 3", 
-                "03": "Frame Option 4", 
-                "04": "Frame Option 5", 
-                "05": "Frame Option 6", 
-                "06": "Frame Option 7", 
-                "07": "Frame Option 8", 
-                "08": "Frame Option 9", 
-                "09": "Frame Option 10", 
-            }, 
-            'plate-number': {
-                "min": 0, 
-                "max": 9999
-            },
             rims: { // Rims
                 "00": "Stock", 
                 "01": "Yokohama Super ADVAN Racing Ver. 2",
@@ -999,8 +1117,7 @@ const HEXTABLE = {
                 "44": "OZ Ultraleggera", 
                 "45": "OZ Italia 150", 
             }, 
-            'colour-rims': {
-                // Not all colours work for all rims!
+            'colour-rims': { // Rims Colour
                 "00": "Default Colour", 
                 "01": "Rims Colour 2", 
                 "02": "Rims Colour 3", 
@@ -1011,6 +1128,203 @@ const HEXTABLE = {
                 "07": "Rims Colour 8", 
                 "08": "Rims Colour 9", 
                 "09": "Rims Colour 10", 
+            },
+            aero: { // Body Kits
+                "00": "Stock",
+                "01": "Aero Set A",
+                "02": "Aero Set B",
+                "03": "Aero Set C",
+                "04": "Aero Set D",
+                "05": "Aero Set E",
+                "06": "Aero Set F",
+                "07": "Aero Set G",
+                "08": "Aero Set H"
+            }, 
+            hood: { // Bonnet / Hood
+                "00": "Stock",
+                "01": "Carbon Hood Original Style",
+                "02": "FRP Bonnet A",
+                "03": "Carbon Bonnet (with duct 1)",
+                "04": "FRP Bonnet B",
+                "05": "FRP Bonnet C",
+                "06": "FRP Bonnet D",
+                "07": "Carbon Bonnet (with duct 2)",
+                "08": "Carbon Bonnet (with duct 3)"
+            }, 
+            wing: { // Rear Wings
+                "00": "Stock",
+                "01": "GT Wing Straight",
+                "02": "GT Wing 3D",
+                "03": "Exclusive Wing A",
+                "04": "GT Wing Twin",
+                "05": "GT Wing 3D 2",
+                "06": "Exclusive Wing B",
+                "07": "Exclusive Wing B",
+                "08": "GT Wing Swan",
+                "09": "No Wing / Custom GT Wing",
+            }, 
+            mirror: { // Mirror
+                "00": "Stock Mirror",
+                "01": "Aero Mirror"
+            }, 
+            'body-sticker-type': { // Body Sticker Type
+                "00": "No Sticker", 
+                "01": "Racing Stripe 1 (10 Variants)", 
+                "02": "Fire Pattern 1 (10 Variants)", 
+                "03": "Racing Stripe 2 (10 Variants)", 
+                "04": "Fire Pattern 2 (10 Variants)", 
+                "05": "Pac Man (1 Variant)", 
+                "06": "Namco (1 Variant)", 
+                "07": "Works (1 Variant)", 
+                "08": "Racing Stripe 3 (10 Variants)", 
+                "09": "Fire Pattern 3 (10 Variants)", 
+                "0A": "Tribal 1  (10 Variants)", 
+                "0B": "Camo 1 (1 Variant)", 
+                "0C": "One Point 1 (10 Variants)", 
+                "0D": "Fire Pattern 4 (5 Variants)", 
+                "0E": "Japonism 1 (10 Variants)", 
+                "0F": "Competition 1 (10 Variants)", 
+                "10": "Racing Stripe 4 (10 Variants)", 
+                "11": "Animal 1 (2 Variants)", 
+                "12": "Tribal 2 (10 Variants)", 
+                "13": "Graffiti 1 (1 Variant)", 
+                "14": "Checker 1 (10 Variants)", 
+                "15": "Camo 2 (1 Variant)", 
+                "16": "Japonism 2 (1 Variant)", 
+                "17": "Animal 2 (10 Variants)", 
+                "18": "One Point 2 (10 Variants)", 
+                "19": "Graffiti 2 (1 Variant)", 
+                "1A": "Tribal 3 (10 Variants)", 
+                "1B": "Galaga (1 Variant)", 
+                "1C": "One Point 3 (10 Variants)", 
+                "1D": "Graffiti 1 (1 Variant)", 
+                "1E": "Pin Stripe (10 Variants)", 
+                "1F": "Competition 1 (10 Variants)", 
+                "20": "Racing Stripe 5 (10 Variants)", 
+                "21": "Racing Stripe 6 (10 Variants)", 
+                "22": "Racing Stripe 7 (10 Variants)", 
+                "23": "Thunder Bolt 1 (1 Variant)", 
+                "24": "Thunder Bolt 2 (1 Variant)", 
+                "25": "Thunder Bolt 3 (1 Variant)", 
+                "26": "Tribal 4 (10 Variants)", 
+                "27": "Tribal 5 (10 Variants)", 
+                "28": "Checker 2 (10 Variants)", 
+                "29": "Competition 3 (10 Variants)", 
+                "2A": "Two Tone ? (10 Variants)", 
+            },
+            'body-sticker-colour': { // Body Sticker Variant
+                "00": "Sticker Option 1", 
+                "01": "Sticker Option 2", 
+                "02": "Sticker Option 3", 
+                "03": "Sticker Option 4", 
+                "04": "Sticker Option 5", 
+                "05": "Sticker Option 6", 
+                "06": "Sticker Option 7", 
+                "07": "Sticker Option 8", 
+                "08": "Sticker Option 9", 
+                "09": "Sticker Option 10", 
+            }, 
+            'side-sticker-type': { // Side Sticker Type (Japanese Text)
+                "00": "Default", 
+            },
+            'side-sticker-colour': { // Side Sticker Text Colour
+                "00": "Sticker Option 1", 
+                "01": "Sticker Option 2", 
+                "02": "Sticker Option 3", 
+                "03": "Sticker Option 4", 
+                "04": "Sticker Option 5", 
+                "05": "Sticker Option 6", 
+                "06": "Sticker Option 7", 
+                "07": "Sticker Option 8", 
+                "08": "Sticker Option 9", 
+                "09": "Sticker Option 10", 
+            },
+            'roof-sticker-type': { // Roof Sticker Type
+                "00": "Stock", 
+                "01": "Flat Colour", 
+            },
+            'roof-sticker-colour': { // Roof Sticker Variant
+                "00": "Sticker Option 1", 
+                "01": "Sticker Option 2", 
+                "02": "Sticker Option 3", 
+                "03": "Sticker Option 4", 
+                "04": "Sticker Option 5", 
+                "05": "Sticker Option 6", 
+                "06": "Sticker Option 7", 
+                "07": "Sticker Option 8", 
+                "08": "Sticker Option 9", 
+                "09": "Sticker Option 10", 
+            }, 
+            trunk: { // Trunk
+                "00": "Stock Trunk",
+                "01": "Carbon Trunk"
+            }, 
+            neon: { // Neon / Underglow
+                "00": "No Neon", 
+                "01": "Green Straight", 
+                "02": "Blue Straight", 
+                "03": "Purple Straight", 
+                "04": "Red Straight", 
+                "05": "Yellow Straight", 
+                "06": "Light Purple Straight", 
+                "07": "Green Dotted", 
+                "08": "Blue Dotted", 
+                "09": "Purple Dotted", 
+                "0A": "Purple Dotted", 
+                "0B": "Yellow Dotted", 
+                "0C": "Light Purple Dotted", 
+            }, 
+            'plate-frame-type': { // License Plate Frame
+                "00": "Stock", 
+                "01": "Green (L/R Lights)",
+                "02": "Red Stripes", 
+                "03": "YM Speed Blue"
+            }, 
+            'plate-frame-colour': { // License Plate Frame Colour
+                "00": "Frame Option 1", 
+                "01": "Frame Option 2", 
+                "02": "Frame Option 3", 
+                "03": "Frame Option 4", 
+                "04": "Frame Option 5", 
+                "05": "Frame Option 6", 
+                "06": "Frame Option 7", 
+                "07": "Frame Option 8", 
+                "08": "Frame Option 9", 
+                "09": "Frame Option 10", 
+            }, 
+            'plate-number': { // License Plate Number
+                "min": 0, 
+                "max": 9999
+            },
+            'japan-sticker-type': { // Japan Sticker Type
+                "00": "No Sticker", 
+                "01": "Japan Challenge Stickers 1 (10 Variants)", 
+                "02": "Japan Challenge Stickers 2 (10 Variants)", 
+                "03": "Japan Challenge Stickers 3 (10 Variants)", 
+                "04": "Japan Challenge Stickers 4 (10 Variants)", 
+                "05": "Japan Challenge Stickers 5 (10 Variants)", 
+                "06": "Japan Challenge 6 Summer (1 Variant)", 
+                "07": "Japan Challenge 7 Fall (1 Variant)", 
+                "08": "Japan Challenge 1 Spring (1 Variant)", 
+                "09": "Japan Challenge 2 Summer (1 Variant)", 
+                "0A": "Japan Challenge 3 Fall (1 Variant)", 
+                "0B": "Japan Challenge 4 Winter (1 Variant)", 
+                "0C": "Japan Challenge 5 Spring (1 Variant)", 
+                "0D": "Japan Challenge 6 Summer (1 Variant)", 
+                "0E": "Japan Challenge 7 Fall (1 Variant)", 
+                "0F": "Japan Challenge 8 Winter (1 Variant)", 
+            }, 
+            'japan-sticker-colour': { // Japan Sticker Variant
+                "00": "Sticker Option 1", 
+                "01": "Sticker Option 2", 
+                "02": "Sticker Option 3", 
+                "03": "Sticker Option 4", 
+                "04": "Sticker Option 5", 
+                "05": "Sticker Option 6", 
+                "06": "Sticker Option 7", 
+                "07": "Sticker Option 8", 
+                "08": "Sticker Option 9", 
+                "09": "Sticker Option 10", 
             },
             power: { // Power Stats
                 "00": "0 Points (Stock)", // No mods
@@ -1120,114 +1434,16 @@ const HEXTABLE = {
                 "37": "SSS1", 
                 "38": "SSSS", 
             }, 
-            'body-sticker-type': { // Body Sticker Type
-                "00": "No Sticker", 
-                "01": "Racing Stripe 1 (10 Variants)", 
-                "02": "Fire Pattern 1 (10 Variants)", 
-                "03": "Racing Stripe 2 (10 Variants)", 
-                "04": "Fire Pattern 2 (10 Variants)", 
-                "05": "Pac Man (1 Variant)", 
-                "06": "Namco (1 Variant)", 
-                "07": "Works (1 Variant)", 
-                "08": "Racing Stripe 3 (10 Variants)", 
-                "09": "Fire Pattern 3 (10 Variants)", 
-                "0A": "Tribal 1  (10 Variants)", 
-                "0B": "Camo 1 (1 Variant)", 
-                "0C": "One Point 1 (10 Variants)", 
-                "0D": "Fire Pattern 4 (5 Variants)", 
-                "0E": "Japonism 1 (10 Variants)", 
-                "0F": "Competition 1 (10 Variants)", 
-                "10": "Racing Stripe 4 (10 Variants)", 
-                "11": "Animal 1 (2 Variants)", 
-                "12": "Tribal 2 (10 Variants)", 
-                "13": "Graffiti 1 (1 Variant)", 
-                "14": "Checker 1 (10 Variants)", 
-                "15": "Camo 2 (1 Variant)", 
-                "16": "Japonism 2 (1 Variant)", 
-                "17": "Animal 2 (10 Variants)", 
-                "18": "One Point 2 (10 Variants)", 
-                "19": "Graffiti 2 (1 Variant)", 
-                "1A": "Tribal 3 (10 Variants)", 
-                "1B": "Galaga (1 Variant)", 
-                "1C": "One Point 3 (10 Variants)", 
-                "1D": "Graffiti 1 (1 Variant)", 
-                "1E": "Pin Stripe (10 Variants)", 
-                "1F": "Competition 1 (10 Variants)", 
-                "20": "Racing Stripe 5 (10 Variants)", 
-                "21": "Racing Stripe 6 (10 Variants)", 
-                "22": "Racing Stripe 7 (10 Variants)", 
-                "23": "Thunder Bolt 1 (1 Variant)", 
-                "24": "Thunder Bolt 2 (1 Variant)", 
-                "25": "Thunder Bolt 3 (1 Variant)", 
-                "26": "Tribal 4 (10 Variants)", 
-                "27": "Tribal 5 (10 Variants)", 
-                "28": "Checker 2 (10 Variants)", 
-                "29": "Competition 3 (10 Variants)", 
-                "2A": "Two Tone ? (10 Variants)", 
-            },
-            'body-sticker-variant': { // Body Sticker Variant
-                "00": "Sticker Option 1", 
-                "01": "Sticker Option 2", 
-                "02": "Sticker Option 3", 
-                "03": "Sticker Option 4", 
-                "04": "Sticker Option 5", 
-                "05": "Sticker Option 6", 
-                "06": "Sticker Option 7", 
-                "07": "Sticker Option 8", 
-                "08": "Sticker Option 9", 
-                "09": "Sticker Option 10", 
-            }, 
-            'roof-sticker-type': { // Roof Sticker Type
-                "00": "Stock", 
-                "01": "Stripes 1 (?? Variants)", 
-                "02": "Stripes 2 (?? Variants)", 
-                "03": "Checker Pattern 1 (?? Variants)", 
-            },
-            'roof-sticker-variant': { // Roof Sticker Variant
-                "00": "Sticker Option 1", 
-                "01": "Sticker Option 2", 
-                "02": "Sticker Option 3", 
-                "03": "Sticker Option 4", 
-                "04": "Sticker Option 5", 
-                "05": "Sticker Option 6", 
-                "06": "Sticker Option 7", 
-                "07": "Sticker Option 8", 
-                "08": "Sticker Option 9", 
-                "09": "Sticker Option 10", 
-            }, 
-            'japan-sticker-type': { // Japan Sticker Type
-                "00": "No Sticker", 
-                "01": "Japan Challenge Stickers 1 (10 Variants)", 
-                "02": "Japan Challenge Stickers 2 (10 Variants)", 
-                "03": "Japan Challenge Stickers 3 (10 Variants)", 
-                "04": "Japan Challenge Stickers 4 (10 Variants)", 
-                "05": "Japan Challenge Stickers 5 (10 Variants)", 
-                "06": "Japan Challenge 6 Summer (1 Variant)", 
-                "07": "Japan Challenge 7 Fall (1 Variant)", 
-                "08": "Japan Challenge 1 Spring (1 Variant)", 
-                "09": "Japan Challenge 2 Summer (1 Variant)", 
-                "0A": "Japan Challenge 3 Fall (1 Variant)", 
-                "0B": "Japan Challenge 4 Winter (1 Variant)", 
-                "0C": "Japan Challenge 5 Spring (1 Variant)", 
-                "0D": "Japan Challenge 6 Summer (1 Variant)", 
-                "0E": "Japan Challenge 7 Fall (1 Variant)", 
-                "0F": "Japan Challenge 8 Winter (1 Variant)", 
-            }, 
-            'japan-sticker-variant': { // Japan Sticker Variant
-                "00": "Sticker Option 1", 
-                "01": "Sticker Option 2", 
-                "02": "Sticker Option 3", 
-                "03": "Sticker Option 4", 
-                "04": "Sticker Option 5", 
-                "05": "Sticker Option 6", 
-                "06": "Sticker Option 7", 
-                "07": "Sticker Option 8", 
-                "08": "Sticker Option 9", 
-                "09": "Sticker Option 10", 
-            },
-            'window-sticker-switch': { // Window Sticker Switch
+            'window-sticker-toggle': { // Window Sticker Toggle
                 "00": "Disabled", 
                 "01": "Enabled", 
+            },
+            'window-sticker-font': { // Window Sticker Font
+                "00": "Default",
+                "01": "Bold Block", 
+                "02": "Times New Roman",
+                "03": "Rounded", 
+                "04": "Craft"
             },
             'window-sticker-type': { // Window Sticker Type
                 "00": "No Sticker",
@@ -1403,7 +1619,7 @@ const HEXTABLE = {
             // PLATE SECTION
 
             'plate-frame-type': [6, 8],
-            'plate-frame-variant': [6, 12],
+            'plate-frame-colour': [6, 12],
             'plate-number': [7, 0],
 
             // STICKER SECTION
@@ -1802,7 +2018,7 @@ const HEXTABLE = {
                 "0E": "Dot Pattern 3 (8 Variants)",
                 "0F": "Illumination 3 (6 Variants)",
             }, 
-            'plate-frame-variant': { // Plate Frame Variant
+            'plate-frame-colour': { // Plate Frame Variant
                 "00": "Frame Option 1", 
                 "01": "Frame Option 2", 
                 "02": "Frame Option 3", 

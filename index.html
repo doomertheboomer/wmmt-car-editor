@@ -165,7 +165,7 @@
               <th>
                 Property
               </th>
-              <th>
+              <th colspan=3>
                 Selection
               </th>
             </tr>
@@ -173,11 +173,10 @@
           <tbody class='tbody tbody-dark'>
             <tr>
               <th>
-                Car Model
+                Car Id
               </th>
               <td>
-                <!-- <select name='s_cars' id='s_cars' onChange='document.car.setCar(value)' disabled> -->
-                <select name='s_cars' id='s_cars' onChange='document.car.setField("cars", value)' disabled>
+                <select name='s_car-id' id='s_car-id' onChange='document.car.setField("car-id", value)' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -186,10 +185,32 @@
             </tr>
             <tr>
               <th>
+                Car Model
+              </th>
+              <td>
+                <select name='s_car-model' id='s_car-model' onChange='document.car.setField("car-model", value)' disabled>
+                  <option id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="c_car-sync">
+                  Sync ID and Model
+                </label>
+              </th>
+              <td>
+                <input name="c_car-sync" id="c_car-sync" type='checkbox' onChange='setCarSync(checked)' checked disabled>
+              </td>
+            </tr>
+            <tr>
+              <th>
                 Car Rank
               </th>
               <td>
-                <select name='s_rank' id='s_rank' onChange='document.car.setField("rank", value)' disabled>
+                <select name='s_rank' id='s_rank' onChange='' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -220,7 +241,7 @@
                   Stock Car Colour 
                 </th>
                 <td>
-                  <select name='s_colour-stock' id='s_colour-stock' onChange='document.car.setField("colour-stock", value)' disabled>
+                  <select name='s_colour-stock' id='s_colour-stock' onChange='setStockColour(value)' disabled>
                     <option id='o_default'>
                       Not Available
                     </option>
@@ -232,7 +253,7 @@
                   Custom Car Colour 
                 </th>
                 <td>
-                  <select name='s_colour-custom' id='s_colour-custom' onChange='document.car.setField("colour-custom", value)' disabled>
+                  <select name='s_colour-custom' id='s_colour-custom' onChange='setCustomColour(value)' disabled>
                     <option id='o_default'>
                       Not Available
                     </option>
@@ -244,7 +265,7 @@
                   Rims Colour
                 </th>
                 <td>
-                  <select name='s_colour-rims' id='s_colour-rims' onChange='document.car.setField("colour-rims", value)' disabled>
+                  <select name='s_colour-rims' id='s_colour-rims' onChange='setRimsColour(value)' disabled>
                     <option id='o_default'>
                       Not Available
                     </option>
@@ -276,10 +297,10 @@
           <tbody class='tbody tbody-dark'>
             <tr>
               <th>
-                Aero Kit
+                Rims
               </th>
               <td>
-                <select name='s_aero' id='s_aero' onChange='document.car.setField("aero", value)' disabled>
+                <select name='s_rims' id='s_rims' onChange='setRims(value)' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -288,10 +309,10 @@
             </tr>
             <tr>
               <th>
-                Wing
+                Aero Kit
               </th>
               <td>
-                <select name='s_wing' id='s_wing' onChange='document.car.setField("wing", value)' disabled>
+                <select name='s_aero' id='s_aero' onChange='setAero(value)' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -303,7 +324,19 @@
                 Hood
               </th>
               <td>
-                <select name='s_hood' id='s_hood' onChange='document.car.setField("hood", value)' disabled>
+                <select name='s_hood' id='s_hood' onChange='setHood(value)' disabled>
+                  <option id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Wing
+              </th>
+              <td>
+                <select name='s_wing' id='s_wing' onChange='setWing(value)' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -315,7 +348,7 @@
                 Mirror
               </th>
               <td>
-                <select name='s_mirror' id='s_mirror' onChange='document.car.setField("mirror", value)' disabled>
+                <select name='s_mirror' id='s_mirror' onChange='setMirror(value)' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -327,7 +360,7 @@
                 Trunk
               </th>
               <td>
-                <select name='s_trunk' id='s_trunk' onChange='document.car.setField("trunk", value)' disabled>
+                <select name='s_trunk' id='s_trunk' onChange='' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -339,19 +372,7 @@
                 Neon
               </th>
               <td>
-                <select name='s_neon' id='s_neon' onChange='document.car.setField("neon", value)' disabled>
-                  <option id='o_default'>
-                    Not Available
-                  </option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                Rims
-              </th>
-              <td>
-                <select name='s_rims' id='s_rims' onChange='document.car.setField("rims", value)' disabled>
+                <select name='s_neon' id='s_neon' onChange='' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -381,7 +402,7 @@
                 Plate Frame Type
               </th>
               <td>
-                <select name='s_plate-frame-type' id='s_plate-frame-type' onChange='document.car.setField("plate-frame-type", value)' disabled>
+                <select name='s_plate-frame-type' id='s_plate-frame-type' onChange='setPlateFrameType(value)' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -390,10 +411,10 @@
             </tr>
             <tr>
               <th>
-                Plate Frame Variant
+                Plate Frame Colour
               </th>
               <td>
-                <select name='s_plate-frame-variant' id='s_plate-frame-variant' onChange='document.car.setField("plate-frame-variant", value)' disabled>
+                <select name='s_plate-frame-colour' id='s_plate-frame-colour' onChange='setPlateFrameColour(value)' disabled>
                   <option id='o_default'>
                     Not Available
                   </option>
@@ -405,7 +426,7 @@
                 License Plate Number
               </th>
               <td>
-                <input class = 'form-control form-control-sm' type='number' value=0 min=0 max=9999 size=4 name='i_plate-number' id='i_plate-number' onChange='setLicensePlate(value)' disabled>
+                <input class = 'form-control form-control-sm' name='i_plate-number' id='i_plate-number' type='number' value=0 min=0 max=9999 size=4 onChange='setLicensePlate(value)' disabled>
               </td>
             </tr>
           </tbody>
@@ -421,98 +442,7 @@
         </h6>
         <h6 class='text-center'>
           <i>
-            MT5/5DX/5DX+ Only. Body Stickers and Japan Challenge stickers are not compatible, and only one may be enabled
-            at a time.
-          </i>
-        </h6>
-        <table class='table table-dark' id='t_sticker'>
-          <thead class='thead thead-dark'>
-            <tr>
-              <th>
-                Property
-              </th>
-              <th colspan=3>
-                Selection
-              </th>
-            </tr>
-          </thead>
-          <tbody class='tbody tbody-dark'>
-            <tr>
-              <th>
-                Sticker Types
-              </th>
-              <td colspan>
-                <select name='s_body-sticker-variant' id='s_body-sticker-variant' onChange='document.car.setField("body-sticker-variant", value)'>
-                  <option name='o_default' id='o_default'>
-                    Not Available
-                  </option>
-                </select>
-              </td>
-              <td>
-                <label>
-                  Body Sticker
-                </label>
-                <input class='form-check-input' type='radio' name='sticker-type' onClick="setStickerType('body')" disabled>
-              </td>
-              <td>
-                <label>
-                  Japan Challenge Sticker
-                </label>
-                <input class='form-check-input' type='radio' name='sticker-type' onClick="setStickerType('japan')" disabled>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                Sticker Variant
-              </th>
-              <td colspan=3>
-                <select name='s_body-sticker-variant' id='s_body-sticker-variant' onChange='document.car.setField("body-sticker-variant", value)'>
-                  <option name='o_default' id='o_default'>
-                    Not Available
-                  </option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                Roof Stickers
-              </th>
-              <td colspan=3>
-                <select name='s_roof-sticker-type' id='s_roof-sticker-type' onChange='document.car.setField("roof-sticker-type", value)'>
-                  <option name='o_default' id='o_default'>
-                    Not Available
-                  </option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>
-                Roof Sticker Variant
-              </th>
-              <td colspan=3>
-                <select name='s_roof-sticker-variant' id='s_roof-sticker-variant' onChange='document.car.setField("roof-sticker-variant", value)'>
-                  <option name='o_default' id='o_default'>
-                    Not Available
-                  </option>
-                </select>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4 class='text-center'>
-          Scratch Off Item Settings
-        </h4>
-        <h6 class='text-center'>
-          <!--
-          <a target='_blank' href='https://wanganmaxi-official.com/wanganmaxi5dxplus/en/terminal/itemList/page03.php'>
-            Sticker Reference (5DX+)
-          </a>
-          -->
-        </h6>
-        <h6 class='text-center'>
-          <i>
-            MT5DX/DX+/6/6R Only. Window Sticker Enabled must be set for window stickers to be displayed. Window text currently not possible.
+            MT5/5DX/5DX+ Only. Normal stickers and Japan Challenge stickers are not compatible, and only one may be enabled at a time.
           </i>
         </h6>
         <table class='table table-dark' id='t_sticker'>
@@ -529,10 +459,34 @@
           <tbody class='tbody tbody-dark'>
             <tr>
               <th>
-                Window Sticker Enabled
+                Sticker Types
               </th>
-              <td colspan=2>
-                <select name='s_window-sticker-switch' id='s_window-sticker-switch' onChange='document.car.setField("roof-sticker-enabled", value)'>
+              <td>
+                <label>
+                  Normal Sticker
+                </label>
+                <input class='form-check-input' type='radio' name='sticker-type' onClick="setStickerType('body')" disabled>
+              </td>
+              <td>
+                <label>
+                  Japan Sticker
+                </label>
+                <input class='form-check-input' type='radio' name='sticker-type' onClick="setStickerType('japan')" disabled>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Body Sticker
+              </th>
+              <td>
+                <select name='s_body-sticker-colour' id='s_body-sticker-colour' onChange='document.car.setField("body-sticker-colour", value)' disabled>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+              <td>
+                <select name='s_body-sticker-colour' id='s_body-sticker-colour' onChange='document.car.setField("body-sticker-colour", value)' disabled>
                   <option name='o_default' id='o_default'>
                     Not Available
                   </option>
@@ -541,10 +495,17 @@
             </tr>
             <tr>
               <th>
-                Window Sticker Variant
+                Side Sticker
               </th>
-              <td colspan=2>
-                <select name='s_window-sticker-type' id='s_window-sticker-type' onChange='document.car.setField("roof-sticker-type", value)'>
+              <td>
+                <select name='s_side-sticker-colour' id='s_side-sticker-colour' onChange='' disabled>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+              <td>
+                <select name='s_side-sticker-colour' id='s_side-sticker-colour' onChange='' disabled>
                   <option name='o_default' id='o_default'>
                     Not Available
                   </option>
@@ -553,10 +514,17 @@
             </tr>
             <tr>
               <th>
-                Rival Marker
+                Roof Sticker
               </th>
-              <td colspan=2>
-                <select name='s_rival-marker' id='s_rival-marker' onChange='document.car.setField("rival-marker", value)'>
+              <td>
+                <select name='s_roof-sticker-colour' id='s_roof-sticker-colour' onChange='setRoofStickerType(value)' disabled>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+              <td>
+                <select name='s_roof-sticker-colour' id='s_roof-sticker-colour' onChange='setRoofStickerColour(value)' disabled>
                   <option name='o_default' id='o_default'>
                     Not Available
                   </option>
@@ -565,7 +533,7 @@
             </tr>
           </tbody>
         </table>
-  
+
         <h4 class='text-center'>
           Power & Handling
         </h4>
@@ -592,19 +560,19 @@
               </th>
               <td>
                 <label class='form-check-label' for='rb-nt'> No Change </label>
-                <input class='form-check-input' type='radio' name='rb-tune' id='rb-nt' onClick='setTune(0)' checked>
+                <input class='form-check-input' type='radio' name='rb-tune' id='rb-nt' onClick='setTune(0)' checked disabled>
   
                 <label class='form-check-label' for='rb-nt'> Stock Tune </label>
-                <input class='form-check-input' type='radio' name='rb-tune' id='rb-nt' onClick='setTune(1)'>
+                <input class='form-check-input' type='radio' name='rb-tune' id='rb-nt' onClick='setTune(1)' disabled>
                 
                 <label class='form-check-label' for='rb-nt'> Basic Tune </label>
-                <input class='form-check-input' type='radio' name='rb-tune' id='rb-bt' onClick='setTune(2)'>
+                <input class='form-check-input' type='radio' name='rb-tune' id='rb-bt' onClick='setTune(2)' disabled>
                 
                 <label class='form-check-label' for='rb-nt'> Full Tune </label>
-                <input class='form-check-input' type='radio' name='rb-tune' id='rb-ft' onClick='setTune(3)'>
+                <input class='form-check-input' type='radio' name='rb-tune' id='rb-ft' onClick='setTune(3)' disabled>
                 
                 <label class='form-check-label' for='rb-nt'> Custom Tune </label>
-                <input class='form-check-input' type='radio' name='rb-tune' id='rb-ct' onClick='setTune(4)'>
+                <input class='form-check-input' type='radio' name='rb-tune' id='rb-ct' onClick='setTune(4)' disabled>
               </td>
             </tr>
             <tr>
@@ -612,7 +580,7 @@
                 Power
               </th>
               <td>
-                <select name='s_power' id='s_power' onChange='document.car.setField("power", value)' disabled>
+                <select name='s_power' id='s_power' onChange='setPower(value)' disabled>
                   <option id='o_carname'>
                     Not Available
                   </option>
@@ -624,7 +592,7 @@
                 Handling
               </th>
               <td>
-                <select name='s_handling' id='s_handling' onChange='document.car.setField("handling", value)' disabled>
+                <select name='s_handling' id='s_handling' onChange='setHandling(value)' disabled>
                   <option id='o_carname'>
                     Not Available
                   </option>
@@ -633,20 +601,29 @@
             </tr>
           </tbody>
         </table>
-  
-        <!-- 
-          NOTE: DOES NOT WORK ON TEKNOPARROT (YET)
-  
+
         <h4 class='text-center'>
-          Title Settings
+          Scratch Off Item Settings
         </h4>
-        <table class='table table-dark' id='t_meta'>
+        <h6 class='text-center'>
+          <!--
+          <a target='_blank' href='https://wanganmaxi-official.com/wanganmaxi5dxplus/en/terminal/itemList/page03.php'>
+            Sticker Reference (5DX+)
+          </a>
+          -->
+        </h6>
+        <h6 class='text-center'>
+          <i>
+            MT5DX/DX+/6/6R Only. Window Sticker Enabled must be set for window stickers to be displayed.
+          </i>
+        </h6>
+        <table class='table table-dark' id='t_sticker'>
           <thead class='thead thead-dark'>
             <tr>
               <th>
                 Property
               </th>
-              <th>
+              <th colspan=2>
                 Selection
               </th>
             </tr>
@@ -654,16 +631,50 @@
           <tbody class='tbody tbody-dark'>
             <tr>
               <th>
-                Title
+                Window Sticker Toggle
               </th>
-              <td>
-                <select name='s_title' id='s_title' onChange='document.car.setTitle(value)' disabled>
+              <td colspan=2>
+                <input name="c_window-sticker-switch" id="c_window-sticker-switch" type='checkbox' onChange="setWindowStickerToggle(value)" disabled>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Window Sticker Style
+              </th>
+              <td colspan=2>
+                <select name='s_window-sticker-type' id='s_window-sticker-type' onChange='setWindowStickerStyle(value)'>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Window Sticker Font
+              </th>
+              <td colspan=2>
+                <select name='s_window-sticker-font' id='s_window-sticker-font' onChange='setWindowStickerFont(value)'>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Rival Marker
+              </th>
+              <td colspan=2>
+                <select name='s_rival-marker' id='s_rival-marker' onChange='setRivalMarker(value)'>
+                  <option name='o_default' id='o_default'>
+                    Not Available
+                  </option>
                 </select>
               </td>
             </tr>
           </tbody>
         </table>
-        -->
       </div>
       <div>
         <!--
